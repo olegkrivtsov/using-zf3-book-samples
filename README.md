@@ -62,6 +62,11 @@ This sample is based on the *Hello World* sample and shows how to:
  * Create entities and define relations between entities 
  * Create repositories
  
-# Contributing
+## License
+
+Code samples are provided under the [BSD-like license](https://en.wikipedia.org/wiki/BSD_licenses). You are free to use, modify and distribute them
+as you wish unless you remove the copyright notice from the code.
+
+## Contributing
 
 If you found a mistake or a bug, please report it using the [Issues](https://github.com/olegkrivtsov/using-zf3-book-samples/issues) page. Your feedback is highly appreciated.
