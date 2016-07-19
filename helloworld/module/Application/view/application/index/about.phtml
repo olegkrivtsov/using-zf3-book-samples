@@ -1,0 +1,23 @@
+<?php
+$this->headTitle('About');
+
+$this->mainMenu()->setActiveItemId('about');
+
+$this->pageBreadcrumbs()->setItems(array(
+            'Home'=>$this->url('home'),
+            'About'=>$this->url('about'),
+            ));
+
+$this->layout()->setTemplate('layout/layout2');
+        
+?>
+
+<h1>About</h1>
+
+<p>
+    Application name: <?= $appName ?>
+</p>
+
+<p>
+    Application description: <?= $appDescription ?>
+</p>

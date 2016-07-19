@@ -1,0 +1,17 @@
+<?php
+$this->headTitle('Help');
+
+$this->mainMenu()->setActiveItemId('support');
+
+$this->pageBreadcrumbs()->setItems(array(
+    'Home'=>$this->url('home'),
+    'Help'=>$this->url('static', array('page'=>'/help')),    
+));
+?>
+
+<h1>Help</h1>
+
+<p>
+    See the help <a href="<?php echo $this->url('static', array('page'=>'/chapter1/intro')); ?>">introduction</a> here.
+</p>
+

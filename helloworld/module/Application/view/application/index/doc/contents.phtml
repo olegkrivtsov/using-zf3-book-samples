@@ -1,0 +1,27 @@
+<?php
+$this->headTitle('Documentation');
+
+$this->mainMenu()->setActiveItemId('support');
+
+$this->pageBreadcrumbs()->setItems(array(
+    'Home'=>$this->url('home'),
+    'Documentation'=>$this->url('doc', array('page'=>'contents')),    
+));
+?>
+
+<h1>Table of Contents</h1>
+
+<ul>
+    <li>
+        <a href="<?php echo $this->url('doc', 
+                array('page'=>'introduction')); ?>">
+            Introduction
+        </a>
+    </li>
+    <li>
+        <a href="<?php echo $this->url('doc', 
+                array('page'=>'install')); ?>">
+            Installation
+        </a>
+    </li>    
+</ul>

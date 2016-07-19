@@ -32,19 +32,18 @@ Below, we provide a short description for each available sample.
 
 ## Hello World
 
-This sample is based on *Zend Skeleton Application* and shows how to:
+This sample is based on *Zend Skeleton Application*. It shows how to:
 
  * Register controllers
  * Create controller actions
  * Use layouts and switch between them
  * Generate URLs with the `Url` controller plugin and the `Url` view helper
  * Create a custom route type
- * Create own view helpers
- 
+ * Create own view helpers 
 
 ## Form Demo
 
-This sample is based on the *Hello World* sample shows how to:
+This sample is based on the *Hello World* sample. It shows how to:
 
  * Create a form model
  * Use the form model in a controller
@@ -54,7 +53,7 @@ This sample is based on the *Hello World* sample shows how to:
 
 ## Blog
  
-This sample is based on the *Hello World* sample and shows how to:
+This sample is based on the *Hello World* sample and it shows how to:
 
  * Integrate your web site with Doctrine library
  * Initialize database schema
@@ -65,7 +64,7 @@ This sample is based on the *Hello World* sample and shows how to:
 ## License
 
 Code samples are provided under the [BSD-like license](https://en.wikipedia.org/wiki/BSD_licenses). You are free to use, modify and distribute them
-as you wish unless you remove the copyright notice from the code.
+as you wish.
 
 ## Contributing
 
