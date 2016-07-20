@@ -3,10 +3,10 @@ $this->headTitle('About');
 
 $this->mainMenu()->setActiveItemId('about');
 
-$this->pageBreadcrumbs()->setItems(array(
+$this->pageBreadcrumbs()->setItems([
             'Home'=>$this->url('home'),
             'About'=>$this->url('about'),
-            ));
+            ]);
 
 $this->layout()->setTemplate('layout/layout2');
         

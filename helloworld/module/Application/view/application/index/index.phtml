@@ -3,9 +3,9 @@ $this->headTitle('Welcome');
 
 $this->mainMenu()->setActiveItemId('home');
 
-$this->pageBreadcrumbs()->setItems(array(
+$this->pageBreadcrumbs()->setItems([
             'Home'=>$this->url('home')
-            ));
+            ]);
 ?>
 
 <h1>Welcome</h1>
@@ -18,6 +18,6 @@ $this->pageBreadcrumbs()->setItems(array(
     You can optically recognize this app using the barcode image below:
 </p>
 
-<img src="<?php echo $this->url('application', ['action'=>'barcode', 
+<img src="<?= $this->url('application', ['action'=>'barcode', 
                 'type'=>'code39', 'label'=>'HELLO-WORLD']); ?>"/>
 

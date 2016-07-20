@@ -1,11 +1,11 @@
 <?php
 $this->headTitle('Installation');
 $this->mainMenu()->setActiveItemId('support');
-$this->pageBreadcrumbs()->setItems(array(
+$this->pageBreadcrumbs()->setItems([
     'Home'=>$this->url('home'),
-    'Documentation'=>$this->url('doc', array('page'=>'contents')),
-    'Installation'=>$this->url('doc', array('page'=>'chapter1/installation')),
-));
+    'Documentation'=>$this->url('doc', ['page'=>'contents']),
+    'Installation'=>$this->url('doc', ['page'=>'chapter1/installation']),
+]);
 ?>
 
 <h1>Installation</h1>

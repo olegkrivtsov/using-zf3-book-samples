@@ -3,9 +3,9 @@ $this->headTitle('Datepicker');
 
 $this->mainMenu()->setActiveItemId('home');
 
-$this->pageBreadcrumbs()->setItems(array(
+$this->pageBreadcrumbs()->setItems([
             'Home'=>$this->url('home')
-            ));
+            ]);
 
 $this->headScript()->appendFile('/js/jquery-ui.min.js', 'text/javascript'); 
 $this->headLink()->appendStylesheet('/css/jquery-ui.min.css'); 

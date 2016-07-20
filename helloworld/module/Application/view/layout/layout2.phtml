@@ -2,7 +2,7 @@
 
 <div class="row">
     <div class="col-md-8">
-    <?php echo $this->content; ?>
+    <?= $this->content; ?>
     </div>
     <div class="col-md-4">
         <div class="panel panel-default">
@@ -24,6 +24,6 @@
 <?php 
   $this->placeholder('content')->captureEnd(); 
   echo $this->partial('layout/layout', 
-          array('content'=>$this->placeholder('content'))); 
+          ['content'=>$this->placeholder('content')]); 
 ?>
 

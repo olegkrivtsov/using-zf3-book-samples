@@ -3,9 +3,9 @@ $this->headTitle('Typeahead');
 
 $this->mainMenu()->setActiveItemId('home');
 
-$this->pageBreadcrumbs()->setItems(array(
+$this->pageBreadcrumbs()->setItems([
             'Home'=>$this->url('home')
-            ));
+            ]);
 
 $this->headScript()->appendFile('/js/typeahead.min.js', 'text/javascript');
 ?>

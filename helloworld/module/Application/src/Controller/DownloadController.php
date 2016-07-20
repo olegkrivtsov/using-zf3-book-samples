@@ -1,5 +1,4 @@
 <?php
-
 namespace Application\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
@@ -28,6 +27,13 @@ class DownloadController extends AbstractActionController
         // Get the file name from GET variable
         $fileName = (string)$this->params()->fromQuery('name', '');
         
+        trim($fileName);
+        if (strlen($fileName)==0) {
+            // Set 404 Not Found status code
+            $this->getResponse()->setStatusCode(404);            
+            return;
+        }
+        
         // Take some precautions to Make file name secure
         str_replace("/", "", $fileName);  // Remove slashes
         str_replace("\\", "", $fileName); // Remove back-slashes
@@ -53,7 +59,7 @@ class DownloadController extends AbstractActionController
             
         // Write file content        
         $fileContent = file_get_contents($path);
-        if($fileContent!=false) {                
+        if ($fileContent!=false) {                
             $response->setContent($fileContent);
         } else {        
             // Set 500 Server Error status code

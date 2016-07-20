@@ -24,7 +24,8 @@ class Menu extends AbstractHelper
      * Constructor.
      * @param array $items Menu items.
      */
-    public function __construct($items=[]) {
+    public function __construct($items=[]) 
+    {
         $this->items = $items;
     }
     
@@ -32,7 +33,8 @@ class Menu extends AbstractHelper
      * Sets menu items.
      * @param array $items Menu items.
      */
-    public function setItems($items) {
+    public function setItems($items) 
+    {
         $this->items = $items;
     }
     
@@ -40,7 +42,8 @@ class Menu extends AbstractHelper
      * Sets ID of the active items.
      * @param string $activeItemId
      */
-    public function setActiveItemId($activeItemId) {
+    public function setActiveItemId($activeItemId) 
+    {
         $this->activeItemId = $activeItemId;
     }
     
@@ -48,8 +51,8 @@ class Menu extends AbstractHelper
      * Renders the menu.
      * @return string HTML code of the menu.
      */
-    public function render() {
-        
+    public function render() 
+    {
         if (count($this->items)==0)
             return ''; // Do nothing if there are no items.
         
@@ -85,8 +88,8 @@ class Menu extends AbstractHelper
      * @param array $item The menu item info.
      * @return string HTML code of the item.
      */
-    protected function renderItem($item) {
-        
+    protected function renderItem($item) 
+    {
         $id = isset($item['id']) ? $item['id'] : '';
         $isActive = ($id==$this->activeItemId);
         $label = isset($item['label']) ? $item['label'] : '';

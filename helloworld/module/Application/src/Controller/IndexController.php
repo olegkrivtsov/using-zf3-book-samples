@@ -1,5 +1,4 @@
 <?php
-
 namespace Application\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
@@ -27,8 +26,8 @@ class IndexController extends AbstractActionController
     /**
      * This is the "about" action. It is used to display the "About" page.
      */
-    public function aboutAction() {              
-        
+    public function aboutAction() 
+    {              
         $appName = 'Hello World';
         $appDescription = 'Hello World sample application for Using Zend Framework 3 book';
         
@@ -81,7 +80,7 @@ class IndexController extends AbstractActionController
             
         // Write file content        
         $fileContent = file_get_contents($path);
-        if($fileContent!=false) {                
+        if ($fileContent!=false) {                
             $response->setContent($fileContent);
         } else {        
             // Set 500 Server Error status code
@@ -100,7 +99,7 @@ class IndexController extends AbstractActionController
     {
         $pageTemplate = 'application/index/doc' . $this->params()->fromRoute('page', 'documentation.phtml');        
         $filePath = __DIR__ . '/../../view/' . $pageTemplate . '.phtml';
-        if(!file_exists($filePath) || !is_readable($filePath)) {
+        if (!file_exists($filePath) || !is_readable($filePath)) {
             $this->getResponse()->setStatusCode(404);
             return;
         }
@@ -120,7 +119,7 @@ class IndexController extends AbstractActionController
     {
         // Get path to view template from route params
         $pageTemplate = $this->params()->fromRoute('page', null);
-        if($pageTemplate==null) {
+        if ($pageTemplate==null) {
             $this->getResponse()->setStatusCode(404);
             return;
         }
@@ -136,8 +135,8 @@ class IndexController extends AbstractActionController
     /**
      * This is the "barcode" action. It generate the HELLO-WORLD barcode image.     
      */
-    public function barcodeAction() {
-        
+    public function barcodeAction() 
+    {
         // Get parameters from route.
         $type = $this->params()->fromRoute('type', 'code39');
         $label = $this->params()->fromRoute('label', 'HELLO-WORLD');
@@ -161,35 +160,35 @@ class IndexController extends AbstractActionController
     /**
      * An action that demonstrates the usage of partial views.
      */
-    public function partialDemoAction() {
-        
-        $products = array(
-            array(
+    public function partialDemoAction() 
+    {
+        $products = [
+            [
                 'id' => 1,
                 'name' => 'Digital Camera',
                 'price' => 99.95,
-            ),
-            array(
+            ],
+            [
                 'id' => 2,
                 'name' => 'Tripod',
                 'price' => 29.95,
-            ),
-            array(
+            ],
+            [
                 'id' => 3,
                 'name' => 'Camera Case',
                 'price' => 2.99,
-            ),
-            array(
+            ],
+            [
                 'id' => 4,
                 'name' => 'Batteries',
                 'price' => 39.99,
-            ),
-            array(
+            ],
+            [
                 'id' => 5,
                 'name' => 'Charger',
                 'price' => 29.99,
-            ),
-        );
+            ],
+        ];
         
         return new ViewModel([
                 'products' => $products
@@ -200,8 +199,8 @@ class IndexController extends AbstractActionController
      * We override the parent class' onDispatch() method to
      * set an alternative layout for all actions in this controller.
      */
-    public function onDispatch(MvcEvent $e) {
-        
+    public function onDispatch(MvcEvent $e) 
+    {
         // Call the base class' onDispatch() first and grab the response
         $response = parent::onDispatch($e);        
         

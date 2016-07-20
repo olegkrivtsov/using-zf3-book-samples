@@ -60,7 +60,7 @@ class StaticRoute implements RouteInterface
         }
                 
         if (!isset($options['defaults'])) {
-            $options['defaults'] = array();
+            $options['defaults'] = [];
         }
 
         return new static(
@@ -82,7 +82,7 @@ class StaticRoute implements RouteInterface
         $uri  = $request->getUri();
         $path = $uri->getPath();
         
-        if($pathOffset!=null) 
+        if ($pathOffset!=null) 
             $path = substr($path, $pathOffset);
         
         // Get array of path segments.
@@ -113,16 +113,16 @@ class StaticRoute implements RouteInterface
     public function assemble(array $params = [], array $options = [])
     {
         $mergedParams          = array_merge($this->defaults, $params);
-        $this->assembledParams = array();
+        $this->assembledParams = [];
         
-        if(!isset($params['page'])) {
+        if (!isset($params['page'])) {
             throw new Exception\InvalidArgumentException(__METHOD__ . 
                     ' expects the "page" parameter');
         }
         
         $segments = explode('/', $params['page']);
         $url = '';
-        foreach($segments as $segment) {
+        foreach ($segments as $segment) {
             if(strlen($segment)==0)
                 continue;
             $url .= '/' . rawurlencode($segment);

@@ -3,7 +3,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <?= $this->headTitle('ZF Skeleton Application')->setSeparator(' - ')->setAutoEscape(false) ?>
+        <?= $this->headTitle('Hello World')->setSeparator(' - ')->setAutoEscape(false) ?>
 
         <?= $this->headMeta()
             ->appendName('viewport', 'width=device-width, initial-scale=1.0')
@@ -84,18 +84,18 @@
             <div class="row">
                 <div class="col-md-12">
                     <!-- Breadcrumbs -->
-                    <?php echo $this->pageBreadcrumbs()->render(); ?>
+                    <?= $this->pageBreadcrumbs()->render(); ?>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
                     <!-- Page content placeholder -->
-                    <?php echo $this->content; ?>
+                    <?= $this->content; ?>
                 </div>
             </div>
             <hr>
             <footer>
-                <p>&copy; 2005 - <?= date('Y') ?> by Zend Technologies Ltd. All rights reserved.</p>
+                <p>&copy; 2005 - <?= date('Y') ?> by Your Company. All rights reserved.</p>
             </footer>
         </div>
         <?= $this->inlineScript() ?>

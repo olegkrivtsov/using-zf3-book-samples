@@ -3,17 +3,17 @@ $this->headTitle('Downloads');
 
 $this->mainMenu()->setActiveItemId('downloads');
 
-$this->pageBreadcrumbs()->setItems(array(
+$this->pageBreadcrumbs()->setItems([
             'Home'=>$this->url('home'),
             'Downloads'=>$this->url('download', ['action'=>'index'])
-            ));
+            ]);
 ?>
 
 <h1>Downloads</h1>
 
 <ul>
     <li>
-        <a href="<?php echo $this->url("download", ['action'=>'file'], 
+        <a href="<?= $this->url("download", ['action'=>'file'], 
                 ['query'=>['name'=>'sample.txt']]); ?>">
             sample.txt
         </a>

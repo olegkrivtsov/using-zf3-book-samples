@@ -3,24 +3,22 @@ $this->headTitle('Documentation');
 
 $this->mainMenu()->setActiveItemId('support');
 
-$this->pageBreadcrumbs()->setItems(array(
+$this->pageBreadcrumbs()->setItems([
     'Home'=>$this->url('home'),
-    'Documentation'=>$this->url('doc', array('page'=>'contents')),    
-));
+    'Documentation'=>$this->url('doc', ['page'=>'contents']),    
+]);
 ?>
 
 <h1>Table of Contents</h1>
 
 <ul>
     <li>
-        <a href="<?php echo $this->url('doc', 
-                array('page'=>'introduction')); ?>">
+        <a href="<?= $this->url('doc', ['page'=>'introduction']); ?>">
             Introduction
         </a>
     </li>
     <li>
-        <a href="<?php echo $this->url('doc', 
-                array('page'=>'install')); ?>">
+        <a href="<?= $this->url('doc', ['page'=>'install']); ?>">
             Installation
         </a>
     </li>    

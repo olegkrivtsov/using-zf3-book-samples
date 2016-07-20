@@ -3,11 +3,11 @@ $this->headTitle('Help');
 
 $this->mainMenu()->setActiveItemId('support');
 
-$this->pageBreadcrumbs()->setItems(array(
+$this->pageBreadcrumbs()->setItems([
     'Home'=>$this->url('home'),
-    'Help'=>$this->url('static', array('page'=>'/help')),    
-    'Introduction'=>$this->url('static', array('page'=>'/chapter1/intro')),    
-));
+    'Help'=>$this->url('static', ['page'=>'/help']),    
+    'Introduction'=>$this->url('static', ['page'=>'/chapter1/intro']),    
+]);
 ?>
 
 <h1>Introduction</h1>
