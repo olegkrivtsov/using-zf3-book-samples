@@ -1,0 +1,28 @@
+<?php
+$this->headTitle('Welcome');
+
+$this->mainMenu()->setActiveItemId('home');
+
+$this->pageBreadcrumbs()->setItems([
+            'Home'=>$this->url('home')
+            ]);
+?>
+
+<h1>Welcome</h1>
+
+<p>
+    This is the Form Demo application.
+</p>
+
+<ul>
+    <li>
+        <a href="<?php echo $this->url('contactus'); ?>">Feedback Form</a> 
+        This page shows the usage of a feedback form.
+    </li>
+    
+    <li>
+        <a href="<?php echo $this->url('images', ['action'=>'index']); ?>">Image Gallery</a>
+        This page shows how to upload images with forms.
+    </li>        
+</ul>
+
