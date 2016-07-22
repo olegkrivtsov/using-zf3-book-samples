@@ -41,40 +41,12 @@ div.app-caption {
     color:#6aacaf
 }
 
-.typeahead,
-.tt-query,
-.tt-hint {
-  width: 396px;
-  height: 30px;
-  padding: 0px 12px;
-  font-size: 1.1em;
-  border: 2px solid #ccc;
-  border-radius: 4px;
-  outline: none;
+form ul {
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px 5px;
 }
 
-.tt-dropdown-menu {
-  width: 422px;
-  margin-top: 12px;
-  padding: 8px 0;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 4px; 
-}
-
-.tt-suggestion {
-  padding: 3px 20px;
-  font-size: 1.1em;
-  line-height: 24px;
-}
-
-.tt-suggestion.tt-is-under-cursor {
-  color: #fff;
-  background-color: #0097cf;
-
-}
-
-.tt-suggestion p {
-  margin: 0;
+form ul li {    
+  color: red;        
 }

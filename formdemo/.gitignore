@@ -12,3 +12,4 @@ composer.phar
 config/development.config.php
 phpunit.xml
 data/upload
+public/img/captcha
