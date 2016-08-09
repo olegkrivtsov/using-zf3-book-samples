@@ -8,6 +8,5 @@ nbproject
 .project
 .settings
 vendor/
-composer.phar
 config/development.config.php
 phpunit.xml
