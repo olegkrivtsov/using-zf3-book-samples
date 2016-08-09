@@ -77,13 +77,16 @@ class IndexController extends AbstractActionController
                 $body = $data['body'];
                 
                 // Send E-mail
-                if(!$this->mailSender->sendMail('no-reply@example.com', $email, $subject, $body)) {
+                if(!$this->mailSender->sendMail('no-reply@example.com', $email, 
+                        $subject, $body)) {
                     // In case of error, redirect to "Error Sending Email" page
-                    return $this->redirect()->toRoute('application', ['action'=>'sendError']);
+                    return $this->redirect()->toRoute('application', 
+                            ['action'=>'sendError']);
                 }
                 
                 // Redirect to "Thank You" page
-                return $this->redirect()->toRoute('application',['action'=>'thankYou']);
+                return $this->redirect()->toRoute('application', 
+                        ['action'=>'thankYou']);
             }               
         } 
         
