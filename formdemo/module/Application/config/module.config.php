@@ -39,9 +39,9 @@ return [
             'images' => [
                 'type'    => Segment::class,
                 'options' => [
-                    'route'    => '/images[/:action[/:id]]',
+                    'route'    => '/images[/:action]',
                     'constraints' => [
-                        
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*'
                     ],
                     'defaults' => [
                         'controller'    => Controller\ImageController::class,
