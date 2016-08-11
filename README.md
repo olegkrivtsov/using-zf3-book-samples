@@ -11,55 +11,17 @@ reproduce yourself. It may be difficult for a novice to write code without
 mistakes. If you are stuck or can not understand why your code does not work, 
 you can download and install the complete sample web application from this page. 
 
-Each sample described on this page is a complete web-site you can install and 
+Each sample is a complete web-site you can install and 
 run yourself to see Zend Framework 3 in action. You even can use the samples as 
 a base for your own web sites.
 
-To download all samples as a ZIP arcive, click the *Download ZIP* button. 
+To download all samples as a ZIP arcive, click the *Clone or Download* button. 
 When download is complete, unpack the archive to some directory.
 
-The structure of the code archive is presented below. 
+For description of each sample and installation instructions, visit these links:
 
-~~~
-using-zf3-book-samples
-	helloworld
-	formdemo
-	blog
-	...
-~~~
-
-Below, we provide a short description for each available sample.
-
-## Hello World
-
-This sample is based on *Zend Skeleton Application*. It shows how to:
-
- * Register controllers
- * Create controller actions
- * Use layouts and switch between them
- * Generate URLs with the `Url` controller plugin and the `Url` view helper
- * Create a custom route type
- * Create own view helpers 
-
-## Form Demo
-
-This sample is based on the *Hello World* sample. It shows how to:
-
- * Create a form model
- * Use the form model in a controller
- * Render the form with special form view helpers
- * Use form security elements (CAPTCHA, CSRF)
- * Upload files with forms
-
-## Blog
- 
-This sample is based on the *Hello World* sample and it shows how to:
-
- * Integrate your web site with Doctrine library
- * Initialize database schema
- * Use entity manager
- * Create entities and define relations between entities 
- * Create repositories
+ * [Hello World Sample](helloworld/README.md)
+ * [Form Demo Sample](formdemo/README.md)
  
 ## License
 
