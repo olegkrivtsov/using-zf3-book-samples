@@ -25,7 +25,7 @@ Adjust permissions for `public/img/captcha` directory:
 
 ```
 sudo chown -R www-data:www-data public/img/captcha
-sudo chown -R 775 public/captcha 
+sudo chown -R 775 public/img/captcha 
 ```
 
 Then create an Apache virtual host. It should look like below:
