@@ -19,7 +19,7 @@ Download the sample to some directory (it can be your home dir or `/var/www/html
 php composer.phar install
 ```
 
-The command above will install the dependencies (Zend Framework).
+The command above will install the dependencies (Zend Framework and Doctrine).
 
 Adjust permissions for `data` directory:
 
