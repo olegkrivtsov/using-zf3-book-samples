@@ -43,7 +43,7 @@ Then create an Apache virtual host. It should look like below:
 </VirtualHost>
 ```
 
-Now you should be able to see the Form Demo website by wisiting the link "http://localhost/". 
+Now you should be able to see the Form Demo website by visiting the link "http://localhost/". 
  
 ## License
 
