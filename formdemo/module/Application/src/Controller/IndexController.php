@@ -8,7 +8,7 @@ use Application\Service\MailSender;
 
 /**
  * This is the main controller class of the Form Demo application. The 
- * controller class is used to receive user input, instantiate needed models, 
+ * controller class is used to receive user input, 
  * pass the data to the models and pass the results returned by models to the 
  * view for rendering.
  */

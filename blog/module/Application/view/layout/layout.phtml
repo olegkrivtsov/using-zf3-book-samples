@@ -1,0 +1,87 @@
+<?= $this->doctype() ?>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <?= $this->headTitle('Blog')->setSeparator(' - ')->setAutoEscape(false) ?>
+
+        <?= $this->headMeta()
+            ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+            ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+        ?>
+
+        <!-- Le styles -->
+        <?= $this->headLink(['rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'])
+                        ->prependStylesheet($this->basePath('css/style.css'))
+                        ->prependStylesheet($this->basePath('css/bootstrap-theme.min.css'))
+                        ->prependStylesheet($this->basePath('css/bootstrap.min.css'))
+        ?>
+
+        <!-- Scripts -->
+        <?= $this->headScript()
+            ->prependFile($this->basePath('js/bootstrap.min.js'))
+            ->prependFile($this->basePath('js/jquery-2.2.4.min.js'))
+        ?>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <!-- Page header -->
+                <div class="col-md-4">
+                    <div class="app-caption">Blog</div>
+                </div>                
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Navigation bar -->
+                    <?php
+                    // Initialize navbar items
+                    $this->mainMenu()->setItems([
+                        [
+                            'id' => 'home',
+                            'label' => 'Home',
+                            'link' => $this->url('home')
+                        ],
+                        [
+                            'id' => 'admin',
+                            'label' => 'Admin',
+                            'link' => $this->url('posts', ['action'=>'admin'])
+                        ],
+                        [
+                            'id' => 'about',
+                            'label' => 'About',
+                            'link' => $this->url('about')
+                        ],
+                    ]);
+
+                    // Check if the activeMenuItemId passed to layout view model
+                    // and if so, use it for setting active navbar item.
+                    if (isset($activeMenuItemId)) {
+                        $this->mainMenu()->setActiveItemId($activeMenuItemId);
+                    }
+
+                    // Render the navbar
+                    echo $this->mainMenu()->render();
+                    ?>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Breadcrumbs -->
+                    <?= $this->pageBreadcrumbs()->render(); ?>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Page content placeholder -->
+                    <?= $this->content; ?>
+                </div>
+            </div>
+            <hr>
+            <footer>
+                <p>&copy; 2005 - <?= date('Y') ?> by Your Company. All rights reserved.</p>
+            </footer>
+        </div>
+        <?= $this->inlineScript() ?>
+    </body>
+</html>

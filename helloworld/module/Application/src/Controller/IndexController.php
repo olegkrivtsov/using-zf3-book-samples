@@ -9,7 +9,7 @@ use Zend\Mvc\MvcEvent;
 /**
  * This is the main controller class of the Hello World application. The 
  * controller class is used to receive user input, validate user input, 
- * instantiate needed models, pass the data to the models and pass the results 
+ * pass the data to the models and pass the results 
  * returned by models to the view for rendering.
  */
 class IndexController extends AbstractActionController 

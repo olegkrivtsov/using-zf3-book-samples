@@ -1,0 +1,92 @@
+<?php
+$this->headTitle('View Post - ' . $post->getTitle());
+
+$this->mainMenu()->setActiveItemId('home');
+
+$this->pageBreadcrumbs()->setItems([
+            'Home'=>$this->url('home')
+            ]);
+        
+$form = $this->form;
+$form->get('author')->setAttributes([
+    'class'=>'form-control', 
+    'placeholder'=>'Author\'s name'
+    ]);
+$form->get('comment')->setAttributes([
+    'class'=>'form-control',
+    'rows'=>6, 
+    'placeholder'=>'Text'
+    ]);
+$form->get('submit')->setAttributes(['class'=>'btn btn-primary']);
+$form->prepare();        
+?>
+
+<a href="
+    <?= $this->url('application', ['action'=>'index']); ?>">
+    &lt;&lt; Back to list of posts
+</a>
+
+<h1>
+    <?= $this->escapeHtml($post->getTitle()); ?>    
+</h1>
+
+<p class="comments-header">
+    <?= $this->escapeHtml($postManager->getCommentCountStr($post)); ?> | 
+    <a href="#comment">
+        Add new comment
+    </a>
+</p>
+
+<p>
+    Published: <?= $this->escapeHtml(date('jS \of F Y', strtotime($post->getDateCreated()))); ?> 
+    | Tags: <?= $this->escapeHtml($postManager->convertTagsToString($post)); ?>   
+</p>
+
+<p>    
+    <?= $this->escapeHtml($post->getContent()); ?>
+</p>
+
+<h3><?= $this->escapeHtml($postManager->getCommentCountStr($post)); ?></h3>
+
+<?php foreach ($post->getComments() as $comment): ?>
+
+<hr>
+
+<p>
+    <?= $this->escapeHtml($comment->getAuthor()) ?> on 
+    <?= $this->escapeHtml($comment->getDateCreated()); ?>
+</p>
+
+<p>
+    <?= $this->escapeHtml($comment->getContent()); ?>    
+</p>
+
+<?php endforeach; ?>
+
+<hr>
+
+<a name="comment"></a>
+<h3>Leave Reply</h3>
+
+<div class="row">
+    <div class="col-md-8">
+        <?= $this->form()->openTag($form); ?>
+        
+        <div class="form-group">
+            <?= $this->formLabel($form->get('author')); ?>
+            <?= $this->formElement($form->get('author')); ?>
+            <?= $this->formElementErrors($form->get('author')); ?>                  
+        </div>
+        
+        <div class="form-group">
+            <?= $this->formLabel($form->get('comment')); ?>
+            <?= $this->formElement($form->get('comment')); ?>
+            <?= $this->formElementErrors($form->get('comment')); ?>                  
+        </div>
+        
+        <?= $this->formElement($form->get('submit')); ?>
+        
+        <?= $this->form()->closeTag(); ?>
+    </div>    
+</div>   
+

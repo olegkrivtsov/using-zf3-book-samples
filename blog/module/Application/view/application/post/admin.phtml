@@ -1,0 +1,55 @@
+<?php
+$this->headTitle('Manage Posts');
+
+$this->mainMenu()->setActiveItemId('admin');
+
+$this->pageBreadcrumbs()->setItems([
+            'Admin'=>$this->url('home')
+            ]);
+?>
+
+<h1>Manage Posts</h1>
+
+<p>
+<a class="btn btn-default" href="
+    <?= $this->url('posts', ['action'=>'add']); ?>">
+    New Post
+</a>
+</p>
+
+<table class="table table-striped">
+
+   <tr>
+        <th>ID</th>
+        <th>Post Title</th>
+        <th>Date Created</th>
+        <th>Status</th>        
+        <th>Actions</th>        
+    </tr>
+    
+    <?php foreach ($posts as $post): ?>
+    
+    <tr>
+        <td><?= $this->escapeHtml($post->getId()); ?></td>
+        <td>
+            <a href="<?= $this->url('posts', ['action'=>'view', 'id'=>$post->getId()]); ?>">
+                <?= $this->escapeHtml($post->getTitle()); ?>
+            </a> 
+        </td>
+        <td><?= $this->escapeHtml($post->getDateCreated()); ?></td>        
+        <td><?= $this->escapeHtml($postManager->getPostStatusAsString($post)); ?></td>
+        <td>
+            <a class="btn btn-info" href="<?= $this->url('posts', 
+                    ['action'=>'edit', 'id'=>$post->getId()]); ?>">
+                <span class="glyphicon glyphicon-pencil" ></span> Edit
+            </a>
+            <a class="btn btn-danger" href="<?= $this->url('posts',
+                    ['action'=>'delete', 'id'=>$post->getId()]); ?>">
+                <span class="glyphicon glyphicon-remove"></span> Delete
+            </a>
+        </td>    
+    </tr>
+        
+    <?php endforeach; ?>   
+    
+</table>
