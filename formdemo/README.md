@@ -25,7 +25,7 @@ Adjust permissions for `public/img/captcha` directory:
 
 ```
 sudo chown -R www-data:www-data public/img/captcha
-sudo chown -R 775 public/captcha 
+sudo chown -R 775 public/img/captcha 
 ```
 
 Then create an Apache virtual host. It should look like below:
@@ -43,7 +43,7 @@ Then create an Apache virtual host. It should look like below:
 </VirtualHost>
 ```
 
-Now you should be able to see the Form Demo website by wisiting the link "http://localhost/". 
+Now you should be able to see the Form Demo website by visiting the link "http://localhost/". 
  
 ## License
 
