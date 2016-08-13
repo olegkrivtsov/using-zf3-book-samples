@@ -70,6 +70,7 @@ Then create an Apache virtual host. It should look like below:
 
 </VirtualHost>
 ```
+After creating the virtual host, restart Apache.
 
 Now you should be able to see the Blog website by wisiting the link "http://localhost/". 
  
