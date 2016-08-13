@@ -25,7 +25,7 @@ Adjust permissions for `data` directory:
 
 ```
 sudo chown -R www-data:www-data data
-sudo chown -R 775 data
+sudo chmod -R 775 data
 ```
 
 Then create an Apache virtual host. It should look like below:
