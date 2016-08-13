@@ -21,6 +21,12 @@ php composer.phar install
 
 The command above will install the dependencies (Zend Framework and Doctrine).
 
+Enable development mode:
+
+```
+php composer.phar development-enable
+```
+
 Adjust permissions for `data` directory:
 
 ```
