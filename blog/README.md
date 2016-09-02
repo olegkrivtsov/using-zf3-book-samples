@@ -54,6 +54,12 @@ Create tables and import data to database:
 mysql -u root -p blog < data/schema.mysql.sql
 ```
 
+Alternatively, you can run database migrations:
+
+```
+./vendor/bin/doctrine-module migrations:migrate
+```
+
 Create `config/autoload/local.php` config file by copying its distrib version:
 
 ```
