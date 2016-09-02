@@ -15,7 +15,7 @@ CREATE TABLE `post` (
   `title` text NOT NULL,      -- Title  
   `content` text NOT NULL,    -- Text 
   `status` int(11) NOT NULL,  -- Status  
-  `date_created` timestamp NOT NULL -- Creation date    
+  `date_created` datetime NOT NULL -- Creation date    
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='utf8_general_ci';
 
 -- Comment
@@ -24,7 +24,7 @@ CREATE TABLE `comment` (
   `post_id` int(11) NOT NULL,     -- Post ID this comment belongs to  
   `content` text NOT NULL,        -- Text
   `author` varchar(128) NOT NULL, -- Author's name who created the comment  
-  `date_created` timestamp NOT NULL -- Creation date          
+  `date_created` datetime NOT NULL -- Creation date          
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='utf8_general_ci';
 
 -- Tag

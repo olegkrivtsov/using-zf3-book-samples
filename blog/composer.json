@@ -20,7 +20,8 @@
         "zendframework/zend-mvc-plugins": "^1.0.1",
         "zendframework/zend-session": "^2.7.1",
         "doctrine/doctrine-orm-module": "dev-master as 1.0.9",
-        "doctrine/doctrine-module": "dev-master"
+        "doctrine/doctrine-module": "dev-master",
+        "doctrine/migrations": "^1.4"
     },
     "autoload": {
         "psr-4": {
