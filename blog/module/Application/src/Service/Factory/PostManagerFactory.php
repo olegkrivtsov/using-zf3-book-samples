@@ -9,7 +9,7 @@ use Application\Service\PostManager;
  * This is the factory for PostManager. Its purpose is to instantiate the
  * service.
  */
-class PostManagerFactory
+class PostManagerFactory implements FactoryInterface
 {
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {

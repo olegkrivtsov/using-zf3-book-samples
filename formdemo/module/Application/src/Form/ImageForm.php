@@ -50,7 +50,7 @@ class ImageForm extends Form
             'type'  => 'submit',
             'name' => 'submit',
             'attributes' => [                
-                'value' => 'Submit',
+                'value' => 'Upload',
                 'id' => 'submitbutton',
             ],
         ]);       
