@@ -10,7 +10,27 @@
  * control, so do not include passwords or other sensitive information in this
  * file.
  */
+use Zend\Session\Storage\SessionArrayStorage;
+use Zend\Session\Validator\RemoteAddr;
+use Zend\Session\Validator\HttpUserAgent;
 
 return [
-    // ...
+    // Session configuration.
+    'session_config' => [
+        'remember_me_seconds' => 60*60*1,  // Session will expire in 1 hour.
+        'name'                => 'zf3',    // Session name.
+    ],
+    // Session manager configuration.
+    'session_manager' => [
+        // Session validators (used for security).
+        'validators' => [
+            RemoteAddr::class,
+            HttpUserAgent::class,
+        ]
+    ],
+    // Session storage configuration.
+    'session_storage' => [
+        'type' => SessionArrayStorage::class
+    ],
 ];
+

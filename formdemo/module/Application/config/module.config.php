@@ -49,6 +49,19 @@ return [
                     ],
                 ],
             ],
+            'registration' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/registration[/:action]',
+                    'constraints' => [
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*'
+                    ],
+                    'defaults' => [
+                        'controller'    => Controller\RegistrationController::class,
+                        'action'        => 'index',
+                    ],
+                ],
+            ],
             'about' => [
                 'type' => Literal::class,
                 'options' => [
@@ -75,6 +88,7 @@ return [
         'factories' => [
             Controller\IndexController::class => Controller\Factory\IndexControllerFactory::class,
             Controller\ImageController::class => Controller\Factory\ImageControllerFactory::class,
+            Controller\RegistrationController::class => Controller\Factory\RegistrationControllerFactory::class,
         ],
     ],
     'service_manager' => [
@@ -82,6 +96,9 @@ return [
             Service\MailSender::class => InvokableFactory::class,
             Service\ImageManager::class => InvokableFactory::class,
         ],
+    ],
+    'session_containers' => [
+        'UserRegistration'
     ],
     // The following registers our custom view 
     // helper classes in view plugin manager.

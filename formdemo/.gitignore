@@ -11,4 +11,4 @@ vendor/
 config/development.config.php
 phpunit.xml
 data/upload
-public/img/captcha
+public/img/captcha/*

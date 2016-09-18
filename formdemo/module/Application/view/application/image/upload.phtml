@@ -4,7 +4,8 @@ $this->headTitle('Upload a New Image');
 $this->mainMenu()->setActiveItemId('home');
 
 $this->pageBreadcrumbs()->setItems([
-            'Home'=>$this->url('home')
+            'Home'=>$this->url('home'),
+            'Image Gallery' => $this->url('images')
             ]);
 
 $form = $this->form;
