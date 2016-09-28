@@ -34,6 +34,14 @@ sudo chown -R www-data:www-data data
 sudo chmod -R 775 data
 ```
 
+Create `config/autoload/local.php` config file by copying its distrib version:
+
+```
+cp config/autoload/local.php.dist config/autoload/local.php
+```
+
+Edit `config/autoload/local.php` and set database password parameter.
+
 Login to MySQL client:
 
 ```
@@ -59,14 +67,6 @@ Alternatively, you can run database migrations:
 ```
 ./vendor/bin/doctrine-module migrations:migrate
 ```
-
-Create `config/autoload/local.php` config file by copying its distrib version:
-
-```
-cp config/autoload/local.php.dist config/autoload/local.php
-```
-
-Edit `config/autoload/local.php` and set database password parameter.
 
 Then create an Apache virtual host. It should look like below:
 

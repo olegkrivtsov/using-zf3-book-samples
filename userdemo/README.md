@@ -42,6 +42,14 @@ sudo chown -R www-data:www-data public/img/captcha
 sudo chown -R 775 public/img/captcha 
 ```
 
+Create `config/autoload/local.php` config file by copying its distrib version:
+
+```
+cp config/autoload/local.php.dist config/autoload/local.php
+```
+
+Edit `config/autoload/local.php` and set database password parameter.
+
 Login to MySQL client:
 
 ```
@@ -61,14 +69,6 @@ Run database migrations to intialize database schema:
 ```
 ./vendor/bin/doctrine-module migrations:migrate
 ```
-
-Create `config/autoload/local.php` config file by copying its distrib version:
-
-```
-cp config/autoload/local.php.dist config/autoload/local.php
-```
-
-Edit `config/autoload/local.php` and set database password parameter.
 
 Then create an Apache virtual host. It should look like below:
 
