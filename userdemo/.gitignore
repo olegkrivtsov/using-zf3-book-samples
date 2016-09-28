@@ -1,0 +1,13 @@
+nbproject
+._*
+.vagrant
+.~lock.*
+.buildpath
+.DS_Store
+.idea
+.project
+.settings
+vendor/
+config/development.config.php
+phpunit.xml
+public/img/captcha

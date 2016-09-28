@@ -1,0 +1,44 @@
+<?php
+$this->headTitle('View User');
+
+$this->mainMenu()->setActiveItemId('users');
+
+$this->pageBreadcrumbs()->setItems([
+            'Home'=>$this->url('home'),
+            'Manage Users'=>$this->url('users'),
+            'View User'=>$this->url('users', ['action'=>'view', 'id'=>$user->getId()])
+            ]);
+?>
+
+<?= $this->flashMessenger()->render('error', ['alert', 'alert-warning']); ?>
+<?= $this->flashMessenger()->render('success', ['alert', 'alert-success']); ?>
+<?= $this->flashMessenger()->render('info', ['alert', 'alert-info']); ?>
+
+<h1>View User</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <table class="table table-striped table-bordered">
+             <tr>
+                <th>ID:</th>
+                <td><?= $this->escapeHtml($user->getId()) ?></th>
+            </tr>
+            <tr>
+                <th>E-mail:</th>
+                <td><?= $this->escapeHtml($user->getEmail()) ?></th>
+            </tr>
+            <tr>
+                <th>Full Name:</th>
+                <td><?= $this->escapeHtml($user->getFullName()) ?></th>
+            </tr>
+            <tr>
+                <th>Date Created:</th>
+                <td><?= $this->escapeHtml($user->getDateCreated()) ?></th>
+            </tr>
+            <tr>
+                <th>Status:</th>
+                <td><?= $this->escapeHtml($user->getStatusAsString()) ?></th>
+            </tr>
+        </table>
+    </div>
+</div>

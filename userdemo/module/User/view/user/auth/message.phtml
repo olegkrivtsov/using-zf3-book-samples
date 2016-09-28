@@ -1,0 +1,31 @@
+<?php
+$this->headTitle('Thank You');
+?>
+
+<div class="row">
+<div class="col-md-offset-4 col-md-5">
+<h1>Reset Password</h1>
+
+<?php if ($id=='sent'): ?>
+<p>
+    A password reset link has been sent to your email address.
+</p>
+<?php elseif ($id=='invalid-email'): ?>
+<p>
+    There is no user with such an email.
+</p>
+<?php elseif ($id=='set'): ?>
+<p>
+    Your new password has been set successfully.
+</p>
+<p>
+    Return to <a href="<?= $this->url('login'); ?>">login page</a>.
+</p>
+<?php elseif ($id=='failed'): ?>
+
+    Invalid reset key or it may have expired. Please return 
+    <a href="<?= $this->url('reset-password') ?>">here</a> and try reset your password again.
+</p>
+<?php endif; ?>
+</div>
+</div>    

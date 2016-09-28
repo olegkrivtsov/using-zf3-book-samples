@@ -1,0 +1,73 @@
+<?php
+/**
+ * @link      http://github.com/zendframework/ZendSkeletonApplication for the canonical source repository
+ * @copyright Copyright (c) 2005-2016 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd New BSD License
+ */
+
+namespace User;
+
+use Zend\ModuleManager\ModuleManager;
+use Zend\Mvc\MvcEvent;
+use User\Controller\AuthController;
+use User\Service\AuthManager;
+
+class Module
+{
+    public function getConfig()
+    {
+        return include __DIR__ . '/../config/module.config.php';
+    }
+    
+    /**
+     * The "init" method is called on application start-up and 
+     * allows to register an event listener.
+     */ 
+    public function init(ModuleManager $manager)
+    {
+        // Get event manager.
+        $eventManager = $manager->getEventManager();
+        $sharedEventManager = $eventManager->getSharedManager();
+        // Register the event listener method. 
+        $sharedEventManager->attach(__NAMESPACE__, 'dispatch', 
+                                    [$this, 'onDispatch'], 100);
+    }
+    
+    /**
+     * Event listener method for the 'Dispatch' event. We listen to the Dispatch
+     * event to call the access filter. The access filter allows to determine if
+     * the currently logged in user is allowed to see the page or not. If he/she
+     * is not allowed, we redirect the user to the login page.
+     */
+    public function onDispatch(MvcEvent $event)
+    {
+        // Get controller and action to which the HTTP request was dispatched.
+        $controller = $event->getTarget();
+        $controllerName = $event->getRouteMatch()->getParam('controller', null);
+        $actionName = $event->getRouteMatch()->getParam('action', null);
+        
+        // Get the instance of AuthManager service.
+        $authManager = $event->getApplication()->getServiceManager()->get(AuthManager::class);
+        
+        // Execute the access filter on every controller except AuthController
+        // (to avoid infinite redirect).
+        if ($controllerName!=AuthController::class && 
+            !$authManager->filterAccess($controllerName, $actionName)) {
+            
+            // Remember the URL of the page the user tried to access. We will
+            // redirect the user to that URL after successful login.
+            $uri = $event->getApplication()->getRequest()->getUri();
+            // Make the URL relative (remove scheme, user info, host name and port)
+            // to avoid redirecting to other domain by a malicious user.
+            $uri->setScheme(null)
+                ->setHost(null)
+                ->setPort(null)
+                ->setUserInfo(null);
+            $redirectUrl = $uri->toString();
+            
+            // Redirect the user to the "Login" page.
+            return $controller->redirect()->toRoute('login', [], 
+                    ['query'=>['redirectUrl'=>$redirectUrl]]);
+        }
+    }
+}
