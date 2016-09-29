@@ -60,7 +60,7 @@ class AuthManager
         // one month. By default session expires in 1 hour (as specified in our 
         // config/global.php file).
         if ($result->getCode()==Result::SUCCESS && $rememberMe) {
-            // Session will expire in 1 month (30 days).
+            // Session cookie will expire in 1 month (30 days).
             $this->sessionManager->rememberMe(60*60*24*30);
         }
         
@@ -88,48 +88,40 @@ class AuthManager
      */
     public function filterAccess($controllerName, $actionName)
     {
-        if (isset($this->config[$controllerName])) {
-            $items = $this->config[$controllerName];
+        // Determine mode - 'restrictive' (default) or 'permissive'. In restrictive
+        // mode all controller actions must be explicitly listed under the 'access_filter'
+        // config key, and access is denied to any not listed action for not logged in users. 
+        // In permissive mode, if an action is not listed under the 'access_filter' key, 
+        // access to it is permitted to anyone (even for not logged in users.
+        // Restrictive mode is more secure and recommended to use.
+        $mode = isset($this->config['options']['mode'])?$this->config['options']['mode']:'restrictive';
+        if ($mode!='restrictive' && $mode!='permissive')
+            throw new \Exception('Invalid access filter mode (expected either restrictive or permissive mode');
+        
+        if (isset($this->config['controllers'][$controllerName])) {
+            $items = $this->config['controllers'][$controllerName];
             foreach ($items as $item) {
                 $actionList = $item['actions'];
                 $allow = $item['allow'];
                 if (is_array($actionList) && in_array($actionName, $actionList) ||
                     $actionList=='*') {
-                    if (is_string($allow)) {
-                        if ($this->checkUser($allow))
-                            return true;
-                    } else if (is_array($allow)) {
-                        foreach ($allow as $allowItem) {
-                            if ($this->checkUser($allowItem)) 
-                                return true;
-                        }   
-                    } else {
-                        throw new \Exception('Expected string or array');
+                    if ($allow=='*')
+                        return true; // Anyone is allowed to see the page.
+                    else if ($allow=='@' && $this->authService->hasIdentity()) {
+                        return true; // Only authenticated user is allowed to see the page.
+                    } else {                    
+                        return false; // Access denied.
                     }
                 }
             }            
         }
         
-        return false;
-    }
-    
-    /**
-     * This method checks whether the $allow argument matches against the current
-     * user. 
-     * @param string|array $allow Either '*' or '@' or user email.
-     * @return boolean true if user is allowed to see the page.
-     */
-    private function checkUser($allow)
-    {
-        if ($allow=='*')
-            return true; // Anyone is allowed to see the page.
-        else if ($allow=='@' && $this->authService->hasIdentity()) {
-            return true; // Only authenticated user is allowed to see the page.
-        } else if ($allow==$this->authService->getIdentity()) {
-            return true; // Only user with the given email is allowed to see the page.
-        }
+        // In restrictive mode, we forbid access to any action not listed under 'access_filter'
+        // key (for security reasons).
+        if ($mode=='restrictive' && !$this->auth->hasIdentity())
+            return false;
         
-        // Restrict to see this page.
-        return false;
+        // Permit access.
+        return true;
     }
 }

@@ -67,16 +67,18 @@ return [
         ],
     ],
     'access_filter' => [
-        Controller\UserController::class => [
-            ['actions' => '*', 'allow' => '@']
-        ],
+        'controllers' => [
+            Controller\UserController::class => [
+                // Give access to all actions of UserController to authorized users only.
+                ['actions' => '*', 'allow' => '@']
+            ],
+        ]
     ],
     'service_manager' => [
         'factories' => [
             \Zend\Authentication\AuthenticationService::class => Service\Factory\AuthenticationServiceFactory::class,
             Service\AuthAdapter::class => Service\Factory\AuthAdapterFactory::class,
             Service\AuthManager::class => Service\Factory\AuthManagerFactory::class,
-            Service\NavManager::class => Service\Factory\NavManagerFactory::class,
             Service\UserManager::class => Service\Factory\UserManagerFactory::class,
         ],
     ],

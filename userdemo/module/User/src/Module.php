@@ -9,28 +9,32 @@ namespace User;
 
 use Zend\ModuleManager\ModuleManager;
 use Zend\Mvc\MvcEvent;
+use Zend\Mvc\Controller\AbstractActionController;
 use User\Controller\AuthController;
 use User\Service\AuthManager;
 
 class Module
 {
+    /**
+     * This method returns the path to module.config.php file.
+     */
     public function getConfig()
     {
         return include __DIR__ . '/../config/module.config.php';
     }
     
     /**
-     * The "init" method is called on application start-up and 
-     * allows to register an event listener.
-     */ 
-    public function init(ModuleManager $manager)
+     * This method is called once the MVC bootstrapping is complete and allows
+     * to register event listeners. 
+     */
+    public function onBootstrap(MvcEvent $event)
     {
         // Get event manager.
-        $eventManager = $manager->getEventManager();
+        $eventManager = $event->getApplication()->getEventManager();
         $sharedEventManager = $eventManager->getSharedManager();
         // Register the event listener method. 
-        $sharedEventManager->attach(__NAMESPACE__, 'dispatch', 
-                                    [$this, 'onDispatch'], 100);
+        $sharedEventManager->attach(AbstractActionController::class, 
+                MvcEvent::EVENT_DISPATCH, [$this, 'onDispatch'], 100);
     }
     
     /**
