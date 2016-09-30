@@ -11,11 +11,12 @@ use Zend\InputFilter\InputFilter;
  */
 class PasswordChangeForm extends Form
 {   
+    // There can be two scenarios - 'change' or 'reset'.
     private $scenario;
     
     /**
      * Constructor.
-     * @param string $scenarion Either 'change' or 'reset'.     
+     * @param string $scenario Either 'change' or 'reset'.     
      */
     public function __construct($scenario)
     {
@@ -36,6 +37,7 @@ class PasswordChangeForm extends Form
      */
     protected function addElements() 
     {
+        // If scenario is 'change', we do not ask for old password.
         if ($this->scenario == 'change') {
         
             // Add "old_password" field

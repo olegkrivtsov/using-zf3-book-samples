@@ -6,7 +6,7 @@ use Zend\Crypt\Password\Bcrypt;
 use Zend\Math\Rand;
 
 /**
- * This service is responsible for adding/editing/deleting users
+ * This service is responsible for adding/editing users
  * and changing user password.
  */
 class UserManager

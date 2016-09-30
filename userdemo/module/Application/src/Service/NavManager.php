@@ -2,20 +2,20 @@
 namespace Application\Service;
 
 /**
- * This service is responsible for determining which items should be in the mails menu.
+ * This service is responsible for determining which items should be in the main menu.
  * The items may be different depending on whether the user is authenticated or not.
  */
 class NavManager
 {
     /**
      * Auth service.
-     * @var Zend\Authentication\Authentication;
+     * @var Zend\Authentication\Authentication
      */
     private $authService;
     
     /**
      * Url view helper.
-     * @var Zend\View\Helper\Url; 
+     * @var Zend\View\Helper\Url
      */
     private $urlHelper;
     
@@ -48,6 +48,8 @@ class NavManager
             'link'  => $url('about')
         ];
         
+        // Display "Login" menu item for not authorized user only. On the other hand,
+        // display "Admin" and "Logout" menu items only for authorized users.
         if (!$this->authService->hasIdentity()) {
             $items[] = [
                 'id' => 'login',

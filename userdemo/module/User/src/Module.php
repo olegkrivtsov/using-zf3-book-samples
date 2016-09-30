@@ -40,8 +40,9 @@ class Module
     /**
      * Event listener method for the 'Dispatch' event. We listen to the Dispatch
      * event to call the access filter. The access filter allows to determine if
-     * the currently logged in user is allowed to see the page or not. If he/she
-     * is not allowed, we redirect the user to the login page.
+     * the current visitor is allowed to see the page or not. If he/she
+     * is not authorized and is not allowed to see the page, we redirect the user 
+     * to the login page.
      */
     public function onDispatch(MvcEvent $event)
     {

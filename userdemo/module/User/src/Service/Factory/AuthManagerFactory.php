@@ -25,7 +25,7 @@ class AuthManagerFactory implements FactoryInterface
         
         // Get contents of 'access_filter' config key (the AuthManager service
         // will use this data to determine whether to allow currently logged in user
-        // to execute the controller action.
+        // to execute the controller action or not.
         $config = $container->get('Config');
         if (isset($config['access_filter']))
             $config = $config['access_filter'];

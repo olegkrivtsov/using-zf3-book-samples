@@ -9,7 +9,7 @@ use User\Entity\User;
 
 /**
  * This is the main controller class of the User Demo application. It contains
- * site-wide actions such as About and Contact Us.
+ * site-wide actions such as Home or About.
  */
 class IndexController extends AbstractActionController 
 {
@@ -20,7 +20,7 @@ class IndexController extends AbstractActionController
     private $entityManager;
     
     /**
-     * Constructor.
+     * Constructor. Its purpose is to inject dependencies into the controller.
      */
     public function __construct($entityManager) 
     {

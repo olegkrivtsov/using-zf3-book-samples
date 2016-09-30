@@ -12,7 +12,7 @@ use User\Form\PasswordChangeForm;
 use User\Entity\User;
 
 /**
- * This controller is responsible for letting a user to log in, log out and
+ * This controller is responsible for letting the user to log in, log out and
  * reset a forgotten password.
  */
 class AuthController extends AbstractActionController
@@ -158,6 +158,7 @@ class AuthController extends AbstractActionController
             // Validate form
             if($form->isValid()) {
                 
+                // Look for the user with such email.
                 $user = $this->entityManager->getRepository(User::class)
                         ->findOneByEmail($data['email']);                
                 if ($user!=null) {
@@ -200,7 +201,7 @@ class AuthController extends AbstractActionController
     }
     
     /**
-     * This action displays the "Reset Your Password" page. 
+     * This action displays the "Reset Password" page. 
      */
     public function setPasswordAction()
     {
@@ -233,6 +234,7 @@ class AuthController extends AbstractActionController
                 
                 $data = $form->getData();
                                                
+                // Set new password for the user.
                 if ($this->userManager->setPasswordByToken($token, $data['password'])) {
                     
                     // Redirect to "message" page

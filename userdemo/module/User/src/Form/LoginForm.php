@@ -6,7 +6,7 @@ use Zend\Form\Fieldset;
 use Zend\InputFilter\InputFilter;
 
 /**
- * This form is used to collect user's login, password and Remember Me field.
+ * This form is used to collect user's login, password and 'Remember Me' flag.
  */
 class LoginForm extends Form
 {

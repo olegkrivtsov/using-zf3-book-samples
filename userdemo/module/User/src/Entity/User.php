@@ -154,7 +154,8 @@ class User
     }    
     
     /**
-     * Sets status.     
+     * Sets status.
+     * @param int $status     
      */
     public function setStatus($status) 
     {
@@ -163,6 +164,7 @@ class User
     
     /**
      * Returns password.
+     * @return string
      */
     public function getPassword() 
     {
@@ -171,6 +173,7 @@ class User
     
     /**
      * Sets password.     
+     * @param string $password
      */
     public function setPassword($password) 
     {
@@ -178,7 +181,8 @@ class User
     }
     
     /**
-     * Returns the date of user creation.     
+     * Returns the date of user creation.
+     * @return string     
      */
     public function getDateCreated() 
     {
@@ -186,7 +190,8 @@ class User
     }
     
     /**
-     * Sets the date when this user was created.     
+     * Sets the date when this user was created.
+     * @param string $dateCreated     
      */
     public function setDateCreated($dateCreated) 
     {

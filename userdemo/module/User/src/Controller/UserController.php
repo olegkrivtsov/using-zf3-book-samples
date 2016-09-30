@@ -9,7 +9,7 @@ use User\Form\PasswordChangeForm;
 
 /**
  * This controller is responsible for user management (adding, editing, 
- * viewing users and changing password).
+ * viewing users and changing user's password).
  */
 class UserController extends AbstractActionController 
 {
@@ -70,6 +70,7 @@ class UserController extends AbstractActionController
                 // Get filtered and validated data
                 $data = $form->getData();
                 
+                // Add user.
                 $user = $this->userManager->addUser($data);
                 
                 // Redirect to "view" page
@@ -84,8 +85,7 @@ class UserController extends AbstractActionController
     }
     
     /**
-     * This action displays a page allowing to view user's details.
-     * @return \Zend\View\Model\ViewModel
+     * The "view" action displays a page allowing to view user's details.
      */
     public function viewAction() 
     {
@@ -95,6 +95,7 @@ class UserController extends AbstractActionController
             return;
         }
         
+        // Find a user with such ID.
         $user = $this->entityManager->getRepository(User::class)
                 ->find($id);
         
@@ -109,7 +110,7 @@ class UserController extends AbstractActionController
     }
     
     /**
-     * This action displays a page allowing to edit user.
+     * The "edit" action displays a page allowing to edit user.
      */
     public function editAction() 
     {
@@ -144,6 +145,7 @@ class UserController extends AbstractActionController
                 // Get filtered and validated data
                 $data = $form->getData();
                 
+                // Update the user.
                 $this->userManager->updateUser($user, $data);
                 
                 // Redirect to "view" page
@@ -200,6 +202,7 @@ class UserController extends AbstractActionController
                 // Get filtered and validated data
                 $data = $form->getData();
                 
+                // Try to change password.
                 if (!$this->userManager->changePassword($user, $data)) {
                     $this->flashMessenger()->addErrorMessage(
                             'Sorry, the old password is incorrect. Could not set the new password.');

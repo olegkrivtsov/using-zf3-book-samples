@@ -12,6 +12,10 @@ return [
                 'type'    => Segment::class,
                 'options' => [
                     'route'    => '/auth[/:action[/:id]]',
+                    'constraints' => [
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                    ],
                     'defaults' => [
                         'controller'    => Controller\AuthController::class,
                         'action'        => 'index',
@@ -52,6 +56,10 @@ return [
                 'type'    => Segment::class,
                 'options' => [
                     'route'    => '/users[/:action[/:id]]',
+                    'constraints' => [
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                    ],
                     'defaults' => [
                         'controller'    => Controller\UserController::class,
                         'action'        => 'index',
@@ -66,6 +74,8 @@ return [
             Controller\UserController::class => Controller\Factory\UserControllerFactory::class,            
         ],
     ],
+    // The 'access_filter' key is used by the User module to restrict or permit
+    // access to certain controller actions for unauthorized visitors.
     'access_filter' => [
         'controllers' => [
             Controller\UserController::class => [

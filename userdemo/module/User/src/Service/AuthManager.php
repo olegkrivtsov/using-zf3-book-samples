@@ -4,9 +4,9 @@ namespace User\Service;
 use Zend\Authentication\Result;
 
 /**
- * The AuthManager service is responsible for user login/logout and simple access 
- * filtering. The access filtering feature checks whether the currently logged in
- * user is allowed to see the given page or not. 
+ * The AuthManager service is responsible for user's login/logout and simple access 
+ * filtering. The access filtering feature checks whether the current visitor 
+ * is allowed to see the given page or not.  
  */
 class AuthManager
 {
@@ -82,15 +82,18 @@ class AuthManager
     }
     
     /**
+     * This is a simple access control filter. It is able to restrict unauthorized
+     * users to visit certain pages.
+     * 
      * This method uses the 'access_filter' key in the config file and determines
-     * whenther the currently logged in user is allowed to access the given controller action
+     * whenther the current visitor is allowed to access the given controller action
      * or not. It returns true if allowed; otherwise false.
      */
     public function filterAccess($controllerName, $actionName)
     {
         // Determine mode - 'restrictive' (default) or 'permissive'. In restrictive
         // mode all controller actions must be explicitly listed under the 'access_filter'
-        // config key, and access is denied to any not listed action for not logged in users. 
+        // config key, and access is denied to any not listed action for unauthorized users. 
         // In permissive mode, if an action is not listed under the 'access_filter' key, 
         // access to it is permitted to anyone (even for not logged in users.
         // Restrictive mode is more secure and recommended to use.
@@ -116,12 +119,12 @@ class AuthManager
             }            
         }
         
-        // In restrictive mode, we forbid access to any action not listed under 'access_filter'
-        // key (for security reasons).
+        // In restrictive mode, we forbid access for unauthorized users to any 
+        // action not listed under 'access_filter' key (for security reasons).
         if ($mode=='restrictive' && !$this->auth->hasIdentity())
             return false;
         
-        // Permit access.
+        // Permit access to this page.
         return true;
     }
 }

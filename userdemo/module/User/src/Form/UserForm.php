@@ -7,14 +7,14 @@ use Zend\InputFilter\InputFilter;
 use User\Validator\UserExistsValidator;
 
 /**
- * This form is used to collect user's login, full name, password and status. The form 
+ * This form is used to collect user's email, full name, password and status. The form 
  * can work in two scenarios - 'create' and 'update'. In 'create' scenario, user
- * enters password, in 'update' scenario he doesn't enter password.
+ * enters password, in 'update' scenario he/she doesn't enter password.
  */
 class UserForm extends Form
 {
     /**
-     * Scenario.
+     * Scenario ('create' or 'update').
      * @var string 
      */
     private $scenario;
