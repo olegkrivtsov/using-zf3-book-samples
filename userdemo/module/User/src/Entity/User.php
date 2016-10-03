@@ -2,7 +2,6 @@
 namespace User\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * This class represents a registered user.
@@ -57,14 +56,6 @@ class User
      */
     protected $passwordResetTokenCreationDate;
     
-    /**
-     * Constructor.
-     */
-    public function __construct() 
-    {
-        $this->roles = new ArrayCollection();
-    }
-
     /**
      * Returns user ID.
      * @return integer
