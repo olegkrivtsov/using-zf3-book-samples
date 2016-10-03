@@ -8,20 +8,6 @@ use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
 return [
     'router' => [
         'routes' => [
-            'auth' => [
-                'type'    => Segment::class,
-                'options' => [
-                    'route'    => '/auth[/:action[/:id]]',
-                    'constraints' => [
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                        'id' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                    ],
-                    'defaults' => [
-                        'controller'    => Controller\AuthController::class,
-                        'action'        => 'index',
-                    ],
-                ],
-            ],
             'login' => [
                 'type' => Literal::class,
                 'options' => [
@@ -47,7 +33,7 @@ return [
                 'options' => [
                     'route'    => '/reset-password',
                     'defaults' => [
-                        'controller' => Controller\AuthController::class,
+                        'controller' => Controller\UserController::class,
                         'action'     => 'resetPassword',
                     ],
                 ],
@@ -58,7 +44,7 @@ return [
                     'route'    => '/users[/:action[/:id]]',
                     'constraints' => [
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                        'id' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id' => '[a-zA-Z0-9_-]*',
                     ],
                     'defaults' => [
                         'controller'    => Controller\UserController::class,
@@ -79,8 +65,11 @@ return [
     'access_filter' => [
         'controllers' => [
             Controller\UserController::class => [
-                // Give access to all actions of UserController to authorized users only.
-                ['actions' => '*', 'allow' => '@']
+                // Give access to "resetPassword", "message" and "setPassword" actions
+                // to anyone.
+                ['actions' => ['resetPassword', 'message', 'setPassword'], 'allow' => '*'],
+                // Give access to "index", "add", "edit", "view", "changePassword" actions to authorized users only.
+                ['actions' => ['index', 'add', 'edit', 'view', 'changePassword'], 'allow' => '@']
             ],
         ]
     ],

@@ -61,7 +61,7 @@ return [
             // action for not logged in users. In permissive mode, if an action is not listed 
             // under the 'access_filter' key, access to it is permitted to anyone (even for 
             // not logged in users. Restrictive mode is more secure and recommended to use.
-            'mode' => 'permissive'
+            'mode' => 'restrictive'
         ],
         'controllers' => [
             Controller\IndexController::class => [
