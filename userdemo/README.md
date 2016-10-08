@@ -35,11 +35,17 @@ sudo chown -R www-data:www-data data
 sudo chmod -R 775 data
 ```
 
+Create `public/img/captcha` directory:
+
+```
+mkdir public/img/captcha
+```
+
 Adjust permissions for `public/img/captcha` directory:
 
 ```
 sudo chown -R www-data:www-data public/img/captcha
-sudo chown -R 775 public/img/captcha 
+sudo chmod -R 775 public/img/captcha 
 ```
 
 Create `config/autoload/local.php` config file by copying its distrib version:
