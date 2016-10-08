@@ -22,7 +22,6 @@
         "zendframework/zend-mvc-form": "^1.0",
         "zendframework/zend-mvc-plugins": "^1.0.1",
         "zendframework/zend-session": "^2.7.1",
-        "zendframework/zend-barcode": "^2.6",
         "zendframework/zend-authentication": "^2.5",
         "doctrine/doctrine-orm-module": "dev-master as 1.0.9",
         "doctrine/doctrine-module": "dev-master",
