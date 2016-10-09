@@ -3,8 +3,6 @@ namespace User\Service\Factory;
 
 use Interop\Container\ContainerInterface;
 use Zend\Authentication\AuthenticationService;
-use Zend\Authentication\Adapter;
-use Zend\Authentication\Storage;
 use Zend\ServiceManager\Factory\FactoryInterface;
 use Zend\Session\SessionManager;
 use Zend\Authentication\Storage\Session as SessionStorage;

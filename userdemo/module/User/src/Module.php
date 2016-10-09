@@ -7,7 +7,6 @@
 
 namespace User;
 
-use Zend\ModuleManager\ModuleManager;
 use Zend\Mvc\MvcEvent;
 use Zend\Mvc\Controller\AbstractActionController;
 use User\Controller\AuthController;

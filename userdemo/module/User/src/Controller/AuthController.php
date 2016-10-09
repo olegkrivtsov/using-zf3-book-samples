@@ -10,8 +10,7 @@ use User\Form\LoginForm;
 use User\Entity\User;
 
 /**
- * This controller is responsible for letting the user to log in, log out and
- * reset a forgotten password.
+ * This controller is responsible for letting the user to log in and log out.
  */
 class AuthController extends AbstractActionController
 {
