@@ -185,12 +185,12 @@ class UserManager
      */
     public function setNewPasswordByToken($passwordResetToken, $newPassword)
     {
-        if (!$this->validateResetPasswordUid($passwordResetToken)) {
+        if (!$this->validatePasswordResetToken($passwordResetToken)) {
            return false; 
         }
         
-        $user = $this->entityManager->getRepository('\Application\Entity\User')
-                ->findOneBy(array('resetPasswordUid'=>$resetPasswordUid));
+        $user = $this->entityManager->getRepository(User::class)
+                ->findOneBy(['passwordResetToken'=>$passwordResetToken]);
         
         if ($user===null) {
             return false;
@@ -201,9 +201,9 @@ class UserManager
         $passwordHash = $bcrypt->create($newPassword);        
         $user->setPassword($passwordHash);
                 
-        // Remove UID
-        $user->setResetPasswordUid(null);
-        $user->setResetPasswordUidCreationDate(null);
+        // Remove password reset token
+        $user->setPasswordResetToken(null);
+        $user->setPasswordResetTokenCreationDate(null);
         
         $this->entityManager->flush();
         
