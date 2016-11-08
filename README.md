@@ -15,7 +15,7 @@ Each sample is a complete web-site you can install and
 run yourself to see Zend Framework 3 in action. You even can use the samples as 
 a base for your own web sites.
 
-To download all samples as a ZIP arcive, click the *Clone or Download* button. 
+To download all samples as a ZIP archive, click the *Clone or Download* button. 
 When download is complete, unpack the archive to some directory.
 
 For description of each sample and installation instructions, visit these links:
