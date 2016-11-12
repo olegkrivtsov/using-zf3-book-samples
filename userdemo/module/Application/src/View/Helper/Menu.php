@@ -115,6 +115,7 @@ class Menu extends AbstractHelper
             $result .= '<li class="dropdown ' . ($isActive?'active':'') . '">';
             $result .= '<a href="#" class="dropdown-toggle" data-toggle="dropdown">';
             $result .= $escapeHtml($label) . ' <b class="caret"></b>';
+            $result .= '</a>';
            
             $result .= '<ul class="dropdown-menu">';
             foreach ($dropdownItems as $item) {
@@ -126,7 +127,6 @@ class Menu extends AbstractHelper
                 $result .= '</li>';
             }
             $result .= '</ul>';
-            $result .= '</a>';
             $result .= '</li>';
             
         } else {        
