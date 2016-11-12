@@ -12,7 +12,7 @@ This sample is based on *Hello World* sample. It shows how to:
 
 ## Installation
 
-You need to have PHP v.5.6 or later with `gd`, `intl` and `mcrypt` extensions.
+You need to have Apache 2.4 HTTP server, PHP v.5.6 or later with `gd` and `intl` extensions, and MySQL 5.6 or later.
 
 Download the sample to some directory (it can be your home dir or `/var/www/html`) and run Composer as follows:
 
@@ -83,7 +83,7 @@ Then create an Apache virtual host. It should look like below:
     DocumentRoot /path/to/userdemo/public
     
 	<Directory /path/to/userdemo/public/>
-        Options Indexes FollowSymLinks MultiViews
+        DirectoryIndex index.php
         AllowOverride All
         Require all granted
     </Directory>

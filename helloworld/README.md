@@ -12,7 +12,7 @@ This sample is based on *Zend Skeleton Application*. It shows how to:
 
 ## Installation
 
-You need to have PHP v.5.6 or later plus GD and Intl PHP extensions.
+You need to have Apache 2.4 HTTP server, PHP v.5.6 or later plus `gd` and `intl` PHP extensions.
 
 Download the sample to some directory (it can be your home dir or `/var/www/html`) and run Composer as follows:
 
@@ -29,7 +29,7 @@ Then create an Apache virtual host. It should look like below:
     DocumentRoot /path/to/helloworld/public
     
 	<Directory /path/to/helloworld/public/>
-        Options Indexes FollowSymLinks MultiViews
+        DirectoryIndex index.php
         AllowOverride All
         Require all granted
     </Directory>
