@@ -1,5 +1,5 @@
 <?php
-namespace User\Form;
+namespace ProspectOne\UserModule\Form;
 
 use Zend\Form\Form;
 use Zend\Form\Fieldset;

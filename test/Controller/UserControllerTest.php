@@ -5,7 +5,7 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace UserTest\Controller;
+namespace ProspectOne\UserModuleTest\Controller;
 
 use User\Controller\UserController;
 use Zend\Stdlib\ArrayUtils;

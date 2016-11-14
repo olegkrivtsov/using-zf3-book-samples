@@ -1,5 +1,5 @@
 <?php
-namespace User\Controller\Factory;
+namespace ProspectOne\UserModule\Controller\Factory;
 
 use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\Factory\FactoryInterface;

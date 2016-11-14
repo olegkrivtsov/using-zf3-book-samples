@@ -31,14 +31,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Application\\": "module/Application/src/",
-            "User\\": "module/User/src/"
+            "ProspectOne\\UserModule\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "ApplicationTest\\": "module/Application/test/",
-            "UserTest\\": "module/User/test/"
+            "ProspectOne\\UserModuleTest\\": "test/"
         }
     },
     "extra": [],

@@ -1,5 +1,5 @@
 <?php
-namespace User\Entity;
+namespace ProspectOne\UserModule\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 

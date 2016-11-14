@@ -1,5 +1,5 @@
 <?php
-namespace User\Service;
+namespace ProspectOne\UserModule\Service;
 
 use Zend\Authentication\Result;
 

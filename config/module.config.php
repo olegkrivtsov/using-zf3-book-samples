@@ -1,5 +1,5 @@
 <?php
-namespace User;
+namespace ProspectOne\UserModule;
 
 use Zend\Router\Http\Literal;
 use Zend\Router\Http\Segment;

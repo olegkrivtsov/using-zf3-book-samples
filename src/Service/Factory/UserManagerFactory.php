@@ -1,5 +1,5 @@
 <?php
-namespace User\Service\Factory;
+namespace ProspectOne\UserModule\Service\Factory;
 
 use Interop\Container\ContainerInterface;
 use User\Service\UserManager;

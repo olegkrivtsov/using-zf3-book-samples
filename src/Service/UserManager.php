@@ -1,5 +1,5 @@
 <?php
-namespace User\Service;
+namespace ProspectOne\UserModule\Service;
 
 use User\Entity\User;
 use Zend\Crypt\Password\Bcrypt;

@@ -1,5 +1,5 @@
 <?php
-namespace User\Validator;
+namespace ProspectOne\UserModule\Validator;
 
 use Zend\Validator\AbstractValidator;
 use User\Entity\User;
