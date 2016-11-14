@@ -1,5 +1,5 @@
 {
-    "name": "ProspectOne/olegkrivtsov-user-module",
+    "name": "ProspectOne/UserModule",
     "description": "Skeleton Application for Zend Framework zend-mvc applications",
     "type": "project",
     "license": "BSD-3-Clause",
