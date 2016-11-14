@@ -2,7 +2,8 @@
 namespace ProspectOne\UserModule\Validator;
 
 use Zend\Validator\AbstractValidator;
-use User\Entity\User;
+use ProspectOne\UserModule\Entity\User;
+
 /**
  * This validator class is designed for checking if there is an existing user 
  * with such an email.
@@ -55,7 +56,7 @@ class UserExistsValidator extends AbstractValidator
     {
         if(!is_scalar($value)) {
             $this->error(self::NOT_SCALAR);
-            return $false; 
+            return false;
         }
         
         // Get Doctrine entity manager.

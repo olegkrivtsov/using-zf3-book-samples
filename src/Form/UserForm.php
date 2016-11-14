@@ -2,9 +2,8 @@
 namespace ProspectOne\UserModule\Form;
 
 use Zend\Form\Form;
-use Zend\Form\Fieldset;
 use Zend\InputFilter\InputFilter;
-use User\Validator\UserExistsValidator;
+use ProspectOne\UserModule\Validator\UserExistsValidator;
 
 /**
  * This form is used to collect user's email, full name, password and status. The form 
@@ -21,13 +20,13 @@ class UserForm extends Form
     
     /**
      * Entity manager.
-     * @var Doctrine\ORM\EntityManager 
+     * @var \Doctrine\ORM\EntityManager
      */
     private $entityManager = null;
     
     /**
      * Current user.
-     * @var User\Entity\User 
+     * @var \ProspectOne\UserModule\Entity\User
      */
     private $user = null;
     

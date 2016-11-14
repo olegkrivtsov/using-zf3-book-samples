@@ -9,8 +9,8 @@ namespace ProspectOne\UserModule;
 
 use Zend\Mvc\MvcEvent;
 use Zend\Mvc\Controller\AbstractActionController;
-use User\Controller\AuthController;
-use User\Service\AuthManager;
+use ProspectOne\UserModule\Controller\AuthController;
+use ProspectOne\UserModule\Service\AuthManager;
 
 class Module
 {

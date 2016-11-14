@@ -2,7 +2,7 @@
 namespace ProspectOne\UserModule\Service\Factory;
 
 use Interop\Container\ContainerInterface;
-use User\Service\UserManager;
+use ProspectOne\UserModule\Service\UserManager;
 
 /**
  * This is the factory class for UserManager service. The purpose of the factory
@@ -11,7 +11,12 @@ use User\Service\UserManager;
 class UserManagerFactory
 {
     /**
-     * This method creates the UserManager service and returns its instance. 
+     * This method creates the UserManager service and returns its instance.
+     *
+     * @param ContainerInterface $container
+     * @param $requestedName
+     * @param array|null $options
+     * @return UserManager
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {        

@@ -18,7 +18,7 @@ class AuthManager
     
     /**
      * Session manager.
-     * @var Zend\Session\SessionManager
+     * @var \Zend\Session\SessionManager
      */
     private $sessionManager;
     

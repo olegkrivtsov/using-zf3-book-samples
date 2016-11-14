@@ -2,7 +2,6 @@
 namespace ProspectOne\UserModule\Form;
 
 use Zend\Form\Form;
-use Zend\Form\Fieldset;
 use Zend\InputFilter\InputFilter;
 
 /**

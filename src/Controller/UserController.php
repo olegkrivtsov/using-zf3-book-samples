@@ -3,10 +3,10 @@ namespace ProspectOne\UserModule\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
-use User\Entity\User;
-use User\Form\UserForm;
-use User\Form\PasswordChangeForm;
-use User\Form\PasswordResetForm;
+use ProspectOne\UserModule\Entity\User;
+use ProspectOne\UserModule\Form\UserForm;
+use ProspectOne\UserModule\Form\PasswordChangeForm;
+use ProspectOne\UserModule\Form\PasswordResetForm;
 
 /**
  * This controller is responsible for user management (adding, editing, 
@@ -16,13 +16,13 @@ class UserController extends AbstractActionController
 {
     /**
      * Entity manager.
-     * @var Doctrine\ORM\EntityManager
+     * @var \Doctrine\ORM\EntityManager
      */
     private $entityManager;
     
     /**
      * User manager.
-     * @var User\Service\UserManager 
+     * @var \ProspectOne\UserModule\Service\UserManager
      */
     private $userManager;
     

@@ -1,7 +1,7 @@
 <?php
 namespace ProspectOne\UserModule\Service;
 
-use User\Entity\User;
+use ProspectOne\UserModule\Entity\User;
 use Zend\Crypt\Password\Bcrypt;
 use Zend\Math\Rand;
 
@@ -13,7 +13,7 @@ class UserManager
 {
     /**
      * Doctrine entity manager.
-     * @var Doctrine\ORM\EntityManager
+     * @var \Doctrine\ORM\EntityManager
      */
     private $entityManager;  
     

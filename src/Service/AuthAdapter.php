@@ -4,7 +4,7 @@ namespace ProspectOne\UserModule\Service;
 use Zend\Authentication\Adapter\AdapterInterface;
 use Zend\Authentication\Result;
 use Zend\Crypt\Password\Bcrypt;
-use User\Entity\User;
+use ProspectOne\UserModule\Entity\User;
 
 /**
  * Adapter used for authenticating user. It takes login and password on input
@@ -29,7 +29,7 @@ class AuthAdapter implements AdapterInterface
     
     /**
      * Entity manager.
-     * @var Doctrine\ORM\EntityManager 
+     * @var \Doctrine\ORM\EntityManager
      */
     private $entityManager;
         

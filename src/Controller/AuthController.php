@@ -6,8 +6,7 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Zend\Authentication\Result;
 use Zend\Uri\Uri;
-use User\Form\LoginForm;
-use User\Entity\User;
+use ProspectOne\UserModule\Form\LoginForm;
 
 /**
  * This controller is responsible for letting the user to log in and log out.
@@ -16,13 +15,13 @@ class AuthController extends AbstractActionController
 {
     /**
      * Entity manager.
-     * @var Doctrine\ORM\EntityManager 
+     * @var \Doctrine\ORM\EntityManager
      */
     private $entityManager;
     
     /**
      * Auth manager.
-     * @var User\Service\AuthManager 
+     * @var \ProspectOne\UserModule\Service\AuthManager
      */
     private $authManager;
     
@@ -34,7 +33,7 @@ class AuthController extends AbstractActionController
     
     /**
      * User manager.
-     * @var User\Service\UserManager
+     * @var \ProspectOne\UserModule\Service\UserManager
      */
     private $userManager;
     
