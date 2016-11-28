@@ -47,12 +47,12 @@ class User
     protected $dateCreated;
         
     /**
-     * @ORM\Column(name="pwd_reset_token")  
+     * @ORM\Column(name="pwd_reset_token", nullable)
      */
     protected $passwordResetToken;
     
     /**
-     * @ORM\Column(name="pwd_reset_token_creation_date")  
+     * @ORM\Column(name="pwd_reset_token_creation_date", nullable)
      */
     protected $passwordResetTokenCreationDate;
     
