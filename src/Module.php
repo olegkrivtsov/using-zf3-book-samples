@@ -7,8 +7,8 @@
 
 namespace ProspectOne\UserModule;
 
+use Zend\Mvc\Controller\AbstractController;
 use Zend\Mvc\MvcEvent;
-use Zend\Mvc\Controller\AbstractActionController;
 use ProspectOne\UserModule\Controller\AuthController;
 use ProspectOne\UserModule\Service\AuthManager;
 
@@ -24,7 +24,9 @@ class Module
     
     /**
      * This method is called once the MVC bootstrapping is complete and allows
-     * to register event listeners. 
+     * to register event listeners.
+     *
+     * @param MvcEvent $event
      */
     public function onBootstrap(MvcEvent $event)
     {
@@ -32,7 +34,7 @@ class Module
         $eventManager = $event->getApplication()->getEventManager();
         $sharedEventManager = $eventManager->getSharedManager();
         // Register the event listener method. 
-        $sharedEventManager->attach(AbstractActionController::class, 
+        $sharedEventManager->attach(AbstractController::class,
                 MvcEvent::EVENT_DISPATCH, [$this, 'onDispatch'], 100);
     }
     
@@ -42,6 +44,9 @@ class Module
      * the current visitor is allowed to see the page or not. If he/she
      * is not authorized and is not allowed to see the page, we redirect the user 
      * to the login page.
+     *
+     * @param MvcEvent $event
+     * @return mixed
      */
     public function onDispatch(MvcEvent $event)
     {
