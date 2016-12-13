@@ -81,7 +81,17 @@ return [
                         'action'        => 'contactUs',
                     ],
                 ],
-            ],                         
+            ],    
+            'payment' => [
+                'type'    => Literal::class,
+                'options' => [
+                    'route'    => '/payment',
+                    'defaults' => [
+                        'controller'    => Controller\IndexController::class,
+                        'action'        => 'payment',
+                    ],
+                ],
+            ],
         ],
     ],
     'controllers' => [

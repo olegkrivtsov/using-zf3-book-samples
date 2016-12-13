@@ -1,0 +1,92 @@
+<?php
+
+$this->headTitle('Payment');
+
+$this->mainMenu()->setActiveItemId('home');
+
+$this->pageBreadcrumbs()->setItems(array(
+            'Home'=>$this->url('home'),
+            'Validation Group Demo'=>$this->url('payment')
+            ));
+
+$form = $this->form;
+
+$form->get('payment_method')->setAttributes(array(
+    'class'=>'form-control'
+    ));
+
+$form->get('card_number')->setAttributes(array(
+    'class'=>'form-control', 
+    'placeholder'=>'XXXX-XXXX-XXXX-XXXX'
+    ));
+
+$form->get('bank_account')->setAttributes(array(
+    'class'=>'form-control', 
+    'placeholder'=>'A 20-digit sequence'
+    ));
+
+$form->get('submit')->setAttributes(array('class'=>'btn btn-primary'));
+
+$form->prepare();
+?>
+
+<h1>Payment Form</h1>
+<p>
+    This form demonstrates how to use validation groups. 
+</p>
+
+<div class="row">
+    <div class="col-md-6">
+        <?php echo $this->form()->openTag($form); ?>
+        
+        <div class="form-group">
+            <?php echo $this->formLabel($form->get('payment_method')); ?>
+            <?php echo $this->formElement($form->get('payment_method')); ?>
+            <?php echo $this->formElementErrors($form->get('payment_method')); ?>                  
+        </div>
+        
+        <div id="card-number-group" class="form-group">
+            <?php echo $this->formLabel($form->get('card_number')); ?>
+            <?php echo $this->formElement($form->get('card_number')); ?>
+            <?php echo $this->formElementErrors($form->get('card_number')); ?>                  
+        </div>
+        
+        <div id="bank-account-group" class="form-group">
+            <?php echo $this->formLabel($form->get('bank_account')); ?>
+            <?php echo $this->formElement($form->get('bank_account')); ?>
+            <?php echo $this->formElementErrors($form->get('bank_account')); ?>                  
+        </div>
+        
+        <?php echo $this->formElement($form->get('csrf')); ?>
+        
+        <?php echo $this->formElement($form->get('submit')); ?>
+        
+        <?php echo $this->form()->closeTag(); ?>
+    </div>    
+</div>    
+
+<script type="text/javascript">
+function paymentMethodChange() {
+    var paymentMethod = $('#payment_method').find(":selected").val();
+
+    if(paymentMethod=='credit_card') {
+        $("#card-number-group").show();
+        $("#bank-account-group").hide();
+    } else if(paymentMethod=='bank_account') {
+        $("#card-number-group").hide();
+        $("#bank-account-group").show();
+    } else {
+        $("#card-number-group").hide();
+        $("#bank-account-group").hide();
+    }
+}
+    
+$(document).ready(function(){
+    
+    paymentMethodChange();
+    
+    $("#payment_method").change(function() {
+        paymentMethodChange();
+    }); 
+});
+</script>
