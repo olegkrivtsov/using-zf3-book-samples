@@ -10,6 +10,25 @@ use Application\Entity\Post;
 class PostRepository extends EntityRepository
 {
     /**
+     * Retrieves all published posts in descending date order.
+     * @return Query
+     */
+    public function findPublishedPosts()
+    {
+        $entityManager = $this->getEntityManager();
+        
+        $queryBuilder = $entityManager->createQueryBuilder();
+        
+        $queryBuilder->select('p')
+            ->from(Post::class, 'p')
+            ->where('p.status = ?1')
+            ->orderBy('p.dateCreated', 'DESC')
+            ->setParameter('1', Post::STATUS_PUBLISHED);
+        
+        return $queryBuilder->getQuery();
+    }
+    
+    /**
      * Finds all published posts having any tag.
      * @return array
      */
@@ -34,7 +53,7 @@ class PostRepository extends EntityRepository
     /**
      * Finds all published posts having the given tag.
      * @param string $tagName Name of the tag.
-     * @return array
+     * @return Query
      */
     public function findPostsByTag($tagName)
     {
@@ -51,8 +70,6 @@ class PostRepository extends EntityRepository
             ->setParameter('1', Post::STATUS_PUBLISHED)
             ->setParameter('2', $tagName);
         
-        $posts = $queryBuilder->getQuery()->getResult();
-                
-        return $posts;
+        return $queryBuilder->getQuery();
     }        
 }

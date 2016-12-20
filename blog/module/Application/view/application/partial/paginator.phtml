@@ -1,0 +1,46 @@
+<?php if ($this->pageCount): ?>
+
+<nav>
+<ul class="pagination">
+
+<!-- Previous page link -->
+<?php if (isset($this->previous)): ?>
+    <li>
+      <a href="<?= $this->url($this->route, [], ['query'=>['page'=>$this->previous]]); ?>" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>  
+<?php else: ?>
+    <li>
+        <span aria-hidden="true">&laquo;</span>      
+    </li>  
+<?php endif; ?>
+
+<!-- Numbered page links -->
+<?php foreach ($this->pagesInRange as $page): ?>
+  <?php if ($page != $this->current): ?>
+    <li>
+        <a href="<?= $this->url($this->route, [], ['query'=>['page'=>$page]]); ?>"><?= $this->escapeHtml($page); ?></a>
+    </li>    
+  <?php else: ?>
+    <li>
+        <span aria-hidden="true"><b><?= $this->escapeHtml($page); ?></b></span> 
+    </li>    
+  <?php endif; ?>
+<?php endforeach; ?>
+
+<!-- Next page link -->
+<?php if (isset($this->next)): ?>
+    <li>
+      <a href="<?php echo $this->url($this->route, [], ['query'=>['page'=>$this->next]]); ?>" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>  
+<?php else: ?>
+    <li>
+        <span aria-hidden="true">&raquo;</span>      
+    </li> 
+<?php endif; ?>
+</ul>
+</nav>
+<?php endif; ?>
