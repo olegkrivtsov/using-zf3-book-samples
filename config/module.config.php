@@ -100,9 +100,4 @@ return [
             ]
         ]
     ],
-    'session_manager' => [
-        'validators' => [
-            'Zend\Session\Validator\RemoteAddr',
-        ]
-    ],
 ];
