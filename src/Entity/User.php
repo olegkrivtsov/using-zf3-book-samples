@@ -1,19 +1,58 @@
 <?php
 namespace ProspectOne\UserModule\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * This class represents a registered user.
+ * Adds role system
  * @ORM\Entity()
  * @ORM\Table(name="user")
  */
-class User 
+class User
 {
     // User status constants.
     const STATUS_ACTIVE       = 1; // Active user.
     const STATUS_RETIRED      = 2; // Retired user.
-    
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     * @ORM\ManyToMany(targetEntity="ProspectOne\UserModule\Entity\Role")
+     * @ORM\JoinTable(name="user_role_linker",
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="role_id", referencedColumnName="id")}
+     * )
+     */
+    protected $roles;
+
+    /**
+     * Initialies the roles variable.
+     */
+    public function __construct()
+    {
+        $this->roles = new ArrayCollection();
+    }
+
+    /**
+     * Get role.
+     * @return array
+     */
+    public function getRoles()
+    {
+        return $this->roles->getValues();
+    }
+
+    /**
+     * Add a role to the user.
+     * @param Role $role
+     * @return void
+     */
+    public function addRole($role)
+    {
+        $this->roles[] = $role;
+    }
+
     /**
      * @ORM\Id
      * @ORM\Column(name="id", type="integer")
@@ -21,95 +60,95 @@ class User
      */
     protected $id;
 
-    /** 
-     * @ORM\Column(name="email")  
+    /**
+     * @ORM\Column(name="email")
      */
     protected $email;
-    
-    /** 
-     * @ORM\Column(name="full_name")  
+
+    /**
+     * @ORM\Column(name="full_name")
      */
     protected $fullName;
 
-    /** 
-     * @ORM\Column(name="password")  
+    /**
+     * @ORM\Column(name="password")
      */
     protected $password;
 
-    /** 
-     * @ORM\Column(name="status")  
+    /**
+     * @ORM\Column(name="status")
      */
     protected $status;
-    
+
     /**
-     * @ORM\Column(name="date_created")  
+     * @ORM\Column(name="date_created")
      */
     protected $dateCreated;
-        
+
     /**
      * @ORM\Column(name="pwd_reset_token", nullable=true)
      */
     protected $passwordResetToken;
-    
+
     /**
      * @ORM\Column(name="pwd_reset_token_creation_date", nullable=true)
      */
     protected $passwordResetTokenCreationDate;
-    
+
     /**
      * Returns user ID.
      * @return integer
      */
-    public function getId() 
+    public function getId()
     {
         return $this->id;
     }
 
     /**
-     * Sets user ID. 
-     * @param int $id    
+     * Sets user ID.
+     * @param int $id
      */
-    public function setId($id) 
+    public function setId($id)
     {
         $this->id = $id;
     }
 
     /**
-     * Returns email.     
+     * Returns email.
      * @return string
      */
-    public function getEmail() 
+    public function getEmail()
     {
         return $this->email;
     }
 
     /**
-     * Sets email.     
+     * Sets email.
      * @param string $email
      */
-    public function setEmail($email) 
+    public function setEmail($email)
     {
         $this->email = $email;
     }
-    
+
     /**
      * Returns full name.
-     * @return string     
+     * @return string
      */
-    public function getFullName() 
+    public function getFullName()
     {
         return $this->fullName;
-    }       
+    }
 
     /**
      * Sets full name.
      * @param string $fullName
      */
-    public function setFullName($fullName) 
+    public function setFullName($fullName)
     {
         $this->fullName = $fullName;
     }
-    
+
     /**
      * Returns status.
      * @return int     

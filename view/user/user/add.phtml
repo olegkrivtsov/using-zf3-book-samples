@@ -19,6 +19,10 @@ $form->get('full_name')->setAttributes([
     'placeholder'=>'John Doe'
     ]);
 
+$form->get('role')->setAttributes([
+    'class'=>'form-control'
+]);
+
 $form->get('status')->setAttributes([
     'class'=>'form-control'
     ]);
@@ -69,7 +73,13 @@ $form->prepare();
             <?= $this->formElement($form->get('confirm_password')); ?>
             <?= $this->formElementErrors($form->get('confirm_password')); ?>                  
         </div>
-        
+
+        <div class="form-group">
+            <?= $this->formLabel($form->get('role')); ?>
+            <?= $this->formElement($form->get('role')); ?>
+            <?= $this->formElementErrors($form->get('role')); ?>
+        </div>
+
         <div class="form-group">
             <?= $this->formLabel($form->get('status')); ?>
             <?= $this->formElement($form->get('status')); ?>

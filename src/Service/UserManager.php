@@ -1,6 +1,7 @@
 <?php
 namespace ProspectOne\UserModule\Service;
 
+use ProspectOne\UserModule\Entity\Role;
 use ProspectOne\UserModule\Entity\User;
 use Zend\Crypt\Password\Bcrypt;
 use Zend\Math\Rand;
@@ -38,7 +39,13 @@ class UserManager
         // Create new User entity.
         $user = new User();
         $user->setEmail($data['email']);
-        $user->setFullName($data['full_name']);        
+        $user->setFullName($data['full_name']);
+
+        // Get role object based on role Id from form
+        /** @var Role $role */
+        $role = $this->entityManager->find(Role::class, ['roleId' => $data['role']]);
+        // Set role to user
+        $user->addRole($role);
 
         // Encrypt password and store the password in encrypted state.
         $bcrypt = new Bcrypt();
@@ -49,7 +56,7 @@ class UserManager
         
         $currentDate = date('Y-m-d H:i:s');
         $user->setDateCreated($currentDate);        
-                
+
         // Add the entity to the entity manager.
         $this->entityManager->persist($user);
         
@@ -58,11 +65,15 @@ class UserManager
         
         return $user;
     }
-    
+
     /**
      * This method updates data of an existing user.
+     * @param User $user
+     * @param $data
+     * @return bool
+     * @throws \Exception
      */
-    public function updateUser($user, $data) 
+    public function updateUser(User $user, $data)
     {
         // Do not allow to change user email if another user with such email already exits.
         if($user->getEmail()!=$data['email'] && $this->checkUserExists($data['email'])) {
@@ -71,7 +82,13 @@ class UserManager
         
         $user->setEmail($data['email']);
         $user->setFullName($data['full_name']);        
-        $user->setStatus($data['status']);        
+        $user->setStatus($data['status']);
+
+        // Get role object based on role Id from form
+        /** @var Role $role */
+        $role = $this->entityManager->find(Role::class, ['roleId' => $data['role']]);
+        // Set role to user
+        $user->addRole($role);
         
         // Apply changes to database.
         $this->entityManager->flush();
@@ -95,7 +112,11 @@ class UserManager
             $user->setPassword($passwordHash);
             $user->setStatus(User::STATUS_ACTIVE);
             $user->setDateCreated(date('Y-m-d H:i:s'));
-            
+            // Get role object based on role Id from form
+            /** @var Role $role */
+            $role = $this->entityManager->find(Role::class, ['roleId' => 2]);
+            // Set role to user
+            $user->addRole($role);
             $this->entityManager->persist($user);
             $this->entityManager->flush();
         }
