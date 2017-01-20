@@ -4,6 +4,7 @@ namespace ProspectOne\UserModule\Controller;
 use Doctrine\ORM\EntityManager;
 use ProspectOne\UserModule\Entity\Role;
 use ProspectOne\UserModule\Service\UserManager;
+use Zend\Hydrator\ClassMethods;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use ProspectOne\UserModule\Entity\User;
@@ -358,7 +359,7 @@ class UserController extends AbstractActionController
     public function getRolesSelector()
     {
         $roles = $this->entityManager->getRepository(Role::class)->findAll();
-        $hydrator = new \Zend\Hydrator\ClassMethods();
+        $hydrator = new ClassMethods();
         $rolesselector = [];
         foreach ($roles as $role) {
             $rolesarr = $hydrator->extract($role);
@@ -377,7 +378,7 @@ class UserController extends AbstractActionController
     {
         // checking for existing role if editing mode
         $rolecurrent['role_id'] = self::GUEST_ROLE_ID;
-        $hydrator = new \Zend\Hydrator\ClassMethods();
+        $hydrator = new ClassMethods();
         $role = $user->getRole();
         if (!empty($role)) {
             $rolecurrent = $hydrator->extract($role);
