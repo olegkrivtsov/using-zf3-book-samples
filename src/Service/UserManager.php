@@ -126,7 +126,22 @@ class UserManager
             $this->entityManager->flush();
         }
     }
-    
+
+    /**
+     * @param string $email
+     * @param string[] $roles
+     * @return bool
+     */
+    public function hasRole($email, $roles)
+    {
+        /** @var User $user */
+        $user = $this->entityManager->getRepository(User::class)->findOneByEmail($email);
+        if(in_array($user->getRoleName(),$roles, true)) {
+            return true;
+        }
+        return false;
+    }
+
     /**
      * Checks whether an active user with given email address already exists in the database.     
      */
