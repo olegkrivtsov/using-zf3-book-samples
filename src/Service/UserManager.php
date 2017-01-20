@@ -12,6 +12,11 @@ use Zend\Math\Rand;
  */
 class UserManager
 {
+    const ADMIN_ROLE_ID = 2;
+    const ADMIN_EMAIL = 'admin@example.com';
+    const ADMIN_NAME = 'Admin';
+    const ADMIN_PASSWORD = 'Secur1ty';
+
     /**
      * Doctrine entity manager.
      * @var \Doctrine\ORM\EntityManager
@@ -43,7 +48,7 @@ class UserManager
 
         // Get role object based on role Id from form
         /** @var Role $role */
-        $role = $this->entityManager->find(Role::class, ['roleId' => $data['role']]);
+        $role = $this->entityManager->find(Role::class, $data['role']);
         // Set role to user
         $user->addRole($role);
 
@@ -86,7 +91,7 @@ class UserManager
 
         // Get role object based on role Id from form
         /** @var Role $role */
-        $role = $this->entityManager->find(Role::class, ['roleId' => $data['role']]);
+        $role = $this->entityManager->find(Role::class, $data['role']);
         // Set role to user
         $user->addRole($role);
         
@@ -105,16 +110,16 @@ class UserManager
         $user = $this->entityManager->getRepository(User::class)->findOneBy([]);
         if ($user==null) {
             $user = new User();
-            $user->setEmail('admin@example.com');
-            $user->setFullName('Admin');
+            $user->setEmail(self::ADMIN_EMAIL);
+            $user->setFullName(self::ADMIN_NAME);
             $bcrypt = new Bcrypt();
-            $passwordHash = $bcrypt->create('Secur1ty');        
+            $passwordHash = $bcrypt->create(self::ADMIN_PASSWORD);
             $user->setPassword($passwordHash);
             $user->setStatus(User::STATUS_ACTIVE);
             $user->setDateCreated(date('Y-m-d H:i:s'));
             // Get role object based on role Id from form
             /** @var Role $role */
-            $role = $this->entityManager->find(Role::class, ['roleId' => 2]);
+            $role = $this->entityManager->find(Role::class, self::ADMIN_ROLE_ID);
             // Set role to user
             $user->addRole($role);
             $this->entityManager->persist($user);

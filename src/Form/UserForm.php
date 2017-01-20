@@ -1,7 +1,9 @@
 <?php
 namespace ProspectOne\UserModule\Form;
 
+use Doctrine\ORM\EntityManager;
 use ProspectOne\UserModule\Entity\Role;
+use ProspectOne\UserModule\Entity\User;
 use Zend\Form\Form;
 use Zend\InputFilter\InputFilter;
 use ProspectOne\UserModule\Validator\UserExistsValidator;
@@ -32,9 +34,24 @@ class UserForm extends Form
     private $user = null;
 
     /**
-     * Constructor.
+     * @var mixed
      */
-    public function __construct($scenario = 'create', $entityManager = null, $user = null)
+    private $rolesselector;
+
+    /**
+     * @var int
+     */
+    private $rolecurrent;
+
+    /**
+     * Constructor.
+     * @param string $scenario
+     * @param EntityManager $entityManager
+     * @param User $user
+     * @param mixed $rolesselector
+     * @param int $rolecurrent
+     */
+    public function __construct($scenario = 'create', EntityManager $entityManager = null, User $user = null, $rolesselector = null, $rolecurrent = null)
     {
         // Define form name
         parent::__construct('user-form');
@@ -46,6 +63,8 @@ class UserForm extends Form
         $this->scenario = $scenario;
         $this->entityManager = $entityManager;
         $this->user = $user;
+        $this->rolesselector = $rolesselector;
+        $this->rolecurrent = $rolecurrent;
 
         $this->addElements();
         $this->addInputFilter();
@@ -95,25 +114,6 @@ class UserForm extends Form
             ]);
         }
 
-        $roles = $this->entityManager->getRepository(Role::class)->findAll();
-        $hydrator = new \Zend\Hydrator\ClassMethods();
-        $rolesselector = [];
-        foreach ($roles as $role) {
-            $rolesarr = $hydrator->extract($role);
-            $rolesselector[$rolesarr['role_id']] = $rolesarr['role_name'];
-        }
-        ksort($rolesselector);
-
-        // checking for existing role if editing mode
-        $rolecurrent['role_id'] = 1;
-
-        if ($this->scenario != 'create') {
-            $role = $this->user->getRoles();
-            if (!empty($role)) {
-                $rolecurrent = $hydrator->extract($role[0]);
-            }
-        }
-
         // Add role field selector here
         $this->add([
             'type' => 'select',
@@ -121,11 +121,11 @@ class UserForm extends Form
 
             'options' => [
                 'label' => 'Role',
-                'value_options' => $rolesselector,
+                'value_options' => $this->rolesselector,
 
             ],
             'attributes' => [
-                'value' => $rolecurrent['role_id'],
+                'value' => $this->rolecurrent,
             ]
         ]);
 

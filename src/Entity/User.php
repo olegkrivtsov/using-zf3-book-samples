@@ -1,7 +1,6 @@
 <?php
 namespace ProspectOne\UserModule\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -13,36 +12,37 @@ use Doctrine\ORM\Mapping as ORM;
 class User
 {
     // User status constants.
-    const STATUS_ACTIVE       = 1; // Active user.
-    const STATUS_RETIRED      = 2; // Retired user.
+    const STATUS_ACTIVE = 1; // Active user.
+    const STATUS_RETIRED = 2; // Retired user.
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
-     * @ORM\ManyToMany(targetEntity="ProspectOne\UserModule\Entity\Role")
-     * @ORM\JoinTable(name="user_role_linker",
-     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="role_id", referencedColumnName="id")}
-     * )
+     * @var Role
+     * @ORM\ManyToOne(targetEntity="ProspectOne\UserModule\Entity\Role", fetch="LAZY")
+     * @ORM\JoinColumn(name="r_user_role")
      */
-    protected $roles;
-
-    /**
-     * Initialies the roles variable.
-     */
-    public function __construct()
-    {
-        $this->roles = new ArrayCollection();
-    }
+    protected $role;
 
     /**
      * Get role.
-     * @return array
+     * @return Role
      */
-    public function getRoles()
+    public function getRole()
     {
-        return $this->roles->getValues();
+        return $this->role;
     }
 
+    /**
+     * Get Role Name.
+     * @return string
+     */
+    public function getRoleName()
+    {
+        if(!empty($this->role)) {
+            return $this->role->getRoleName();
+        } else {
+            return 'N/A';
+        }
+    }
     /**
      * Add a role to the user.
      * @param Role $role
@@ -50,7 +50,7 @@ class User
      */
     public function addRole($role)
     {
-        $this->roles[] = $role;
+        $this->role = $role;
     }
 
     /**
@@ -151,9 +151,9 @@ class User
 
     /**
      * Returns status.
-     * @return int     
+     * @return int
      */
-    public function getStatus() 
+    public function getStatus()
     {
         return $this->status;
     }
@@ -162,14 +162,14 @@ class User
      * Returns possible statuses as array.
      * @return array
      */
-    public static function getStatusList() 
+    public static function getStatusList()
     {
         return [
             self::STATUS_ACTIVE => 'Active',
             self::STATUS_RETIRED => 'Retired'
         ];
-    }    
-    
+    }
+
     /**
      * Returns user status as string.
      * @return string
@@ -179,55 +179,55 @@ class User
         $list = self::getStatusList();
         if (isset($list[$this->status]))
             return $list[$this->status];
-        
+
         return 'Unknown';
-    }    
-    
+    }
+
     /**
      * Sets status.
-     * @param int $status     
+     * @param int $status
      */
-    public function setStatus($status) 
+    public function setStatus($status)
     {
         $this->status = $status;
-    }   
-    
+    }
+
     /**
      * Returns password.
      * @return string
      */
-    public function getPassword() 
+    public function getPassword()
     {
-       return $this->password; 
+        return $this->password;
     }
-    
+
     /**
-     * Sets password.     
+     * Sets password.
      * @param string $password
      */
-    public function setPassword($password) 
+    public function setPassword($password)
     {
         $this->password = $password;
     }
-    
+
     /**
      * Returns the date of user creation.
-     * @return string     
+     * @return string
      */
-    public function getDateCreated() 
+    public function getDateCreated()
     {
         return $this->dateCreated;
     }
-    
+
     /**
      * Sets the date when this user was created.
-     * @param string $dateCreated     
+     * @param string $dateCreated
      */
-    public function setDateCreated($dateCreated) 
+    public function setDateCreated($dateCreated)
     {
         $this->dateCreated = $dateCreated;
-    }    
-    
+    }
+
     /**
      * Returns password reset token.
      * @return string
@@ -236,16 +236,16 @@ class User
     {
         return $this->passwordResetToken;
     }
-    
+
     /**
      * Sets password reset token.
      * @param string $token
      */
-    public function setPasswordResetToken($token) 
+    public function setPasswordResetToken($token)
     {
         $this->passwordResetToken = $token;
     }
-    
+
     /**
      * Returns password reset token's creation date.
      * @return string
@@ -254,12 +254,12 @@ class User
     {
         return $this->passwordResetTokenCreationDate;
     }
-    
+
     /**
      * Sets password reset token's creation date.
      * @param string $date
      */
-    public function setPasswordResetTokenCreationDate($date) 
+    public function setPasswordResetTokenCreationDate($date)
     {
         $this->passwordResetTokenCreationDate = $date;
     }
