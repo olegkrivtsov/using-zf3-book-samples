@@ -36,6 +36,10 @@ $this->pageBreadcrumbs()->setItems([
                 <td><?= $this->escapeHtml($user->getDateCreated()) ?></th>
             </tr>
             <tr>
+                <th>Role</th>
+                <td><?= $this->escapeHtml($user->getRoleName()) ?></td>
+            </tr>
+            <tr>
                 <th>Status:</th>
                 <td><?= $this->escapeHtml($user->getStatusAsString()) ?></th>
             </tr>
