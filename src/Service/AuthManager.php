@@ -124,15 +124,11 @@ class AuthManager
                     $actionList=='*') {
                     if ($allow=='*')
                         return true; // Anyone is allowed to see the page.
-                    else if (($allow=='@' || is_array($allow)) && $this->authService->hasIdentity()) {
-                        // check if role restriction exists
-                        if(is_array($allow)) {
+                    else if (is_array($allow) && $this->authService->hasIdentity()) {
                             $email = $this->authService->getIdentity();
                             // Hello, user. Show me YOUR PAPERS!
                             return $this->getUserManager()->hasRole($email, $allow);
-                        }
-                        return true; // Only authenticated user is allowed to see the page.
-                    } else {                    
+                    } else {
                         return false; // Access denied.
                     }
                 }
