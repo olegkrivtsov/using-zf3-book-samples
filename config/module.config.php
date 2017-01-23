@@ -87,6 +87,13 @@ return [
         ],
         'template_map' => [
             'prospect-one/user-module/auth/login' => __DIR__ . '/../view/user/auth/login.phtml',
+            'prospect-one/user-module/user/index' => __DIR__ . '/../view/user/user/index.phtml',
+            'prospect-one/user-module/user/add' => __DIR__ . '/../view/user/user/add.phtml',
+            'prospect-one/user-module/user/change-password' => __DIR__ . '/../view/user/user/change-password.phtml',
+            'prospect-one/user-module/user/edit' => __DIR__ . '/../view/user/user/edit.phtml',
+            'prospect-one/user-module/user/message' => __DIR__ . '/../view/user/user/message.phtml',
+            'prospect-one/user-module/user/reset-password' => __DIR__ . '/../view/user/user/reset-password.phtml',
+            'prospect-one/user-module/user/view' => __DIR__ . '/../view/user/user/index.view',
         ],
     ],
     'doctrine' => [
