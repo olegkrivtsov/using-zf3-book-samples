@@ -85,6 +85,9 @@ return [
         'template_path_stack' => [
             __DIR__ . '/../view',
         ],
+        'template_map' => [
+            'prospect-one/user-module/auth/login' => __DIR__ . '/../view/user/auth/login.phtml',
+        ],
     ],
     'doctrine' => [
         'driver' => [
