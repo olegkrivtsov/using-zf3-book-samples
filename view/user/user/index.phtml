@@ -25,6 +25,7 @@ $this->pageBreadcrumbs()->setItems([
         <th>E-mail</th>
         <th>Full Name</th>
         <th>Date Created</th>
+        <th>Role</th>
         <th>Status</th>        
         <th>Actions</th>        
     </tr>
@@ -40,7 +41,8 @@ $this->pageBreadcrumbs()->setItems([
         </td>
         <td><?= $this->escapeHtml($user->getFullName()); ?></a> 
         </td>
-        <td><?= $this->escapeHtml($user->getDateCreated()); ?></td>        
+        <td><?= $this->escapeHtml($user->getDateCreated()); ?></td>
+        <td><?= $this->escapeHtml($user->getRoleName()); ?></td>
         <td><?= $this->escapeHtml($user->getStatusAsString()); ?></td>
         <td>
             <a class="btn btn-info" href="<?= $this->url('users', 

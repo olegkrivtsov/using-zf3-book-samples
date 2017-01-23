@@ -1,6 +1,7 @@
 <?php
 namespace ProspectOne\UserModule\Service;
 
+use ProspectOne\UserModule\Entity\Role;
 use ProspectOne\UserModule\Entity\User;
 use Zend\Crypt\Password\Bcrypt;
 use Zend\Math\Rand;
@@ -11,6 +12,11 @@ use Zend\Math\Rand;
  */
 class UserManager
 {
+    const ADMIN_ROLE_ID = 2;
+    const ADMIN_EMAIL = 'admin@example.com';
+    const ADMIN_NAME = 'Admin';
+    const ADMIN_PASSWORD = 'Secur1ty';
+
     /**
      * Doctrine entity manager.
      * @var \Doctrine\ORM\EntityManager
@@ -38,7 +44,13 @@ class UserManager
         // Create new User entity.
         $user = new User();
         $user->setEmail($data['email']);
-        $user->setFullName($data['full_name']);        
+        $user->setFullName($data['full_name']);
+
+        // Get role object based on role Id from form
+        /** @var Role $role */
+        $role = $this->entityManager->find(Role::class, $data['role']);
+        // Set role to user
+        $user->addRole($role);
 
         // Encrypt password and store the password in encrypted state.
         $bcrypt = new Bcrypt();
@@ -49,7 +61,7 @@ class UserManager
         
         $currentDate = date('Y-m-d H:i:s');
         $user->setDateCreated($currentDate);        
-                
+
         // Add the entity to the entity manager.
         $this->entityManager->persist($user);
         
@@ -58,11 +70,15 @@ class UserManager
         
         return $user;
     }
-    
+
     /**
      * This method updates data of an existing user.
+     * @param User $user
+     * @param $data
+     * @return bool
+     * @throws \Exception
      */
-    public function updateUser($user, $data) 
+    public function updateUser(User $user, $data)
     {
         // Do not allow to change user email if another user with such email already exits.
         if($user->getEmail()!=$data['email'] && $this->checkUserExists($data['email'])) {
@@ -71,7 +87,13 @@ class UserManager
         
         $user->setEmail($data['email']);
         $user->setFullName($data['full_name']);        
-        $user->setStatus($data['status']);        
+        $user->setStatus($data['status']);
+
+        // Get role object based on role Id from form
+        /** @var Role $role */
+        $role = $this->entityManager->find(Role::class, $data['role']);
+        // Set role to user
+        $user->addRole($role);
         
         // Apply changes to database.
         $this->entityManager->flush();
@@ -88,19 +110,38 @@ class UserManager
         $user = $this->entityManager->getRepository(User::class)->findOneBy([]);
         if ($user==null) {
             $user = new User();
-            $user->setEmail('admin@example.com');
-            $user->setFullName('Admin');
+            $user->setEmail(self::ADMIN_EMAIL);
+            $user->setFullName(self::ADMIN_NAME);
             $bcrypt = new Bcrypt();
-            $passwordHash = $bcrypt->create('Secur1ty');        
+            $passwordHash = $bcrypt->create(self::ADMIN_PASSWORD);
             $user->setPassword($passwordHash);
             $user->setStatus(User::STATUS_ACTIVE);
             $user->setDateCreated(date('Y-m-d H:i:s'));
-            
+            // Get role object based on role Id from form
+            /** @var Role $role */
+            $role = $this->entityManager->find(Role::class, self::ADMIN_ROLE_ID);
+            // Set role to user
+            $user->addRole($role);
             $this->entityManager->persist($user);
             $this->entityManager->flush();
         }
     }
-    
+
+    /**
+     * @param string $email
+     * @param string[] $roles
+     * @return bool
+     */
+    public function hasRole($email, $roles)
+    {
+        /** @var User $user */
+        $user = $this->entityManager->getRepository(User::class)->findOneByEmail($email);
+        if(in_array($user->getRoleName(),$roles, true)) {
+            return true;
+        }
+        return false;
+    }
+
     /**
      * Checks whether an active user with given email address already exists in the database.     
      */

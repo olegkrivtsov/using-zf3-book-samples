@@ -27,15 +27,29 @@ class AuthManager
      * @var array 
      */
     private $config;
+
+    /**
+     * @var UserManager
+     */
+    private $userManager;
+
+    /**
+     * @return UserManager
+     */
+    private function getUserManager()
+    {
+        return $this->userManager;
+    }
     
     /**
      * Constructs the service.
      */
-    public function __construct($authService, $sessionManager, $config) 
+    public function __construct($authService, $sessionManager, $config, $userManager)
     {
         $this->authService = $authService;
         $this->sessionManager = $sessionManager;
         $this->config = $config;
+        $this->userManager = $userManager;
     }
     
     /**
@@ -110,9 +124,11 @@ class AuthManager
                     $actionList=='*') {
                     if ($allow=='*')
                         return true; // Anyone is allowed to see the page.
-                    else if ($allow=='@' && $this->authService->hasIdentity()) {
-                        return true; // Only authenticated user is allowed to see the page.
-                    } else {                    
+                    else if (is_array($allow) && $this->authService->hasIdentity()) {
+                            $email = $this->authService->getIdentity();
+                            // Hello, user. Show me YOUR PAPERS!
+                            return $this->getUserManager()->hasRole($email, $allow);
+                    } else {
                         return false; // Access denied.
                     }
                 }

@@ -2,6 +2,7 @@
 namespace ProspectOne\UserModule\Service\Factory;
 
 use Interop\Container\ContainerInterface;
+use ProspectOne\UserModule\Service\UserManager;
 use Zend\Authentication\AuthenticationService;
 use Zend\ServiceManager\Factory\FactoryInterface;
 use Zend\Session\SessionManager;
@@ -35,8 +36,8 @@ class AuthManagerFactory implements FactoryInterface
             $config = $config['access_filter'];
         else
             $config = [];
-                        
+        $userManager = $container->get(UserManager::class);
         // Instantiate the AuthManager service and inject dependencies to its constructor.
-        return new AuthManager($authenticationService, $sessionManager, $config);
+        return new AuthManager($authenticationService, $sessionManager, $config, $userManager);
     }
 }
