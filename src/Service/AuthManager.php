@@ -51,6 +51,14 @@ class AuthManager
         $this->config = $config;
         $this->userManager = $userManager;
     }
+
+    /**
+     * @return bool
+     */
+    public function hasIdentity()
+    {
+        return $this->authService->hasIdentity();
+    }
     
     /**
      * Performs a login attempt. If $rememberMe argument is true, it forces the session
