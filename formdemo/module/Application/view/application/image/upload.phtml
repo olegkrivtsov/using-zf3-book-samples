@@ -26,7 +26,8 @@ $form->prepare();
         <div class="form-group">
             <?= $this->formLabel($form->get('file')); ?>
             <?= $this->formElement($form->get('file')); ?>
-            <?= $this->formElementErrors($form->get('file')); ?>                  
+            <?= $this->formElementErrors($form->get('file')); ?>
+            <div class="hint">(PNG and JPG formats are allowed)</div>
         </div>
                 
         <?= $this->formElement($form->get('submit')); ?>

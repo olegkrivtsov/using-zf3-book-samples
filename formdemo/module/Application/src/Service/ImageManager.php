@@ -126,9 +126,15 @@ class ImageManager
         // Calculate the resulting height
         $desiredHeight = $desiredWidth/$aspectRatio;
 
+        // Get image info
+        $fileInfo = $this->getImageFileInfo($filePath); 
+        
         // Resize the image
         $resultingImage = imagecreatetruecolor($desiredWidth, $desiredHeight);
-        $originalImage = imagecreatefromjpeg($filePath);
+        if (substr($fileInfo['type'], 0, 9) =='image/png')
+            $originalImage = imagecreatefrompng($filePath);
+        else
+            $originalImage = imagecreatefromjpeg($filePath);
         imagecopyresampled($resultingImage, $originalImage, 0, 0, 0, 0, 
                 $desiredWidth, $desiredHeight, $originalWidth, $originalHeight);
 

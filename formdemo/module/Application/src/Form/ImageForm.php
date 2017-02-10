@@ -72,6 +72,12 @@ class ImageForm extends Form
                 'required' => true,                           
                 'validators' => [
                     ['name'    => 'FileUploadFile'],
+                    [
+                        'name'    => 'FileMimeType',                        
+                        'options' => [                            
+                            'mimeType'  => ['image/jpeg', 'image/png']
+                        ]
+                    ],
                     ['name'    => 'FileIsImage'],                          
                     [
                         'name'    => 'FileImageSize',                        
@@ -81,7 +87,7 @@ class ImageForm extends Form
                             'maxWidth'  => 4096,
                             'maxHeight' => 4096
                         ]
-                    ],
+                    ],                    
                 ],
                 'filters'  => [                    
                     [
