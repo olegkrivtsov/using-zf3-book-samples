@@ -35,8 +35,8 @@ class DownloadController extends AbstractActionController
         }
         
         // Take some precautions to Make file name secure
-        str_replace("/", "", $fileName);  // Remove slashes
-        str_replace("\\", "", $fileName); // Remove back-slashes
+        $fileName = str_replace("/", "", $fileName);  // Remove slashes
+        $fileName = str_replace("\\", "", $fileName); // Remove back-slashes
         
         // Try to open file
         $path = './data/download/' . $fileName;
