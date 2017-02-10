@@ -17,7 +17,7 @@ class PostController extends AbstractActionController
      * Entity manager.
      * @var Doctrine\ORM\EntityManager 
      */
-    public $entityManager;
+    private $entityManager;
     
     /**
      * Post manager.
