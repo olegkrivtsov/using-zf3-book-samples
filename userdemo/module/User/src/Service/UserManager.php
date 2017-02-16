@@ -190,9 +190,9 @@ class UserManager
         }
         
         $user = $this->entityManager->getRepository(User::class)
-                ->findOneBy(['passwordResetToken'=>$passwordResetToken]);
+                ->findOneByPasswordResetToken($passwordResetToken);
         
-        if ($user===null) {
+        if ($user==null) {
             return false;
         }
                 
