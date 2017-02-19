@@ -34,7 +34,7 @@ class CurrentUserFactory implements FactoryInterface
             throw new BadMethodCallException("Can be created for only logged in users");
         }
         /** @var User $user */
-        $user = $entityManager->getRepository(User::class)->findBy(['email', $email]);
+        $user = $entityManager->getRepository(User::class)->findBy(['email' => $email])[0];
         return $user;
     }
 }
