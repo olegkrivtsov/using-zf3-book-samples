@@ -17,41 +17,10 @@ class User
 
     /**
      * @var Role
-     * @ORM\ManyToOne(targetEntity="ProspectOne\UserModule\Entity\Role", fetch="LAZY")
+     * @ORM\ManyToOne(targetEntity="ProspectOne\UserModule\Entity\Role", fetch="EAGER")
      * @ORM\JoinColumn(name="r_user_role")
      */
     protected $role;
-
-    /**
-     * Get role.
-     * @return Role
-     */
-    public function getRole()
-    {
-        return $this->role;
-    }
-
-    /**
-     * Get Role Name.
-     * @return string
-     */
-    public function getRoleName()
-    {
-        if(!empty($this->role)) {
-            return $this->role->getRoleName();
-        } else {
-            return 'N/A';
-        }
-    }
-    /**
-     * Add a role to the user.
-     * @param Role $role
-     * @return void
-     */
-    public function addRole($role)
-    {
-        $this->role = $role;
-    }
 
     /**
      * @ORM\Id
@@ -94,6 +63,37 @@ class User
      * @ORM\Column(name="pwd_reset_token_creation_date", nullable=true)
      */
     protected $passwordResetTokenCreationDate;
+
+    /**
+     * Get role.
+     * @return Role
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    /**
+     * Get Role Name.
+     * @return string
+     */
+    public function getRoleName()
+    {
+        if(!empty($this->role)) {
+            return $this->role->getRoleName();
+        } else {
+            return 'N/A';
+        }
+    }
+    /**
+     * Add a role to the user.
+     * @param Role $role
+     * @return void
+     */
+    public function addRole($role)
+    {
+        $this->role = $role;
+    }
 
     /**
      * Returns user ID.
