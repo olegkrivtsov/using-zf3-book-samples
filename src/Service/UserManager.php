@@ -21,14 +21,22 @@ class UserManager
      * Doctrine entity manager.
      * @var \Doctrine\ORM\EntityManager
      */
-    private $entityManager;  
+    private $entityManager;
+
+    /**
+     * @var Bcrypt
+     */
+    private $bcrypt;
     
     /**
-     * Constructs the service.
+     * UserManager constructor.
+     * @param $entityManager
+     * @param Bcrypt $bcrypt
      */
-    public function __construct($entityManager) 
+    public function __construct($entityManager, Bcrypt $bcrypt)
     {
         $this->entityManager = $entityManager;
+        $this->bcrypt = $bcrypt;
     }
     
     /**
@@ -53,8 +61,7 @@ class UserManager
         $user->addRole($role);
 
         // Encrypt password and store the password in encrypted state.
-        $bcrypt = new Bcrypt();
-        $passwordHash = $bcrypt->create($data['password']);        
+        $passwordHash = $this->bcrypt->create($data['password']);
         $user->setPassword($passwordHash);
         
         $user->setStatus($data['status']);
@@ -112,8 +119,7 @@ class UserManager
             $user = new User();
             $user->setEmail(self::ADMIN_EMAIL);
             $user->setFullName(self::ADMIN_NAME);
-            $bcrypt = new Bcrypt();
-            $passwordHash = $bcrypt->create(self::ADMIN_PASSWORD);
+            $passwordHash = $this->bcrypt->create(self::ADMIN_PASSWORD);
             $user->setPassword($passwordHash);
             $user->setStatus(User::STATUS_ACTIVE);
             $user->setDateCreated(date('Y-m-d H:i:s'));
@@ -152,16 +158,18 @@ class UserManager
         
         return $user !== null;
     }
-    
+
     /**
      * Checks that the given password is correct.
+     * @param User $user
+     * @param $password
+     * @return bool
      */
-    public function validatePassword($user, $password) 
+    public function validatePassword(User $user, $password)
     {
-        $bcrypt = new Bcrypt();
         $passwordHash = $user->getPassword();
         
-        if ($bcrypt->verify($password, $passwordHash)) {
+        if ($this->bcrypt->verify($password, $passwordHash)) {
             return true;
         }
         
@@ -172,11 +180,12 @@ class UserManager
      * Generates a password reset token for the user. This token is then stored in database and 
      * sent to the user's E-mail address. When the user clicks the link in E-mail message, he is 
      * directed to the Set Password page.
+     * @param User $user
      */
-    public function generatePasswordResetToken($user)
+    public function generatePasswordResetToken(User $user)
     {
         // Generate a token.
-        $token = Rand::getString(32, '0123456789abcdefghijklmnopqrstuvwxyz', true);
+        $token = Rand::getString(32, '0123456789abcdefghijklmnopqrstuvwxyz');
         $user->setPasswordResetToken($token);
         
         $currentDate = date('Y-m-d H:i:s');
@@ -202,6 +211,7 @@ class UserManager
      */
     public function validatePasswordResetToken($passwordResetToken)
     {
+        /** @var User $user */
         $user = $this->entityManager->getRepository(User::class)
                 ->findOneByPasswordResetToken($passwordResetToken);
         
@@ -237,9 +247,8 @@ class UserManager
             return false;
         }
                 
-        // Set new password for user        
-        $bcrypt = new Bcrypt();
-        $passwordHash = $bcrypt->create($newPassword);        
+        // Set new password for user
+        $passwordHash = $this->bcrypt->create($newPassword);
         $user->setPassword($passwordHash);
                 
         // Remove password reset token
@@ -254,8 +263,12 @@ class UserManager
     /**
      * This method is used to change the password for the given user. To change the password,
      * one must know the old password.
+     *
+     * @param User $user
+     * @param $data
+     * @return bool
      */
-    public function changePassword($user, $data)
+    public function changePassword(User $user, $data)
     {
         $oldPassword = $data['old_password'];
         
@@ -271,9 +284,8 @@ class UserManager
             return false;
         }
         
-        // Set new password for user        
-        $bcrypt = new Bcrypt();
-        $passwordHash = $bcrypt->create($newPassword);
+        // Set new password for user
+        $passwordHash = $this->bcrypt->create($newPassword);
         $user->setPassword($passwordHash);
         
         // Apply changes

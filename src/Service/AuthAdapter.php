@@ -32,13 +32,21 @@ class AuthAdapter implements AdapterInterface
      * @var \Doctrine\ORM\EntityManager
      */
     private $entityManager;
-        
+
     /**
-     * Constructor.
+     * @var Bcrypt
      */
-    public function __construct($entityManager)
+    private $bcrypt;
+
+    /**
+     * AuthAdapter constructor.
+     * @param $entityManager
+     * @param Bcrypt $bcrypt
+     */
+    public function __construct($entityManager, Bcrypt $bcrypt)
     {
         $this->entityManager = $entityManager;
+        $this->bcrypt = $bcrypt;
     }
     
     /**
@@ -61,8 +69,8 @@ class AuthAdapter implements AdapterInterface
      * Performs an authentication attempt.
      */
     public function authenticate()
-    {                
-        // Check the database if there is a user with such email.
+    {
+        /** @var User $user */
         $user = $this->entityManager->getRepository(User::class)
                 ->findOneByEmail($this->email);
         
@@ -82,13 +90,10 @@ class AuthAdapter implements AdapterInterface
                 null, 
                 ['User is retired.']);        
         }
-        
-        // Now we need to calculate hash based on user-entered password and compare
-        // it with the password hash stored in database.
-        $bcrypt = new Bcrypt();
+
         $passwordHash = $user->getPassword();
         
-        if ($bcrypt->verify($this->password, $passwordHash)) {
+        if ($this->bcrypt->verify($this->password, $passwordHash)) {
             // Great! The password hash matches. Return user identity (email) to be
             // saved in session for later use.
             return new Result(

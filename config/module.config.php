@@ -1,6 +1,7 @@
 <?php
 namespace ProspectOne\UserModule;
 
+use ProspectOne\UserModule\Factory\BcryptFactory;
 use Zend\Router\Http\Literal;
 use Zend\Router\Http\Segment;
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
@@ -79,6 +80,7 @@ return [
             Service\AuthAdapter::class => Service\Factory\AuthAdapterFactory::class,
             Service\AuthManager::class => Service\Factory\AuthManagerFactory::class,
             Service\UserManager::class => Service\Factory\UserManagerFactory::class,
+            'ProspectOne\UserModule\Bcrypt' => BcryptFactory::class,
         ],
     ],
     'view_manager' => [
@@ -109,6 +111,11 @@ return [
                 ]
             ]
         ]
+    ],
+    'ProspectOne\UserModule' => [
+        'bcrypt' => [
+            'cost' => 14
+        ],
     ],
 ];
 

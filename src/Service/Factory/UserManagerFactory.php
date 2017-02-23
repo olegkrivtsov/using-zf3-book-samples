@@ -3,6 +3,7 @@ namespace ProspectOne\UserModule\Service\Factory;
 
 use Interop\Container\ContainerInterface;
 use ProspectOne\UserModule\Service\UserManager;
+use Zend\Crypt\Password\Bcrypt;
 
 /**
  * This is the factory class for UserManager service. The purpose of the factory
@@ -21,7 +22,9 @@ class UserManagerFactory
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {        
         $entityManager = $container->get('doctrine.entitymanager.orm_default');
+        /** @var Bcrypt $bcrypt */
+        $bcrypt = $container->get('ProspectOne\UserModule\Bcrypt');
                         
-        return new UserManager($entityManager);
+        return new UserManager($entityManager, $bcrypt);
     }
 }
