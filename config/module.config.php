@@ -2,6 +2,7 @@
 namespace ProspectOne\UserModule;
 
 use ProspectOne\UserModule\Factory\BcryptFactory;
+use ProspectOne\UserModule\Service\Factory\CurrentUserFactory;
 use Zend\Router\Http\Literal;
 use Zend\Router\Http\Segment;
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
@@ -81,6 +82,7 @@ return [
             Service\AuthManager::class => Service\Factory\AuthManagerFactory::class,
             Service\UserManager::class => Service\Factory\UserManagerFactory::class,
             'ProspectOne\UserModule\Bcrypt' => BcryptFactory::class,
+            'ProspectOne\UserModule\CurrentUser' => CurrentUserFactory::class,
         ],
     ],
     'view_manager' => [
