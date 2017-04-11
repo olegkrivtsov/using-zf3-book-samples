@@ -137,9 +137,12 @@ class AuthController extends AbstractActionController
      * The "logout" action performs logout operation.
      */
     public function logoutAction() 
-    {        
+    {
+        if ($this->authService->getIdentity() !== null) {
+            return $this->redirect()->toRoute("login");
+        }
+
         $this->authManager->logout();
-        
         return $this->redirect()->toRoute('login');
     }
 }
