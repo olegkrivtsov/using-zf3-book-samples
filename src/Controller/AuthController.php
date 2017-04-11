@@ -138,7 +138,7 @@ class AuthController extends AbstractActionController
      */
     public function logoutAction() 
     {
-        if ($this->authService->getIdentity() !== null) {
+        if ($this->authService->getIdentity() === null) {
             return $this->redirect()->toRoute("login");
         }
 
