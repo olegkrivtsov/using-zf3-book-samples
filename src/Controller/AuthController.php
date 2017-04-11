@@ -73,6 +73,14 @@ class AuthController extends AbstractActionController
         
         // Check if user has submitted the form
         if ($this->getRequest()->isPost()) {
+
+            if ($this->authService->getIdentity() !== null) {
+                if (empty($redirectUrl)) {
+                    $this->redirect()->toUrl("/");
+                } else {
+                    $this->redirect()->toUrl($redirectUrl);
+                }
+            }
             
             // Fill in the form with POST data
             $data = $this->params()->fromPost();            
