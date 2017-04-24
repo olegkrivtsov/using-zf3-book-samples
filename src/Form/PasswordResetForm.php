@@ -50,7 +50,7 @@ class PasswordResetForm extends Form
                     'suffix' => '.png',
                     'imgUrl' => '/img/captcha/',
                     'imgAlt' => 'CAPTCHA Image',
-                    'font' => './data/font/thorne_shaded.ttf',
+                    'font' => __DIR__ . "/../../data/font/thorne_shaded.ttf",
                     'fsize' => 24,
                     'width' => 350,
                     'height' => 100,
