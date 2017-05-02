@@ -11,7 +11,7 @@ This sample demonstrates how to write a simple website *without* a framework. It
 
 You need to have Apache 2.4 HTTP server and PHP v.5.6 or later.
 
-Download the sample to some directory (it can be your home dir or `/var/www/html`).
+Download the sample to your Apache document root directory (for example, `/var/www/html`).
 
 Now you should be able to see the sample website by visiting the link "http://localhost/". 
  
