@@ -80,7 +80,7 @@ Then create an Apache virtual host. It should look like below:
 <VirtualHost *:80>
     DocumentRoot /path/to/roledemo/public
     
-	<Directory /path/to/roledemo/public/>
+    <Directory /path/to/roledemo/public/>
         DirectoryIndex index.php
         AllowOverride All
         Require all granted
