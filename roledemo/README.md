@@ -1,14 +1,12 @@
-User Demo Sample
+Role Demo Sample
 ==================================================
 
-This sample is based on *Hello World* sample. It shows how to:
+This sample is based on *User Demo* sample. It shows how to:
 
- * Create a new module named User
- * Create User entity
- * Implement user authentication (with login and password)
- * Implement access filter to restrict access to certain pages to authenticated users only
- * Implement user management UI
- * Init main menu items differently based on whether the current user is logged in or not
+ * Implement roles and permissions in your website
+ * Organize roles in database into an hierarchy
+ * Use Zend\Permissions\Rbac component to implement role-based access control
+ * Use dynamic assertions to implement complex access control rules
 
 ## Installation
 
@@ -65,8 +63,8 @@ mysql -u root -p
 Create database:
 
 ```
-CREATE DATABASE userdemo;
-GRANT ALL PRIVILEGES ON userdemo.* TO userdemo@localhost identified by '<your_password>';
+CREATE DATABASE roledemo;
+GRANT ALL PRIVILEGES ON roledemo.* TO roledemo@localhost identified by '<your_password>';
 quit
 ```
 
@@ -80,9 +78,9 @@ Then create an Apache virtual host. It should look like below:
 
 ```
 <VirtualHost *:80>
-    DocumentRoot /path/to/userdemo/public
+    DocumentRoot /path/to/roledemo/public
     
-	<Directory /path/to/userdemo/public/>
+	<Directory /path/to/roledemo/public/>
         DirectoryIndex index.php
         AllowOverride All
         Require all granted
@@ -91,7 +89,7 @@ Then create an Apache virtual host. It should look like below:
 </VirtualHost>
 ```
 
-Now you should be able to see the User Demo website by visiting the link "http://localhost/". 
+Now you should be able to see the Role Demo website by visiting the link "http://localhost/". 
  
 ## License
 

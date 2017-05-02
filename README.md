@@ -24,6 +24,7 @@ For description of each sample and installation instructions, visit these links:
  * [Form Demo Sample](formdemo/README.md)
  * [Blog Sample](blog/README.md)
  * [User Demo Sample](userdemo/README.md)
+ * [Role Demo Sample](roledemo/README.md)
  
 ## License
 
