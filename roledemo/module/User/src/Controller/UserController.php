@@ -324,7 +324,7 @@ class UserController extends AbstractActionController
      */
     public function setPasswordAction()
     {
-        $token = $this->params()->fromRoute('token', null);
+        $token = $this->params()->fromQuery('token', null);
         
         // Validate token length
         if ($token!=null && (!is_string($token) || strlen($token)!=32)) {
@@ -333,7 +333,7 @@ class UserController extends AbstractActionController
         
         if($token===null || 
            !$this->userManager->validatePasswordResetToken($token)) {
-            return $this->redirect()->toRoute('user', 
+            return $this->redirect()->toRoute('users', 
                     ['action'=>'message', 'id'=>'failed']);
         }
                 
@@ -354,14 +354,14 @@ class UserController extends AbstractActionController
                 $data = $form->getData();
                                                
                 // Set new password for the user.
-                if ($this->userManager->setPasswordByToken($token, $data['password'])) {
+                if ($this->userManager->setNewPasswordByToken($token, $data['new_password'])) {
                     
                     // Redirect to "message" page
-                    return $this->redirect()->toRoute('user', 
+                    return $this->redirect()->toRoute('users', 
                             ['action'=>'message', 'id'=>'set']);                 
                 } else {
                     // Redirect to "message" page
-                    return $this->redirect()->toRoute('user', 
+                    return $this->redirect()->toRoute('users', 
                             ['action'=>'message', 'id'=>'failed']);                 
                 }
             }               
