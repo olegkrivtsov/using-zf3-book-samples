@@ -1,0 +1,67 @@
+<?php
+$this->headTitle('Edit Role Permissions');
+
+$this->mainMenu()->setActiveItemId('roles');
+
+$this->pageBreadcrumbs()->setItems([
+            'Home'=>$this->url('home'),
+            'Manage Roles'=>$this->url('roles'),
+            'Edit Role'=>$this->url('roles', ['action'=>'edit', 'id'=>$role->getId()])
+            ]);
+
+$form->get('submit')
+        ->setAttributes(['class'=>'btn btn-primary'])
+        ->setValue('Save');
+
+$form->prepare();
+?>
+
+<h1>Edit Permissions of <?= $this->escapeHtml($role->getName()) ?></h1>
+
+<div class="row">
+    <div class="col-md-8">
+        <?= $this->form()->openTag($form); ?>
+        <table class="table table-striped table-bordered">
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+            </tr>
+            <?php foreach ($allPermissions as $permission):
+                $element = $form->get('permissions')->get($permission->getName());
+            ?>
+            <tr>
+                <td>
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="<?= $this->escapeHtmlAttr($element->getName()) ?>" 
+                                      value="<?= $this->escapeHtmlAttr($element->getCheckedValue()) ?>"
+                                      <?php if ($element->isChecked()) echo 'checked'?>
+                                      <?php if ($element->getAttribute('disabled')) echo 'disabled'?>>
+                            <?= $this->escapeHtml($element->getLabel()) ?>
+                        </label>
+                        <?= $this->formElementErrors($element); ?>                  
+                    </div>
+                </td>
+                <td>
+                    <?= $this->escapeHtml($permission->getDescription()) ?>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+        <?= $this->formElement($form->get('csrf')); ?>
+        
+        <?= $this->formElement($form->get('submit')); ?>
+        
+        <?= $this->form()->closeTag(); ?>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        
+        
+        
+        
+        
+    </div>    
+</div>   
+

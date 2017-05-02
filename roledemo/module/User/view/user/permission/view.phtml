@@ -1,0 +1,37 @@
+<?php
+$this->headTitle('View Permission');
+
+$this->mainMenu()->setActiveItemId('permissions');
+
+$this->pageBreadcrumbs()->setItems([
+            'Home'=>$this->url('home'),
+            'Manage Permissions'=>$this->url('permissions'),
+            'View Permission'=>$this->url('permissions', ['action'=>'view', 'id'=>$permission->getId()])
+            ]);
+?>
+
+
+<h1>View Permission</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <table class="table table-striped table-bordered">
+             <tr>
+                <th>ID:</th>
+                <td><?= $this->escapeHtml($permission->getId()) ?></th>
+            </tr>
+            <tr>
+                <th>Name:</th>
+                <td><?= $this->escapeHtml($permission->getName()) ?></th>
+            </tr>
+            <tr>
+                <th>Description:</th>
+                <td><?= $this->escapeHtml($permission->getDescription()) ?></th>
+            </tr>
+            <tr>
+                <th>Date Created:</th>
+                <td><?= $this->escapeHtml($permission->getDateCreated()) ?></th>
+            </tr>
+        </table>
+    </div>
+</div>

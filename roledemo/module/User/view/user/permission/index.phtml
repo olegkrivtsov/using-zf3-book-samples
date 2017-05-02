@@ -1,0 +1,65 @@
+<?php
+$this->headTitle('Permissions');
+
+$this->mainMenu()->setActiveItemId('permissions');
+
+$this->pageBreadcrumbs()->setItems([
+            'Home'=>$this->url('home'),
+            'Manage Permissions'=>$this->url('permissions'),
+            ]);
+?>
+
+<h1>Manage Permissions</h1>
+
+<?= $this->flashMessenger()->render('error', ['alert', 'alert-warning']); ?>
+<?= $this->flashMessenger()->render('success', ['alert', 'alert-success']); ?>
+<?= $this->flashMessenger()->render('info', ['alert', 'alert-info']); ?>
+
+<p>
+<a class="btn btn-default" href="
+    <?= $this->url('permissions', ['action'=>'add']); ?>">
+    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New Permission
+</a>
+</p>
+
+<table class="table table-striped">
+
+   <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Date Created</th>
+        <th>Actions</th>        
+    </tr>
+    
+    <?php foreach ($permissions as $permission): ?>
+    
+    <tr>
+        <td><?= $this->escapeHtml($permission->getId()); ?></td>
+        <td>
+            <a href="<?= $this->url('permissions', ['action'=>'view', 'id'=>$permission->getId()]); ?>">
+                <?= $this->escapeHtml($permission->getName()); ?>
+            </a> 
+        </td>
+        <td><?= $this->escapeHtml($permission->getDescription()); ?></a> 
+        </td>
+        <td><nobr><?= $this->escapeHtml($permission->getDateCreated()); ?></nobr></td>        
+        <td>
+            <nobr>
+            <a class="btn btn-info" href="<?= $this->url('permissions', 
+                    ['action'=>'edit', 'id'=>$permission->getId()]); ?>">
+                <span class="glyphicon glyphicon-pencil" ></span> Edit
+            </a>
+            <a class="btn btn-danger" href="<?= $this->url('permissions',
+                    ['action'=>'delete', 'id'=>$permission->getId()]); ?>">
+                <span class="glyphicon glyphicon-remove"></span> Delete
+            </a>
+            </nobr>
+        </td>    
+    </tr>
+        
+    <?php endforeach; ?>   
+    
+</table>
+
+
