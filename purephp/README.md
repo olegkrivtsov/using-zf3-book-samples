@@ -4,8 +4,8 @@ Pure PHP Sample
 This sample demonstrates how to write a simple website *without* a framework. It shows how to:
 
  * Create the Home page
- * Create a login page
- * Create a logout page 
+ * Create the Login page
+ * Create the Logout page 
  
 ## Installation
 
