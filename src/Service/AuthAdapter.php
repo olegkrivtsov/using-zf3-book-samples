@@ -141,7 +141,12 @@ class AuthAdapter implements AdapterInterface
         /** @var User $user */
         $user = $this->entityManager->getRepository(User::class)
             ->findOneByToken($this->getAuthHeader());
-        return $this->validateUser($user);
+
+        if(!empty($user) && $user->getStatus() !== User::STATUS_RETIRED) {
+            return $user;
+        }
+
+        return false;
     }
 
     /**
