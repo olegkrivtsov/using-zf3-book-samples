@@ -66,7 +66,7 @@ class User
 
     /**
      * @var string
-     * @ORM\Column(name="pwd_reset_token_creation_date", nullable=true)
+     * @ORM\Column(name="token", nullable=true)
      */
     protected $token;
 
