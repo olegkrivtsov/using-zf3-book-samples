@@ -78,7 +78,7 @@ return [
             Controller\ConsoleController::class => [
                 ['actions' => ['regenerateTokens'], 'allow' => '*'],
             ],
-        ]
+        ],
     ],
     'service_manager' => [
         'factories' => [
