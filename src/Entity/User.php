@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
  * This class represents a registered user.
  * Adds role system
  * @ORM\Entity()
- * @ORM\Table(name="user",uniqueConstraints={@UniqueConstraint(name="token_idx", columns={"token"},@UniqueConstraint(name="email_idx", columns={"email"})})
+ * @ORM\Table(name="user",uniqueConstraints={@ORM\UniqueConstraint(name="token_idx", columns={"token"},@ORM\UniqueConstraint(name="email_idx", columns={"email"})})
  */
 class User
 {
