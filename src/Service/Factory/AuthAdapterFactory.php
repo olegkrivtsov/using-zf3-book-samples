@@ -31,11 +31,10 @@ class AuthAdapterFactory implements FactoryInterface
         $config = $container->get('Config');
         $headerEnabled = $config['ProspectOne\UserModule']['auth']['header'];
 
-        if ($headerEnabled) {
-            /** @var Request $request */
-            $request = $container->get("Request");
+        /** @var Request $request */
+        $request = $container->get("Request");
+        if ($headerEnabled && $request instanceof Request) {
             $header = $request->getHeaders()->get($config['ProspectOne\UserModule']['auth']['header_name']);
-            // Instantiate the AuthManager service and inject dependencies to its constructor.
         } else {
             $header = null;
         }
