@@ -131,6 +131,10 @@ class AuthManager
         $mode = isset($this->config['options']['mode'])?$this->config['options']['mode']:'restrictive';
         if ($mode!='restrictive' && $mode!='permissive')
             throw new \Exception('Invalid access filter mode (expected either restrictive or permissive mode');
+
+        /** @var AuthAdapter $adapter */
+        $adapter = $this->authService->getAdapter();
+        $adapter->headerAuth();
         
         if (isset($this->config['controllers'][$controllerName])) {
             $items = $this->config['controllers'][$controllerName];
@@ -148,10 +152,6 @@ class AuthManager
                     if (!is_array($allow)) {
                         return false;
                     }
-
-                    /** @var AuthAdapter $adapter */
-                    $adapter = $this->authService->getAdapter();
-                    $adapter->headerAuth();
 
                     if ($this->authService->hasIdentity()) {
                             $email = $this->authService->getIdentity();
