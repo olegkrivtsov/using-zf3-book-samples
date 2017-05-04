@@ -34,7 +34,12 @@ class AuthAdapterFactory implements FactoryInterface
         /** @var Request $request */
         $request = $container->get("Request");
         if ($headerEnabled && $request instanceof Request) {
-            $header = $request->getHeaders()->get($config['ProspectOne\UserModule']['auth']['header_name'])->getFieldValue();
+            $header = $request->getHeaders()->get($config['ProspectOne\UserModule']['auth']['header_name']);
+            if ($header !== false) {
+                $header = $header->getFieldValue();
+            } else {
+                $header = null;
+            }
         } else {
             $header = null;
         }
