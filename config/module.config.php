@@ -75,6 +75,9 @@ return [
                 // Give access to "index", "add", "edit", "view", "changePassword" actions to authorized users only.
                 ['actions' => ['index', 'add', 'edit', 'view', 'changePassword'], 'allow' => ['admin']]
             ],
+            Controller\ConsoleController::class => [
+                ['actions' => ['regenerateTokens'], 'allow' => '*'],
+            ],
         ]
     ],
     'service_manager' => [
