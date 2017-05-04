@@ -4,6 +4,7 @@ namespace ProspectOne\UserModule\Service\Factory;
 use Interop\Container\ContainerInterface;
 use ProspectOne\UserModule\Service\AuthAdapter;
 use Zend\Crypt\Password\Bcrypt;
+use Zend\Http\PhpEnvironment\Request;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
 /**
@@ -26,8 +27,20 @@ class AuthAdapterFactory implements FactoryInterface
         $entityManager = $container->get('doctrine.entitymanager.orm_default');
         /** @var Bcrypt $bcrypt */
         $bcrypt = $container->get('ProspectOne\UserModule\Bcrypt');
+
+        $config = $container->get('Config');
+        $headerEnabled = $config['ProspectOne\UserModule']['auth']['header'];
+
+        if ($headerEnabled) {
+            /** @var Request $request */
+            $request = $container->get("Request");
+            $header = $request->getHeaders()->get($config['ProspectOne\UserModule']['auth']['header_name']);
+            // Instantiate the AuthManager service and inject dependencies to its constructor.
+        } else {
+            $header = null;
+        }
                         
         // Create the AuthAdapter and inject dependency to its constructor.
-        return new AuthAdapter($entityManager, $bcrypt);
+        return new AuthAdapter($entityManager, $bcrypt, $headerEnabled, $header);
     }
 }

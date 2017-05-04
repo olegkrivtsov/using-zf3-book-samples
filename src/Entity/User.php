@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
  * This class represents a registered user.
  * Adds role system
  * @ORM\Entity()
- * @ORM\Table(name="user")
+ * @ORM\Table(name="user",uniqueConstraints={@UniqueConstraint(name="token_idx", columns={"token"},@UniqueConstraint(name="email_idx", columns={"email"})})
  */
 class User
 {
@@ -63,6 +63,12 @@ class User
      * @ORM\Column(name="pwd_reset_token_creation_date", nullable=true)
      */
     protected $passwordResetTokenCreationDate;
+
+    /**
+     * @var string
+     * @ORM\Column(name="pwd_reset_token_creation_date", nullable=true)
+     */
+    protected $token;
 
     /**
      * Get role.
@@ -263,7 +269,22 @@ class User
     {
         $this->passwordResetTokenCreationDate = $date;
     }
+
+    /**
+     * @return string
+     */
+    public function getToken(): ?string
+    {
+        return $this->token;
+    }
+
+    /**
+     * @param string $token
+     * @return User
+     */
+    public function setToken(?string $token): User
+    {
+        $this->token = $token;
+        return $this;
+    }
 }
-
-
-

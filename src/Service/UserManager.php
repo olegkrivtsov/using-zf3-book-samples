@@ -16,6 +16,7 @@ class UserManager
     const ADMIN_EMAIL = 'admin@example.com';
     const ADMIN_NAME = 'Admin';
     const ADMIN_PASSWORD = 'Secur1ty';
+    const TOKEN_SIZE = 256;
 
     /**
      * Doctrine entity manager.
@@ -292,6 +293,26 @@ class UserManager
         $this->entityManager->flush();
 
         return true;
+    }
+
+    /**
+     * @param User $user
+     * @param string $token
+     */
+    public function updateToken(User $user, string $token)
+    {
+        $user->setToken($token);
+        $this->entityManager->persist($user);
+        $this->entityManager->flush();
+    }
+
+    /**
+     * @return string
+     */
+    public function generateToken()
+    {
+        $token = bin2hex(random_bytes(self::TOKEN_SIZE));
+        return $token;
     }
 }
 

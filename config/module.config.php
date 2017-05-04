@@ -6,6 +6,7 @@ use ProspectOne\UserModule\Service\Factory\CurrentUserFactory;
 use Zend\Router\Http\Literal;
 use Zend\Router\Http\Segment;
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
+use \Zend\Authentication\AuthenticationService;
 
 return [
     'router' => [
@@ -59,7 +60,8 @@ return [
     'controllers' => [
         'factories' => [
             Controller\AuthController::class => Controller\Factory\AuthControllerFactory::class,
-            Controller\UserController::class => Controller\Factory\UserControllerFactory::class,            
+            Controller\UserController::class => Controller\Factory\UserControllerFactory::class,
+            Controller\ConsoleController::class => Controller\Factory\ConsoleControllerFactory::class
         ],
     ],
     // The 'access_filter' key is used by the User module to restrict or permit
@@ -77,7 +79,7 @@ return [
     ],
     'service_manager' => [
         'factories' => [
-            \Zend\Authentication\AuthenticationService::class => Service\Factory\AuthenticationServiceFactory::class,
+            AuthenticationService::class => Service\Factory\AuthenticationServiceFactory::class,
             Service\AuthAdapter::class => Service\Factory\AuthAdapterFactory::class,
             Service\AuthManager::class => Service\Factory\AuthManagerFactory::class,
             Service\UserManager::class => Service\Factory\UserManagerFactory::class,
@@ -117,6 +119,25 @@ return [
     'ProspectOne\UserModule' => [
         'bcrypt' => [
             'cost' => 14
+        ],
+        'auth' => [
+            'header' => true,
+            'header_name' => "xxx-user-module-auth",
+        ]
+    ],
+    'console' => [
+        'router' => [
+            'routes' => [
+                'regenerate-user-tokens' => [
+                    'options' => [
+                        'route' => 'user-module regenerate tokens',
+                        'defaults' => [
+                            'controller' => Controller\ConsoleController::class,
+                            'action' => "regenerate-tokens",
+                        ],
+                    ],
+                ],
+            ],
         ],
     ],
 ];

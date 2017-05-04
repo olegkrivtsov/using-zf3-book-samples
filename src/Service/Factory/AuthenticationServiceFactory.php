@@ -3,6 +3,7 @@ namespace ProspectOne\UserModule\Service\Factory;
 
 use Interop\Container\ContainerInterface;
 use Zend\Authentication\AuthenticationService;
+use Zend\ServiceManager\Exception\ServiceNotCreatedException;
 use Zend\ServiceManager\Factory\FactoryInterface;
 use Zend\Session\SessionManager;
 use Zend\Authentication\Storage\Session as SessionStorage;
@@ -24,8 +25,15 @@ class AuthenticationServiceFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
+        /** @var SessionManager $sessionManager */
         $sessionManager = $container->get(SessionManager::class);
-        $authStorage = new SessionStorage('Zend_Auth', 'session', $sessionManager);
+        $sessionManager->start();
+        try {
+            $authStorage = new SessionStorage('Zend_Auth', 'session', $sessionManager);
+        } catch (ServiceNotCreatedException $e) {
+            session_unset();
+            $authStorage = new SessionStorage('Zend_Auth', 'session', $sessionManager);
+        }
         $authAdapter = $container->get(AuthAdapter::class);
 
         // Create the service and inject dependencies into its constructor.

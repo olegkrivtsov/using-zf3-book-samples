@@ -81,5 +81,16 @@ class Module
             return $controller->redirect()->toRoute('login', [], 
                     ['query'=>['redirectUrl'=>$redirectUrl]]);
         }
+        return true;
+    }
+
+    /**
+     * @return array
+     */
+    public function getConsoleUsage()
+    {
+        return array(
+            'user-module regenerate tokens' => 'Reset all user tokens',
+        );
     }
 }

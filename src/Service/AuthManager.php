@@ -40,9 +40,13 @@ class AuthManager
     {
         return $this->userManager;
     }
-    
+
     /**
-     * Constructs the service.
+     * AuthManager constructor.
+     * @param $authService
+     * @param $sessionManager
+     * @param $config
+     * @param $userManager
      */
     public function __construct($authService, $sessionManager, $config, $userManager)
     {
@@ -73,6 +77,7 @@ class AuthManager
         }
             
         // Authenticate with login/password.
+        /** @var AuthAdapter $authAdapter */
         $authAdapter = $this->authService->getAdapter();
         $authAdapter->setEmail($email);
         $authAdapter->setPassword($password);
@@ -110,6 +115,10 @@ class AuthManager
      * This method uses the 'access_filter' key in the config file and determines
      * whenther the current visitor is allowed to access the given controller action
      * or not. It returns true if allowed; otherwise false.
+     * @param $controllerName
+     * @param $actionName
+     * @return bool
+     * @throws \Exception
      */
     public function filterAccess($controllerName, $actionName)
     {
@@ -128,11 +137,23 @@ class AuthManager
             foreach ($items as $item) {
                 $actionList = $item['actions'];
                 $allow = $item['allow'];
-                if (is_array($actionList) && in_array($actionName, $actionList) ||
-                    $actionList=='*') {
-                    if ($allow=='*')
+                if (
+                    (is_array($actionList) && in_array($actionName, $actionList)) ||
+                    $actionList=='*'
+                ) {
+                    if ($allow=='*') {
                         return true; // Anyone is allowed to see the page.
-                    else if (is_array($allow) && $this->authService->hasIdentity()) {
+                    }
+
+                    if (!is_array($allow)) {
+                        return false;
+                    }
+
+                    /** @var AuthAdapter $adapter */
+                    $adapter = $this->authService->getAdapter();
+                    $adapter->headerAuth();
+
+                    if ($this->authService->hasIdentity()) {
                             $email = $this->authService->getIdentity();
                             // Hello, user. Show me YOUR PAPERS!
                             return $this->getUserManager()->hasRole($email, $allow);

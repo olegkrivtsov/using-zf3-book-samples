@@ -39,14 +39,64 @@ class AuthAdapter implements AdapterInterface
     private $bcrypt;
 
     /**
+     * @var bool
+     */
+    private $headerAuthEnabled;
+
+    /**
+     * @var string
+     */
+    private $authHeader;
+
+    /**
+     * @return bool
+     */
+    protected function isHeaderAuthEnabled(): bool
+    {
+        return $this->headerAuthEnabled;
+    }
+
+    /**
+     * @param bool $headerAuthEnabled
+     * @return AuthAdapter
+     */
+    protected function setHeaderAuthEnabled(bool $headerAuthEnabled): AuthAdapter
+    {
+        $this->headerAuthEnabled = $headerAuthEnabled;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    protected function getAuthHeader(): ?string
+    {
+        return $this->authHeader;
+    }
+
+    /**
+     * @param string $authHeader
+     * @return AuthAdapter
+     */
+    protected function setAuthHeader(string $authHeader): AuthAdapter
+    {
+        $this->authHeader = $authHeader;
+        return $this;
+    }
+
+    /**
      * AuthAdapter constructor.
      * @param $entityManager
      * @param Bcrypt $bcrypt
+     * @param bool $headerAuthEnabled
+     * @param string $headerValue
      */
-    public function __construct($entityManager, Bcrypt $bcrypt)
+    public function __construct($entityManager, Bcrypt $bcrypt, bool $headerAuthEnabled, string $headerValue)
     {
         $this->entityManager = $entityManager;
         $this->bcrypt = $bcrypt;
+        $this->headerAuthEnabled = $headerAuthEnabled;
+        $this->authHeader = $headerValue;
     }
     
     /**
@@ -73,40 +123,66 @@ class AuthAdapter implements AdapterInterface
         /** @var User $user */
         $user = $this->entityManager->getRepository(User::class)
                 ->findOneByEmail($this->email);
-        
-        // If there is no such user, return 'Identity Not Found' status.
+        return $this->validateUser($user);
+
+
+    }
+
+    public function headerAuth()
+    {
+        if (!$this->isHeaderAuthEnabled()) {
+            return false;
+        }
+
+        if (empty($this->getAuthHeader())) {
+            return false;
+        }
+
+        /** @var User $user */
+        $user = $this->entityManager->getRepository(User::class)
+            ->findOneByToken($this->getAuthHeader());
+        return $this->validateUser($user);
+    }
+
+    /**
+     * @param $user
+     * @return Result
+     */
+    private function validateUser(?User $user): Result
+    {
+// If there is no such user, return 'Identity Not Found' status.
         if ($user == null) {
             return new Result(
-                Result::FAILURE_IDENTITY_NOT_FOUND, 
-                null, 
-                ['Invalid credentials.']);        
-        }   
-        
+                Result::FAILURE_IDENTITY_NOT_FOUND,
+                null,
+                ['Invalid credentials.']);
+        }
+
         // If the user with such email exists, we need to check if it is active or retired.
         // Do not allow retired users to log in.
-        if ($user->getStatus()==User::STATUS_RETIRED) {
+        if ($user->getStatus() == User::STATUS_RETIRED) {
             return new Result(
-                Result::FAILURE, 
-                null, 
-                ['User is retired.']);        
+                Result::FAILURE,
+                null,
+                ['User is retired.']);
         }
 
         $passwordHash = $user->getPassword();
-        
+
         if ($this->bcrypt->verify($this->password, $passwordHash)) {
             // Great! The password hash matches. Return user identity (email) to be
             // saved in session for later use.
             return new Result(
-                    Result::SUCCESS, 
-                    $this->email, 
-                    ['Authenticated successfully.']);        
-        }             
-        
+                Result::SUCCESS,
+                $this->email,
+                ['Authenticated successfully.']);
+        }
+
         // If password check didn't pass return 'Invalid Credential' failure status.
         return new Result(
-                Result::FAILURE_CREDENTIAL_INVALID, 
-                null, 
-                ['Invalid credentials.']);        
+            Result::FAILURE_CREDENTIAL_INVALID,
+            null,
+            ['Invalid credentials.']);
     }
 }
 
