@@ -124,10 +124,11 @@ class AuthAdapter implements AdapterInterface
         $user = $this->entityManager->getRepository(User::class)
                 ->findOneByEmail($this->email);
         return $this->validateUser($user);
-
-
     }
 
+    /**
+     * @return bool|User
+     */
     public function headerAuth()
     {
         if (!$this->isHeaderAuthEnabled()) {
