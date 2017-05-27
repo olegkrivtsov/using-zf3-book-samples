@@ -13,7 +13,7 @@ You need to have Apache 2.4 HTTP server and PHP v.5.6 or later.
 
 Download the sample to your Apache document root directory (for example, `/var/www/html`).
 
-Now you should be able to see the sample website by visiting the link "http://localhost/". 
+Now you should be able to see the sample website by visiting the link "http://localhost/index.php". 
  
 ## License
 
