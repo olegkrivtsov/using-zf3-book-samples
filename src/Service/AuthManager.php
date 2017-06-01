@@ -134,9 +134,11 @@ class AuthManager
 
         /** @var AuthAdapter $adapter */
         $adapter = $this->authService->getAdapter();
-        $user = $adapter->headerAuth();
-        if (!empty($user)) {
-            $this->authService->getStorage()->write($user->getEmail());
+        if (!empty($adapter)) {
+            $user = $adapter->headerAuth();
+            if (!empty($user)) {
+                $this->authService->getStorage()->write($user->getEmail());
+            }
         }
         
         if (isset($this->config['controllers'][$controllerName])) {
