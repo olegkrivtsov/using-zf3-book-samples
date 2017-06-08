@@ -26,12 +26,13 @@ class AuthenticationServiceFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        /** @var SessionManager $sessionManager */
-        $sessionManager = $container->get(SessionManager::class);
         try {
+            /** @var SessionManager $sessionManager */
+            $sessionManager = $container->get(SessionManager::class);
             $sessionManager->start();
         } catch (RuntimeException $e) {
             session_unset();
+            $sessionManager = $container->get(SessionManager::class);
             $sessionManager->start();
         }
         try {
