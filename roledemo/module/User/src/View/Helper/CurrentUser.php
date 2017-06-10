@@ -1,8 +1,8 @@
 <?php
-namespace Application\View\Helper;
+namespace User\View\Helper;
 
 use Zend\View\Helper\AbstractHelper;
-use Application\Entity\User;
+use User\Entity\User;
 
 /**
  * This view helper is used for retrieving the User entity of currently logged in user.
@@ -51,8 +51,9 @@ class CurrentUser extends AbstractHelper
         if ($this->authService->hasIdentity()) {
             
             // Fetch User entity from database.
-            $this->user = $this->entityManager->getRepository(User::class)
-                    ->find($this->authService->getIdentity());
+            $this->user = $this->entityManager->getRepository(User::class)->findby(array(
+                'email' => $this->authService->getIdentity()
+            ));
             if ($this->user==null) {
                 // Oops.. the identity presents in session, but there is no such user in database.
                 // We throw an exception, because this is a possible security problem. 
