@@ -76,18 +76,6 @@ class RoleForm extends Form
                 'label' => 'Optionally inherit permissions from these role(s)'
             ],
         ]);
-        
-        // Add "permissions" field
-        $this->add([            
-            'type'  => 'checkbox',
-            'name' => 'permissions',
-            'attributes' => [
-                'id' => 'permissions'
-            ],
-            'options' => [
-                'label' => 'Optionally inherit permissions from these role(s)'
-            ],
-        ]);
                         
         // Add the Submit button
         $this->add([
