@@ -152,8 +152,8 @@ class RoleController extends AbstractActionController
         $roleList = [];
         $roles = $this->entityManager->getRepository(Role::class)
                 ->findBy([], ['name'=>'ASC']);
-        foreach ($roles as $role) {
-            $roleList[$role->getId()] = $role->getName();
+        foreach ($roles as $role2) {
+            $roleList[$role2->getId()] = $role2->getName();
         }
         $form->get('inherit_roles[]')->setValueOptions($roleList);
         

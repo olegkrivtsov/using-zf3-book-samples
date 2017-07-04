@@ -138,6 +138,7 @@ class RbacManager
                 
                 if ($params==null)
                     return true;
+                
                 foreach ($this->assertionManagers as $assertionManager) {
                     if ($assertionManager->assert($this->rbac, $permission, $params))
                         return true;
@@ -146,16 +147,6 @@ class RbacManager
                 return false;
             }
         }
-        
-        return false;
-    }
-    
-    /**
-     * This method is used for dynamic assertions. 
-     */
-    public function assert(Rbac $rbac)
-    {
-        
         
         return false;
     }
