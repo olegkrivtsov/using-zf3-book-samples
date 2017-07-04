@@ -69,6 +69,7 @@ class RbacManager
         }
         
         // Try to load Rbac container from cache.
+        $result = false;
         $this->rbac = $this->cache->getItem('rbac_container', $result);
         if (!$result)
         {
