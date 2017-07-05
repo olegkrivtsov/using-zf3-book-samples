@@ -26,6 +26,12 @@ Enable development mode:
 php composer.phar development-enable
 ```
 
+Create the `data/cache` directory:
+
+```
+mkdir data/cache
+```
+
 Adjust permissions for `data` directory:
 
 ```
