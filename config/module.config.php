@@ -41,6 +41,16 @@ return [
                     ],
                 ],
             ],
+            'set-password' => [
+                'type' => Segment::class,
+                'options' => [
+                    'route'    => '/set-password[/:token]',
+                    'defaults' => [
+                        'controller' => Controller\UserController::class,
+                        'action'     => 'setPassword',
+                    ],
+                ],
+            ],
             'users' => [
                 'type'    => Segment::class,
                 'options' => [
