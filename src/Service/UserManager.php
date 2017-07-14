@@ -204,7 +204,7 @@ class UserManager
      * @param string $usermail
      * @param string $passwordResetUrl
      */
-    public function sendMail($usermail, $passwordResetUrl)
+    protected function sendMail($usermail, $passwordResetUrl)
     {
         $subject = 'Password Reset';
         $body = 'Please follow the link below to reset your password:\n';
