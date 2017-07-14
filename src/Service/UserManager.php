@@ -28,7 +28,23 @@ class UserManager
      * @var Bcrypt
      */
     private $bcrypt;
-    
+
+    /**
+     * @return \Doctrine\ORM\EntityManager
+     */
+    protected function getEntityManager()
+    {
+        return $this->entityManager;
+    }
+
+    /**
+     * @return Bcrypt
+     */
+    protected function getBcrypt()
+    {
+        return $this->bcrypt;
+    }
+
     /**
      * UserManager constructor.
      * @param $entityManager
