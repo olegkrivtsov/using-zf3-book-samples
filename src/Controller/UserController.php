@@ -335,14 +335,14 @@ class UserController extends AbstractActionController
                 $data = $form->getData();
 
                 // Set new password for the user.
-                if ($this->userManager->setPasswordByToken($token, $data['password'])) {
+                if ($this->userManager->setNewPasswordByToken($token, $data['new_password'])) {
 
                     // Redirect to "message" page
-                    return $this->redirect()->toRoute('user',
+                    return $this->redirect()->toRoute('users',
                         ['action' => 'message', 'id' => 'set']);
                 } else {
                     // Redirect to "message" page
-                    return $this->redirect()->toRoute('user',
+                    return $this->redirect()->toRoute('users',
                         ['action' => 'message', 'id' => 'failed']);
                 }
             }
