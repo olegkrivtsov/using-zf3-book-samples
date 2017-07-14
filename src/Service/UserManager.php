@@ -30,22 +30,6 @@ class UserManager
     private $bcrypt;
 
     /**
-     * @return \Doctrine\ORM\EntityManager
-     */
-    protected function getEntityManager()
-    {
-        return $this->entityManager;
-    }
-
-    /**
-     * @return Bcrypt
-     */
-    protected function getBcrypt()
-    {
-        return $this->bcrypt;
-    }
-
-    /**
      * UserManager constructor.
      * @param $entityManager
      * @param Bcrypt $bcrypt
@@ -209,18 +193,24 @@ class UserManager
         $user->setPasswordResetTokenCreationDate($currentDate);  
         
         $this->entityManager->flush();
-        
-        $subject = 'Password Reset';
-            
+
         $httpHost = isset($_SERVER['HTTP_HOST'])?$_SERVER['HTTP_HOST']:'localhost';
         $passwordResetUrl = 'http://' . $httpHost . '/set-password/' . $token;
-        
+
+        $this->sendMail($user->getEmail(),$passwordResetUrl);
+    }
+
+    /**
+     * @param string $usermail
+     * @param string $passwordResetUrl
+     */
+    public function sendMail($usermail, $passwordResetUrl)
+    {
+        $subject = 'Password Reset';
         $body = 'Please follow the link below to reset your password:\n';
         $body .= "$passwordResetUrl\n";
         $body .= "If you haven't asked to reset your password, please ignore this message.\n";
-        
-        // Send email to user.
-        mail($user->getEmail(), $subject, $body);
+        mail($usermail, $subject, $body);
     }
     
     /**
