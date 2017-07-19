@@ -402,7 +402,7 @@ class UserController extends AbstractActionController
     public function userTokenAction()
     {
         $result = $this->userManager->generateToken();
-        return new JsonModel($result);
+        return new JsonModel(['result' => $result]);
     }
 }
 
