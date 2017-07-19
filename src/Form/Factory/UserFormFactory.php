@@ -18,22 +18,6 @@ use Zend\ServiceManager\Factory\FactoryInterface;
 class UserFormFactory implements FactoryInterface
 {
     /**
-     * @var ContainerInterface
-     */
-    private $container;
-
-    /**
-     * UserFormFactory constructor.
-     * @param ContainerInterface|null $container
-     */
-    public function __construct(?ContainerInterface $container = null)
-    {
-        if (!empty($container)) {
-            $this->container = $container;
-        }
-    }
-
-    /**
      * Create an object
      *
      * @param  ContainerInterface $container

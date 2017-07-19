@@ -7,6 +7,7 @@ use ProspectOne\UserModule\Service\UserManager;
 use Zend\Hydrator\ClassMethods;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\View\Model\JsonModel;
 use Zend\View\Model\ViewModel;
 use ProspectOne\UserModule\Entity\User;
 use ProspectOne\UserModule\Form\UserForm;
@@ -393,6 +394,15 @@ class UserController extends AbstractActionController
         }
 
         return $rolecurrent['role_id'];
+    }
+
+    /**
+     * @return JsonModel
+     */
+    public function userTokenAction()
+    {
+        $result = $this->userManager->generateToken();
+        return new JsonModel($result);
     }
 }
 

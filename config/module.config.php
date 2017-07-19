@@ -57,6 +57,16 @@ return [
                     ],
                 ],
             ],
+            'user-token' => [
+                'type' => Literal::class,
+                'options' => [
+                    'route'    => '/user-token',
+                    'defaults' => [
+                        'controller' => Controller\UserController::class,
+                        'action'     => 'user-token',
+                    ],
+                ],
+            ]
         ],
     ],
     'controllers' => [
