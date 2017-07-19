@@ -2,6 +2,8 @@
 namespace ProspectOne\UserModule;
 
 use ProspectOne\UserModule\Factory\BcryptFactory;
+use ProspectOne\UserModule\Form\Factory\UserFormFactory;
+use ProspectOne\UserModule\Form\UserForm;
 use ProspectOne\UserModule\Service\Factory\CurrentUserFactory;
 use Zend\Router\Http\Literal;
 use Zend\Router\Http\Segment;
@@ -88,6 +90,7 @@ return [
             Service\UserManager::class => Service\Factory\UserManagerFactory::class,
             'ProspectOne\UserModule\Bcrypt' => BcryptFactory::class,
             'ProspectOne\UserModule\CurrentUser' => CurrentUserFactory::class,
+            UserForm::class => UserFormFactory::class,
         ],
     ],
     'view_manager' => [

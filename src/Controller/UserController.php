@@ -6,6 +6,7 @@ use ProspectOne\UserModule\Entity\Role;
 use ProspectOne\UserModule\Service\UserManager;
 use Zend\Hydrator\ClassMethods;
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\View\Model\ViewModel;
 use ProspectOne\UserModule\Entity\User;
 use ProspectOne\UserModule\Form\UserForm;
@@ -33,14 +34,21 @@ class UserController extends AbstractActionController
     private $userManager;
 
     /**
+     * @var ServiceLocatorInterface
+     */
+    private $container;
+
+    /**
      * Constructor.
      * @param EntityManager $entityManager
      * @param UserManager $userManager
+     * @param ServiceLocatorInterface $container
      */
-    public function __construct(EntityManager $entityManager, UserManager $userManager)
+    public function __construct(EntityManager $entityManager, UserManager $userManager, ServiceLocatorInterface $container)
     {
         $this->entityManager = $entityManager;
         $this->userManager = $userManager;
+        $this->container = $container;
     }
 
     /**
@@ -65,7 +73,7 @@ class UserController extends AbstractActionController
         $rolesselector = $this->getRolesSelector();
 
         // Create user form
-        $form = new UserForm('create', $this->entityManager, null, $rolesselector, self::GUEST_ROLE_ID);
+        $form = $this->container->build(UserForm::class, ['create', $this->entityManager, null, $rolesselector, self::GUEST_ROLE_ID]);
 
         // Check if user has submitted the form
         if ($this->getRequest()->isPost()) {
@@ -144,7 +152,7 @@ class UserController extends AbstractActionController
         $rolecurrent = $this->getUserRole($user);
 
         // Create user form
-        $form = new UserForm('update', $this->entityManager, $user, $rolesselector, $rolecurrent);
+        $form = $this->container->build(UserForm::class, ['update', $this->entityManager, $user, $rolesselector, $rolecurrent]);
 
         // Check if user has submitted the form
         if ($this->getRequest()->isPost()) {
