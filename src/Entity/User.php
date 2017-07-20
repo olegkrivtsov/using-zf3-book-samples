@@ -8,6 +8,8 @@ use Doctrine\ORM\Mapping as ORM;
  * Adds role system
  * @ORM\Entity()
  * @ORM\Table(name="user",uniqueConstraints={@ORM\UniqueConstraint(name="token_idx", columns={"token"}),@ORM\UniqueConstraint(name="email_idx", columns={"email"})})
+ * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\DiscriminatorColumn(name="type", type="string")
  */
 class User
 {
@@ -69,6 +71,11 @@ class User
      * @ORM\Column(name="token", nullable=true)
      */
     protected $token;
+
+	/**
+	 * @ORM\Column(name="type")
+	 */
+    protected $type;
 
     /**
      * Get role.
