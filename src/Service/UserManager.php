@@ -5,6 +5,7 @@ use ProspectOne\UserModule\Entity\Role;
 use ProspectOne\UserModule\Entity\User;
 use Zend\Crypt\Password\Bcrypt;
 use Zend\Math\Rand;
+use Doctrine\ORM\EntityManager;
 
 /**
  * This service is responsible for adding/editing users
@@ -20,7 +21,7 @@ class UserManager
 
     /**
      * Doctrine entity manager.
-     * @var \Doctrine\ORM\EntityManager
+     * @var EntityManager
      */
     private $entityManager;
 
@@ -28,13 +29,29 @@ class UserManager
      * @var Bcrypt
      */
     private $bcrypt;
+
+	/**
+	 * @return EntityManager
+	 */
+	public function getEntityManager(): EntityManager
+	{
+		return $this->entityManager;
+	}
+
+	/**
+	 * @return Bcrypt
+	 */
+	public function getBcrypt(): Bcrypt
+	{
+		return $this->bcrypt;
+	}
     
     /**
      * UserManager constructor.
-     * @param $entityManager
+     * @param EntityManager $entityManager
      * @param Bcrypt $bcrypt
      */
-    public function __construct($entityManager, Bcrypt $bcrypt)
+    public function __construct(EntityManager $entityManager, Bcrypt $bcrypt)
     {
         $this->entityManager = $entityManager;
         $this->bcrypt = $bcrypt;
