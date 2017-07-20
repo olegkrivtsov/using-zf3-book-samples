@@ -72,11 +72,6 @@ class User
      */
     protected $token;
 
-	/**
-	 * @ORM\Column(name="type")
-	 */
-    protected $type;
-
     /**
      * Get role.
      * @return Role
