@@ -177,11 +177,7 @@ class UserController extends AbstractActionController
                     ['action' => 'view', 'id' => $user->getId()]);
             }
         } else {
-            $form->setData(array(
-                'full_name' => $user->getFullName(),
-                'email' => $user->getEmail(),
-                'status' => $user->getStatus(),
-            ));
+            $this->setFormData($form, $user);
         }
 
         return new ViewModel(array(
@@ -403,6 +399,21 @@ class UserController extends AbstractActionController
     {
         $result = $this->userManager->generateToken();
         return new JsonModel(['result' => $result]);
+    }
+
+    /**
+     * Used to override form fields
+     *
+     * @param $form
+     * @param $user
+     */
+    protected function setFormData(UserForm $form, User $user)
+    {
+        $form->setData(array(
+            'full_name' => $user->getFullName(),
+            'email' => $user->getEmail(),
+            'status' => $user->getStatus(),
+        ));
     }
 }
 
