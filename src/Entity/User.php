@@ -96,11 +96,12 @@ class User
     /**
      * Add a role to the user.
      * @param Role $role
-     * @return void
+     * @return User
      */
-    public function addRole($role)
+    public function addRole($role) : User
     {
         $this->role = $role;
+        return $this;
     }
 
     /**
@@ -115,10 +116,12 @@ class User
     /**
      * Sets user ID.
      * @param int $id
+     * @return User
      */
-    public function setId($id)
+    public function setId($id) : User
     {
         $this->id = $id;
+        return $this;
     }
 
     /**
@@ -133,10 +136,12 @@ class User
     /**
      * Sets email.
      * @param string $email
+     * @return User
      */
-    public function setEmail($email)
+    public function setEmail($email) : User
     {
         $this->email = $email;
+        return $this;
     }
 
     /**
@@ -151,10 +156,12 @@ class User
     /**
      * Sets full name.
      * @param string $fullName
+     * @return user
      */
-    public function setFullName($fullName)
+    public function setFullName($fullName) : User
     {
         $this->fullName = $fullName;
+        return $this;
     }
 
     /**
@@ -194,10 +201,12 @@ class User
     /**
      * Sets status.
      * @param int $status
+     * @return User
      */
-    public function setStatus($status)
+    public function setStatus($status) : User
     {
         $this->status = $status;
+        return $this;
     }
 
     /**
@@ -212,10 +221,12 @@ class User
     /**
      * Sets password.
      * @param string $password
+     * @return User
      */
-    public function setPassword($password)
+    public function setPassword($password) : User
     {
         $this->password = $password;
+        return $this;
     }
 
     /**
@@ -230,10 +241,12 @@ class User
     /**
      * Sets the date when this user was created.
      * @param string $dateCreated
+     * @return User
      */
-    public function setDateCreated($dateCreated)
+    public function setDateCreated($dateCreated) : User
     {
         $this->dateCreated = $dateCreated;
+        return $this;
     }
 
     /**
@@ -248,10 +261,12 @@ class User
     /**
      * Sets password reset token.
      * @param string $token
+     * @return User
      */
-    public function setPasswordResetToken($token)
+    public function setPasswordResetToken($token) : User
     {
         $this->passwordResetToken = $token;
+        return $this;
     }
 
     /**
@@ -266,10 +281,12 @@ class User
     /**
      * Sets password reset token's creation date.
      * @param string $date
+     * @return $this
      */
-    public function setPasswordResetTokenCreationDate($date)
+    public function setPasswordResetTokenCreationDate($date) : User
     {
         $this->passwordResetTokenCreationDate = $date;
+        return $this;
     }
 
     /**
