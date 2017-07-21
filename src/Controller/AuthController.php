@@ -76,9 +76,9 @@ class AuthController extends AbstractActionController
 
             if ($this->authService->getIdentity() !== null) {
                 if (empty($redirectUrl)) {
-                    $this->redirect()->toUrl("/");
+                    return $this->redirect()->toUrl("/");
                 } else {
-                    $this->redirect()->toUrl($redirectUrl);
+                    return $this->redirect()->toUrl($redirectUrl);
                 }
             }
             
