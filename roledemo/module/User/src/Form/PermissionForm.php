@@ -48,7 +48,7 @@ class PermissionForm extends Form
                 'id' => 'name'
             ],
             'options' => [
-                'label' => 'Role Name',
+                'label' => 'Permission Name',
             ],
         ]);
         
