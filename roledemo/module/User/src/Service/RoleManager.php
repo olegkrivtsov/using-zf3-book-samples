@@ -107,6 +107,7 @@ class RoleManager
                 'permissions' => [
                     'user.manage',
                     'role.manage',
+                    'permission.manage',
                     'profile.any.view',
                 ],
             ],
