@@ -404,8 +404,8 @@ class UserController extends AbstractActionController
     /**
      * Used to override form fields
      *
-     * @param $form
-     * @param $user
+     * @param UserForm $form
+     * @param User $user
      */
     protected function setFormData(UserForm $form, User $user)
     {
