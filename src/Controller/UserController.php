@@ -40,6 +40,22 @@ class UserController extends AbstractActionController
     private $container;
 
     /**
+     * @return UserManager
+     */
+    protected function getUserManager(): UserManager
+    {
+        return $this->userManager;
+    }
+
+    /**
+     * @return ServiceLocatorInterface
+     */
+    protected function getContainer(): ServiceLocatorInterface
+    {
+        return $this->container;
+    }
+
+    /**
      * Constructor.
      * @param EntityManager $entityManager
      * @param UserManager $userManager
