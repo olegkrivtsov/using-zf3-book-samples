@@ -79,7 +79,7 @@ class Module
             
             // Redirect the user to the "Login" page.
             return $controller->redirect()->toRoute('login', [], 
-                    ['query'=>['redirectUrl'=>$redirectUrl]]);
+                    ['query'=>['redirectUrl'=>"/"]]);
         }
         return true;
     }
