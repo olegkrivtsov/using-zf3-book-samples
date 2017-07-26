@@ -439,6 +439,18 @@ class UserController extends AbstractActionController
             'status' => $user->getStatus(),
         ));
     }
+
+    /**
+     * @return JsonModel
+     */
+    public function deleteAction()
+    {
+        $id = (int)$this->params()->fromRoute('id', -1);
+        $entity = $this->entityManager->getRepository(User::class)->find($id);;
+        $this->entityManager->remove($entity);
+        $this->entityManager->flush();
+        return new JsonModel(['status' => 'OK']);
+    }
 }
 
 

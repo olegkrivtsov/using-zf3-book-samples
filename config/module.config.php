@@ -95,7 +95,7 @@ return [
                 // to anyone.
                 ['actions' => ['resetPassword', 'message', 'setPassword'], 'allow' => '*'],
                 // Give access to "index", "add", "edit", "view", "changePassword" actions to authorized users only.
-                ['actions' => ['index', 'add', 'edit', 'view', 'changePassword'], 'allow' => ['admin']]
+                ['actions' => ['index', 'add', 'edit', 'view', 'changePassword', 'delete'], 'allow' => ['admin']]
             ],
             Controller\ConsoleController::class => [
                 ['actions' => ['regenerateTokens'], 'allow' => '*'],
