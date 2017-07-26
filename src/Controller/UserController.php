@@ -40,6 +40,14 @@ class UserController extends AbstractActionController
     private $container;
 
     /**
+     * @return EntityManager
+     */
+    public function getEntityManager(): EntityManager
+    {
+        return $this->entityManager;
+    }
+
+    /**
      * @return UserManager
      */
     protected function getUserManager(): UserManager
