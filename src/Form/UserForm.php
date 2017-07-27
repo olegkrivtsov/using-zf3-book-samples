@@ -7,6 +7,7 @@ use ProspectOne\UserModule\Entity\User;
 use Zend\Form\Form;
 use Zend\InputFilter\InputFilter;
 use ProspectOne\UserModule\Validator\UserExistsValidator;
+use Zend\Validator\Hostname;
 
 /**
  * This form is used to collect user's email, full name, password and status. The form
@@ -29,7 +30,7 @@ class UserForm extends Form
 
     /**
      * Current user.
-     * @var \ProspectOne\UserModule\Entity\User
+     * @var User
      */
     private $user = null;
 
@@ -42,6 +43,42 @@ class UserForm extends Form
      * @var int
      */
     private $rolecurrent;
+
+    /**
+     * return string
+     */
+    protected function getScenario(){
+        return $this->scenario;
+    }
+
+    /**
+     * return EntityManager
+     */
+    protected function getEntityManager() {
+        return $this->entityManager;
+    }
+
+    /**
+     * @return User
+     */
+    protected function getUser() {
+        return $this->user;
+    }
+
+    /**
+     * @return int|null
+     */
+    protected function getRoleCurrent() {
+        return $this->rolecurrent;
+    }
+
+    /**
+     * @return mixed|null
+     */
+    protected function getRoleSelector(){
+        return $this->rolesselector;
+    }
+
 
     /**
      * Constructor.
@@ -155,7 +192,7 @@ class UserForm extends Form
     /**
      * This method creates input filter (used for form filtering/validation).
      */
-    private function addInputFilter()
+    protected function addInputFilter()
     {
         // Create main input filter
         $inputFilter = new InputFilter();
@@ -179,7 +216,7 @@ class UserForm extends Form
                 [
                     'name' => 'EmailAddress',
                     'options' => [
-                        'allow' => \Zend\Validator\Hostname::ALLOW_DNS,
+                        'allow' => Hostname::ALLOW_DNS,
                         'useMxCheck' => false,
                     ],
                 ],
@@ -258,19 +295,5 @@ class UserForm extends Form
                 ['name' => 'InArray', 'options' => ['haystack' => [1, 2]]]
             ],
         ]);
-    }
-
-    /**
-     * return string
-     */
-    public function getScenario(){
-        return $this->scenario;
-    }
-
-    /**
-     * return EntityManager
-     */
-    public function getEntityManager() {
-        return $this->entityManager;
     }
 }
