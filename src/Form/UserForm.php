@@ -266,4 +266,11 @@ class UserForm extends Form
     public function getScenario(){
         return $this->scenario;
     }
+
+    /**
+     * return EntityManager
+     */
+    public function getEntityManager() {
+        return $this->entityManager;
+    }
 }
