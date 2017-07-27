@@ -259,4 +259,11 @@ class UserForm extends Form
             ],
         ]);
     }
+
+    /**
+     * return string
+     */
+    public function getScenario(){
+        return $this->scenario;
+    }
 }
