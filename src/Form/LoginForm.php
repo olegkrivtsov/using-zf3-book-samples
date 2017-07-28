@@ -87,7 +87,7 @@ class LoginForm extends Form
     /**
      * This method creates input filter (used for form filtering/validation).
      */
-    private function addInputFilter() 
+    protected function addInputFilter()
     {
         // Create main input filter
         $inputFilter = new InputFilter();        
