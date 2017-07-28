@@ -58,7 +58,7 @@ class AuthController extends AbstractActionController
     /**
      * @return \ProspectOne\UserModule\Service\UserManager
      */
-    protected function getUserManaget() {
+    protected function getUserManager() {
         return $this->userManager;
     }
 
