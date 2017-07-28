@@ -63,6 +63,13 @@ class AuthController extends AbstractActionController
     }
 
     /**
+     * @return \ProspectOne\UserModule\Service\AuthManager
+     */
+    protected  function getAuthManager() {
+        return $this->authManager;
+    }
+
+    /**
      * Authenticates user given email address and password credentials.     
      */
     public function loginAction()
