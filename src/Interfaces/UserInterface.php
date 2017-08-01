@@ -12,4 +12,5 @@ interface UserInterface
     public function getEmail();
     public function getFullName();
     public function getToken();
+    public function setPassword($password);
 }

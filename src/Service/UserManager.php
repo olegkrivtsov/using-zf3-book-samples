@@ -184,11 +184,11 @@ class UserManager
 
     /**
      * Checks that the given password is correct.
-     * @param User $user
+     * @param UserInterface $user
      * @param $password
      * @return bool
      */
-    public function validatePassword(User $user, $password)
+    public function validatePassword(UserInterface $user, $password)
     {
         $passwordHash = $user->getPassword();
         
@@ -293,11 +293,11 @@ class UserManager
      * This method is used to change the password for the given user. To change the password,
      * one must know the old password.
      *
-     * @param User $user
+     * @param UserInterface $user
      * @param $data
      * @return bool
      */
-    public function changePassword(User $user, $data)
+    public function changePassword(UserInterface $user, $data)
     {
         $oldPassword = $data['old_password'];
         
