@@ -452,7 +452,7 @@ class UserController extends AbstractActionController
     }
 
     /**
-     * @return JsonModel
+     * @return \Zend\Http\Response
      */
     public function deleteAction()
     {
@@ -460,7 +460,7 @@ class UserController extends AbstractActionController
         $user = $this->getUserById($id);
         $this->entityManager->remove($user);
         $this->entityManager->flush();
-        return new JsonModel(['status' => 'OK']);
+        return $this->redirect()->toRoute("users");
     }
 }
 
