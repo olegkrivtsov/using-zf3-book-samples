@@ -1,6 +1,7 @@
 <?php
 namespace ProspectOne\UserModule\Service;
 
+use ProspectOne\UserModule\Interfaces\UserInterface;
 use Zend\Authentication\Adapter\AdapterInterface;
 use Zend\Authentication\Result;
 use Zend\Crypt\Password\Bcrypt;
@@ -186,7 +187,7 @@ class AuthAdapter implements AdapterInterface
      * @param $user
      * @return Result
      */
-    protected function validateUser(?User $user): Result
+    protected function validateUser(?UserInterface $user): Result
     {
 // If there is no such user, return 'Identity Not Found' status.
         if ($user == null) {

@@ -2,6 +2,7 @@
 namespace ProspectOne\UserModule\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use ProspectOne\UserModule\Interfaces\UserInterface;
 
 /**
  * This class represents a registered user.
@@ -11,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="type", type="string")
  */
-class User
+class User implements UserInterface
 {
     // User status constants.
     const STATUS_ACTIVE = 1; // Active user.
