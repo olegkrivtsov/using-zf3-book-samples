@@ -3,6 +3,7 @@ namespace ProspectOne\UserModule\Service;
 
 use ProspectOne\UserModule\Entity\Role;
 use ProspectOne\UserModule\Entity\User;
+use ProspectOne\UserModule\Interfaces\UserInterface;
 use Zend\Crypt\Password\Bcrypt;
 use Zend\Math\Rand;
 use Doctrine\ORM\EntityManager;
@@ -98,20 +99,24 @@ class UserManager
 
     /**
      * This method updates data of an existing user.
-     * @param User $user
+     * @param UserInterface $user
      * @param $data
      * @return bool
      * @throws \Exception
      */
-    public function updateUser(User $user, $data)
+    public function updateUser(UserInterface $user, $data)
     {
         // Do not allow to change user email if another user with such email already exits.
         if($user->getEmail()!=$data['email'] && $this->checkUserExists($data['email'])) {
             throw new \Exception("Another user with email address " . $data['email'] . " already exists");
         }
-        
+
+        if (!($user instanceof User)) {
+            throw new \LogicException("Only instances of " . User::class . " should be passed");
+        }
+
         $user->setEmail($data['email']);
-        $user->setFullName($data['full_name']);        
+        $user->setFullName($data['full_name']);
         $user->setStatus($data['status']);
 
         // Get role object based on role Id from form
@@ -119,7 +124,7 @@ class UserManager
         $role = $this->entityManager->find(Role::class, $data['role']);
         // Set role to user
         $user->addRole($role);
-        
+
         // Apply changes to database.
         $this->entityManager->flush();
 
