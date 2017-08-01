@@ -213,6 +213,16 @@ class UserController extends AbstractActionController
     }
 
     /**
+     * @param $id
+     * @return null|object
+     */
+    protected function getUserById($id)
+    {
+        $user = $this->entityManager->getRepository(User::class)->find($id);
+        return $user;
+    }
+
+    /**
      * This action displays a page allowing to change user's password.
      */
     public function changePasswordAction()
@@ -223,8 +233,7 @@ class UserController extends AbstractActionController
             return;
         }
 
-        $user = $this->entityManager->getRepository(User::class)
-            ->find($id);
+        $user = $this->getUserById($id);
 
         if ($user == null) {
             $this->getResponse()->setStatusCode(404);
@@ -448,8 +457,8 @@ class UserController extends AbstractActionController
     public function deleteAction()
     {
         $id = (int)$this->params()->fromRoute('id', -1);
-        $entity = $this->entityManager->getRepository(User::class)->find($id);;
-        $this->entityManager->remove($entity);
+        $user = $this->getUserById($id);
+        $this->entityManager->remove($user);
         $this->entityManager->flush();
         return new JsonModel(['status' => 'OK']);
     }
