@@ -49,6 +49,14 @@ class AuthAdapter implements AdapterInterface
     private $authHeader;
 
     /**
+     * @return \Doctrine\ORM\EntityManager
+     */
+    protected function getEntityManager()
+    {
+        return $this->entityManager;
+    }
+
+    /**
      * @return bool
      */
     protected function isHeaderAuthEnabled(): bool
@@ -154,7 +162,7 @@ class AuthAdapter implements AdapterInterface
      * @param $user
      * @return Result
      */
-    private function validateUser(?User $user): Result
+    protected function validateUser(?User $user): Result
     {
 // If there is no such user, return 'Identity Not Found' status.
         if ($user == null) {
