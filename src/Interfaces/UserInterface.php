@@ -2,7 +2,7 @@
 namespace ProspectOne\UserModule\Interfaces;
 
 /**
- * Interface UserInterface
+ * Interfaces UserInterface
  * @package ProspectOne\UserModule\Interfaces
  */
 interface UserInterface
