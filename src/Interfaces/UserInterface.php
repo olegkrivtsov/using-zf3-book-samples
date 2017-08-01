@@ -9,4 +9,5 @@ interface UserInterface
 {
     public function getStatus();
     public function getPassword();
+    public function getEmail();
 }

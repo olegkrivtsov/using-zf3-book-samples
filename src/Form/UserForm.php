@@ -2,8 +2,7 @@
 namespace ProspectOne\UserModule\Form;
 
 use Doctrine\ORM\EntityManager;
-use ProspectOne\UserModule\Entity\Role;
-use ProspectOne\UserModule\Entity\User;
+use ProspectOne\UserModule\Interfaces\UserInterface;
 use Zend\Form\Form;
 use Zend\InputFilter\InputFilter;
 use ProspectOne\UserModule\Validator\UserExistsValidator;
@@ -30,7 +29,7 @@ class UserForm extends Form
 
     /**
      * Current user.
-     * @var User
+     * @var UserInterface
      */
     private $user = null;
 
@@ -59,7 +58,7 @@ class UserForm extends Form
     }
 
     /**
-     * @return User
+     * @return UserInterface
      */
     protected function getUser() {
         return $this->user;
@@ -84,11 +83,11 @@ class UserForm extends Form
      * Constructor.
      * @param string $scenario
      * @param EntityManager $entityManager
-     * @param User $user
+     * @param UserInterface $user
      * @param mixed $rolesselector
      * @param int $rolecurrent
      */
-    public function __construct($scenario = 'create', EntityManager $entityManager = null, User $user = null, $rolesselector = null, $rolecurrent = null)
+    public function __construct($scenario = 'create', EntityManager $entityManager = null, UserInterface $user = null, $rolesselector = null, $rolecurrent = null)
     {
         // Define form name
         parent::__construct('user-form');
