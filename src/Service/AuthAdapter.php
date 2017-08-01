@@ -114,6 +114,14 @@ class AuthAdapter implements AdapterInterface
     {
         $this->email = $email;        
     }
+
+    /**
+     * @return string
+     */
+    protected function getEmail()
+    {
+        return $this->email;
+    }
     
     /**
      * Sets password.     
