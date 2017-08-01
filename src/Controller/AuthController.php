@@ -47,7 +47,28 @@ class AuthController extends AbstractActionController
         $this->authService = $authService;
         $this->userManager = $userManager;
     }
-    
+
+    /**
+     * @return \Zend\Authentication\AuthenticationService
+     */
+    protected function getAuthService() {
+        return $this->authService;
+    }
+
+    /**
+     * @return \ProspectOne\UserModule\Service\UserManager
+     */
+    protected function getUserManager() {
+        return $this->userManager;
+    }
+
+    /**
+     * @return \ProspectOne\UserModule\Service\AuthManager
+     */
+    protected  function getAuthManager() {
+        return $this->authManager;
+    }
+
     /**
      * Authenticates user given email address and password credentials.     
      */
