@@ -3,6 +3,7 @@ namespace ProspectOne\UserModule\Controller;
 
 use Doctrine\ORM\EntityManager;
 use ProspectOne\UserModule\Entity\Role;
+use ProspectOne\UserModule\Interfaces\UserInterface;
 use ProspectOne\UserModule\Service\UserManager;
 use Zend\Hydrator\ClassMethods;
 use Zend\Mvc\Controller\AbstractActionController;
@@ -429,9 +430,9 @@ class UserController extends AbstractActionController
      * Used to override form fields
      *
      * @param UserForm $form
-     * @param User $user
+     * @param UserInterface $user
      */
-    protected function setFormData(UserForm $form, User $user)
+    protected function setFormData(UserForm $form, UserInterface $user)
     {
         $form->setData(array(
             'full_name' => $user->getFullName(),
