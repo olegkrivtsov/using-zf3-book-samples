@@ -5,6 +5,7 @@ use Doctrine\ORM\EntityManager;
 use ProspectOne\UserModule\Entity\Role;
 use ProspectOne\UserModule\Interfaces\UserInterface;
 use ProspectOne\UserModule\Service\UserManager;
+use Zend\Form\FormInterface;
 use Zend\Hydrator\ClassMethods;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\ServiceManager\ServiceLocatorInterface;
@@ -429,10 +430,10 @@ class UserController extends AbstractActionController
     /**
      * Used to override form fields
      *
-     * @param UserForm $form
+     * @param FormInterface $form
      * @param UserInterface $user
      */
-    protected function setFormData(UserForm $form, UserInterface $user)
+    protected function setFormData(FormInterface $form, UserInterface $user)
     {
         $form->setData(array(
             'full_name' => $user->getFullName(),
