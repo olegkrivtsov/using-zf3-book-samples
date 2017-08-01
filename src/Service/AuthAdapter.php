@@ -122,6 +122,22 @@ class AuthAdapter implements AdapterInterface
     {
         return $this->email;
     }
+
+    /**
+     * @return Bcrypt
+     */
+    protected function getBcrypt()
+    {
+        return $this->bcrypt;
+    }
+
+    /**
+     * @return string
+     */
+    protected function getPassword()
+    {
+        return $this->password;
+    }
     
     /**
      * Sets password.     
