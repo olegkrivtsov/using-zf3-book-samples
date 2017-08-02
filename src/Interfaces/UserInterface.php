@@ -13,4 +13,6 @@ interface UserInterface
     public function getFullName();
     public function getToken();
     public function setPassword($password);
+    public function setPasswordResetToken($token);
+    public function setPasswordResetTokenCreationDate($data);
 }

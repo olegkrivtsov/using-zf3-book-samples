@@ -203,9 +203,9 @@ class UserManager
      * Generates a password reset token for the user. This token is then stored in database and 
      * sent to the user's E-mail address. When the user clicks the link in E-mail message, he is 
      * directed to the Set Password page.
-     * @param User $user
+     * @param UserInterface $user
      */
-    public function generatePasswordResetToken(User $user)
+    public function generatePasswordResetToken(UserInterface $user)
     {
         // Generate a token.
         $token = Rand::getString(32, '0123456789abcdefghijklmnopqrstuvwxyz');
