@@ -1,6 +1,7 @@
 <?php
 namespace ProspectOne\UserModule\Service;
 
+use ProspectOne\UserModule\Interfaces\UserInterface;
 use Zend\Authentication\Adapter\AdapterInterface;
 use Zend\Authentication\Result;
 use Zend\Crypt\Password\Bcrypt;
@@ -47,6 +48,14 @@ class AuthAdapter implements AdapterInterface
      * @var string
      */
     private $authHeader;
+
+    /**
+     * @return \Doctrine\ORM\EntityManager
+     */
+    protected function getEntityManager()
+    {
+        return $this->entityManager;
+    }
 
     /**
      * @return bool
@@ -106,6 +115,30 @@ class AuthAdapter implements AdapterInterface
     {
         $this->email = $email;        
     }
+
+    /**
+     * @return string
+     */
+    protected function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @return Bcrypt
+     */
+    protected function getBcrypt()
+    {
+        return $this->bcrypt;
+    }
+
+    /**
+     * @return string
+     */
+    protected function getPassword()
+    {
+        return $this->password;
+    }
     
     /**
      * Sets password.     
@@ -154,7 +187,7 @@ class AuthAdapter implements AdapterInterface
      * @param $user
      * @return Result
      */
-    private function validateUser(?User $user): Result
+    protected function validateUser(?UserInterface $user): Result
     {
 // If there is no such user, return 'Identity Not Found' status.
         if ($user == null) {

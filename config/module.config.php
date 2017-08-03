@@ -2,6 +2,8 @@
 namespace ProspectOne\UserModule;
 
 use ProspectOne\UserModule\Factory\BcryptFactory;
+use ProspectOne\UserModule\Form\Factory\UserFormFactory;
+use ProspectOne\UserModule\Form\UserForm;
 use ProspectOne\UserModule\Service\Factory\CurrentUserFactory;
 use Zend\Router\Http\Literal;
 use Zend\Router\Http\Segment;
@@ -65,6 +67,16 @@ return [
                     ],
                 ],
             ],
+            'user-token' => [
+                'type' => Literal::class,
+                'options' => [
+                    'route'    => '/user-token',
+                    'defaults' => [
+                        'controller' => Controller\UserController::class,
+                        'action'     => 'user-token',
+                    ],
+                ],
+            ]
         ],
     ],
     'controllers' => [
@@ -83,7 +95,7 @@ return [
                 // to anyone.
                 ['actions' => ['resetPassword', 'message', 'setPassword'], 'allow' => '*'],
                 // Give access to "index", "add", "edit", "view", "changePassword" actions to authorized users only.
-                ['actions' => ['index', 'add', 'edit', 'view', 'changePassword'], 'allow' => ['admin']]
+                ['actions' => ['index', 'add', 'edit', 'view', 'changePassword', 'delete'], 'allow' => ['admin']]
             ],
             Controller\ConsoleController::class => [
                 ['actions' => ['regenerateTokens'], 'allow' => '*'],
@@ -98,6 +110,7 @@ return [
             Service\UserManager::class => Service\Factory\UserManagerFactory::class,
             'ProspectOne\UserModule\Bcrypt' => BcryptFactory::class,
             'ProspectOne\UserModule\CurrentUser' => CurrentUserFactory::class,
+            UserForm::class => UserFormFactory::class,
         ],
     ],
     'view_manager' => [

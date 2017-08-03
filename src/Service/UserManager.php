@@ -3,8 +3,10 @@ namespace ProspectOne\UserModule\Service;
 
 use ProspectOne\UserModule\Entity\Role;
 use ProspectOne\UserModule\Entity\User;
+use ProspectOne\UserModule\Interfaces\UserInterface;
 use Zend\Crypt\Password\Bcrypt;
 use Zend\Math\Rand;
+use Doctrine\ORM\EntityManager;
 
 /**
  * This service is responsible for adding/editing users
@@ -20,7 +22,7 @@ class UserManager
 
     /**
      * Doctrine entity manager.
-     * @var \Doctrine\ORM\EntityManager
+     * @var EntityManager
      */
     private $entityManager;
 
@@ -30,11 +32,27 @@ class UserManager
     private $bcrypt;
 
     /**
+	  * @return EntityManager
+	  */
+	  public function getEntityManager(): EntityManager
+	  {
+		  return $this->entityManager;
+	  }
+
+	  /**
+	  * @return Bcrypt
+	  */
+	  public function getBcrypt(): Bcrypt
+	  {
+  		return $this->bcrypt;
+	  }
+  
+    /**
      * UserManager constructor.
-     * @param $entityManager
+     * @param EntityManager $entityManager
      * @param Bcrypt $bcrypt
      */
-    public function __construct($entityManager, Bcrypt $bcrypt)
+    public function __construct(EntityManager $entityManager, Bcrypt $bcrypt)
     {
         $this->entityManager = $entityManager;
         $this->bcrypt = $bcrypt;
@@ -81,20 +99,24 @@ class UserManager
 
     /**
      * This method updates data of an existing user.
-     * @param User $user
+     * @param UserInterface $user
      * @param $data
      * @return bool
      * @throws \Exception
      */
-    public function updateUser(User $user, $data)
+    public function updateUser(UserInterface $user, $data)
     {
         // Do not allow to change user email if another user with such email already exits.
         if($user->getEmail()!=$data['email'] && $this->checkUserExists($data['email'])) {
             throw new \Exception("Another user with email address " . $data['email'] . " already exists");
         }
-        
+
+        if (!($user instanceof User)) {
+            throw new \LogicException("Only instances of " . User::class . " should be passed");
+        }
+
         $user->setEmail($data['email']);
-        $user->setFullName($data['full_name']);        
+        $user->setFullName($data['full_name']);
         $user->setStatus($data['status']);
 
         // Get role object based on role Id from form
@@ -102,7 +124,7 @@ class UserManager
         $role = $this->entityManager->find(Role::class, $data['role']);
         // Set role to user
         $user->addRole($role);
-        
+
         // Apply changes to database.
         $this->entityManager->flush();
 
@@ -162,11 +184,11 @@ class UserManager
 
     /**
      * Checks that the given password is correct.
-     * @param User $user
+     * @param UserInterface $user
      * @param $password
      * @return bool
      */
-    public function validatePassword(User $user, $password)
+    public function validatePassword(UserInterface $user, $password)
     {
         $passwordHash = $user->getPassword();
         
@@ -181,9 +203,9 @@ class UserManager
      * Generates a password reset token for the user. This token is then stored in database and 
      * sent to the user's E-mail address. When the user clicks the link in E-mail message, he is 
      * directed to the Set Password page.
-     * @param User $user
+     * @param UserInterface $user
      */
-    public function generatePasswordResetToken(User $user)
+    public function generatePasswordResetToken(UserInterface $user)
     {
         // Generate a token.
         $token = Rand::getString(32, '0123456789abcdefghijklmnopqrstuvwxyz');
@@ -271,11 +293,11 @@ class UserManager
      * This method is used to change the password for the given user. To change the password,
      * one must know the old password.
      *
-     * @param User $user
+     * @param UserInterface $user
      * @param $data
      * @return bool
      */
-    public function changePassword(User $user, $data)
+    public function changePassword(UserInterface $user, $data)
     {
         $oldPassword = $data['old_password'];
         

@@ -18,6 +18,6 @@ class UserControllerFactory implements FactoryInterface
         $userManager = $container->get(UserManager::class);
         
         // Instantiate the controller and inject dependencies
-        return new UserController($entityManager, $userManager);
+        return new UserController($entityManager, $userManager, $container);
     }
 }

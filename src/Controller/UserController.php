@@ -3,9 +3,13 @@ namespace ProspectOne\UserModule\Controller;
 
 use Doctrine\ORM\EntityManager;
 use ProspectOne\UserModule\Entity\Role;
+use ProspectOne\UserModule\Interfaces\UserInterface;
 use ProspectOne\UserModule\Service\UserManager;
+use Zend\Form\FormInterface;
 use Zend\Hydrator\ClassMethods;
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\View\Model\JsonModel;
 use Zend\View\Model\ViewModel;
 use ProspectOne\UserModule\Entity\User;
 use ProspectOne\UserModule\Form\UserForm;
@@ -33,14 +37,45 @@ class UserController extends AbstractActionController
     private $userManager;
 
     /**
+     * @var ServiceLocatorInterface
+     */
+    private $container;
+
+    /**
+     * @return EntityManager
+     */
+    public function getEntityManager(): EntityManager
+    {
+        return $this->entityManager;
+    }
+
+    /**
+     * @return UserManager
+     */
+    protected function getUserManager(): UserManager
+    {
+        return $this->userManager;
+    }
+
+    /**
+     * @return ServiceLocatorInterface
+     */
+    protected function getContainer(): ServiceLocatorInterface
+    {
+        return $this->container;
+    }
+
+    /**
      * Constructor.
      * @param EntityManager $entityManager
      * @param UserManager $userManager
+     * @param ServiceLocatorInterface $container
      */
-    public function __construct(EntityManager $entityManager, UserManager $userManager)
+    public function __construct(EntityManager $entityManager, UserManager $userManager, ServiceLocatorInterface $container)
     {
         $this->entityManager = $entityManager;
         $this->userManager = $userManager;
+        $this->container = $container;
     }
 
     /**
@@ -65,7 +100,7 @@ class UserController extends AbstractActionController
         $rolesselector = $this->getRolesSelector();
 
         // Create user form
-        $form = new UserForm('create', $this->entityManager, null, $rolesselector, self::GUEST_ROLE_ID);
+        $form = $this->container->build(UserForm::class, ['create', $this->entityManager, null, $rolesselector, self::GUEST_ROLE_ID]);
 
         // Check if user has submitted the form
         if ($this->getRequest()->isPost()) {
@@ -144,7 +179,7 @@ class UserController extends AbstractActionController
         $rolecurrent = $this->getUserRole($user);
 
         // Create user form
-        $form = new UserForm('update', $this->entityManager, $user, $rolesselector, $rolecurrent);
+        $form = $this->container->build(UserForm::class, ['update', $this->entityManager, $user, $rolesselector, $rolecurrent]);
 
         // Check if user has submitted the form
         if ($this->getRequest()->isPost()) {
@@ -168,17 +203,23 @@ class UserController extends AbstractActionController
                     ['action' => 'view', 'id' => $user->getId()]);
             }
         } else {
-            $form->setData(array(
-                'full_name' => $user->getFullName(),
-                'email' => $user->getEmail(),
-                'status' => $user->getStatus(),
-            ));
+            $this->setFormData($form, $user);
         }
 
         return new ViewModel(array(
             'user' => $user,
             'form' => $form
         ));
+    }
+
+    /**
+     * @param $id
+     * @return null|object
+     */
+    protected function getUserById($id)
+    {
+        $user = $this->entityManager->getRepository(User::class)->find($id);
+        return $user;
     }
 
     /**
@@ -192,8 +233,7 @@ class UserController extends AbstractActionController
             return;
         }
 
-        $user = $this->entityManager->getRepository(User::class)
-            ->find($id);
+        $user = $this->getUserById($id);
 
         if ($user == null) {
             $this->getResponse()->setStatusCode(404);
@@ -385,6 +425,42 @@ class UserController extends AbstractActionController
         }
 
         return $rolecurrent['role_id'];
+    }
+
+    /**
+     * @return JsonModel
+     */
+    public function userTokenAction()
+    {
+        $result = $this->userManager->generateToken();
+        return new JsonModel(['result' => $result]);
+    }
+
+    /**
+     * Used to override form fields
+     *
+     * @param FormInterface $form
+     * @param UserInterface $user
+     */
+    protected function setFormData(FormInterface $form, UserInterface $user)
+    {
+        $form->setData(array(
+            'full_name' => $user->getFullName(),
+            'email' => $user->getEmail(),
+            'status' => $user->getStatus(),
+        ));
+    }
+
+    /**
+     * @return \Zend\Http\Response
+     */
+    public function deleteAction()
+    {
+        $id = (int)$this->params()->fromRoute('id', -1);
+        $user = $this->getUserById($id);
+        $this->entityManager->remove($user);
+        $this->entityManager->flush();
+        return $this->redirect()->toRoute("users");
     }
 }
 

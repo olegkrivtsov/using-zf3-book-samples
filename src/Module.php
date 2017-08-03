@@ -78,8 +78,7 @@ class Module
             $redirectUrl = $uri->toString();
             
             // Redirect the user to the "Login" page.
-            return $controller->redirect()->toRoute('login', [], 
-                    ['query'=>['redirectUrl'=>$redirectUrl]]);
+            return $controller->redirect()->toRoute('login', []);
         }
         return true;
     }
