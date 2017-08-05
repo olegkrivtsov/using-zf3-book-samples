@@ -25,6 +25,7 @@ class AuthenticationServiceFactory implements FactoryInterface
     {
         /** @var SessionStorage $authStorage */
         $authStorage = $container->get(SessionStorage::class);
+        /** @var AuthAdapter $authAdapter */
         $authAdapter = $container->get(AuthAdapter::class);
 
         // Create the service and inject dependencies into its constructor.

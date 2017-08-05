@@ -10,7 +10,7 @@ use Zend\Router\Http\Literal;
 use Zend\Router\Http\Segment;
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
 use \Zend\Authentication\AuthenticationService;
-use Zend\Session\Storage\SessionStorage;
+use Zend\Authentication\Storage\Session as SessionStorage;
 
 return [
     'router' => [
