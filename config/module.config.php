@@ -113,7 +113,7 @@ return [
             'ProspectOne\UserModule\Bcrypt' => BcryptFactory::class,
             'ProspectOne\UserModule\CurrentUser' => CurrentUserFactory::class,
             UserForm::class => UserFormFactory::class,
-            SessionStorage::class => SessionStorageFactory::class,
+            'ProspectOne\UserModule\SessionStorage' => SessionStorageFactory::class,
         ],
     ],
     'view_manager' => [
