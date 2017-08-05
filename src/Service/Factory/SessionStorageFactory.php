@@ -7,7 +7,7 @@ use Zend\ServiceManager\Exception\ServiceNotCreatedException;
 use Zend\ServiceManager\Factory\FactoryInterface;
 use Zend\Session\SessionManager;
 use RuntimeException;
-use Zend\Session\Storage\SessionStorage;
+use Zend\Authentication\Storage\Session as SessionStorage;
 
 /**
  * Class SessionStorageFactory
