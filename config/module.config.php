@@ -5,10 +5,12 @@ use ProspectOne\UserModule\Factory\BcryptFactory;
 use ProspectOne\UserModule\Form\Factory\UserFormFactory;
 use ProspectOne\UserModule\Form\UserForm;
 use ProspectOne\UserModule\Service\Factory\CurrentUserFactory;
+use ProspectOne\UserModule\Service\Factory\SessionStorageFactory;
 use Zend\Router\Http\Literal;
 use Zend\Router\Http\Segment;
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
 use \Zend\Authentication\AuthenticationService;
+use Zend\Session\Storage\SessionStorage;
 
 return [
     'router' => [
@@ -111,6 +113,7 @@ return [
             'ProspectOne\UserModule\Bcrypt' => BcryptFactory::class,
             'ProspectOne\UserModule\CurrentUser' => CurrentUserFactory::class,
             UserForm::class => UserFormFactory::class,
+            SessionStorage::class => SessionStorageFactory::class,
         ],
     ],
     'view_manager' => [
