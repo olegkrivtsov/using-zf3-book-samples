@@ -99,13 +99,15 @@ class AuthAdapter implements AdapterInterface
      * @param Bcrypt $bcrypt
      * @param bool $headerAuthEnabled
      * @param string $headerValue
+     * @param string $email
      */
-    public function __construct($entityManager, Bcrypt $bcrypt, bool $headerAuthEnabled, ?string $headerValue = "")
+    public function __construct($entityManager, Bcrypt $bcrypt, bool $headerAuthEnabled, ?string $headerValue = "", ?string $email)
     {
         $this->entityManager = $entityManager;
         $this->bcrypt = $bcrypt;
         $this->headerAuthEnabled = $headerAuthEnabled;
         $this->authHeader = $headerValue;
+        $this->email = $email;
     }
     
     /**
