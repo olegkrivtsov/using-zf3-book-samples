@@ -18,7 +18,7 @@ class UserManager
     const ADMIN_EMAIL = 'admin@example.com';
     const ADMIN_NAME = 'Admin';
     const ADMIN_PASSWORD = 'Secur1ty';
-    const TOKEN_SIZE = 64;
+    const TOKEN_SIZE = 32;
 
     /**
      * Doctrine entity manager.
