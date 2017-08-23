@@ -324,10 +324,10 @@ class UserManager
     }
 
     /**
-     * @param User $user
+     * @param UserInterface $user
      * @param string $token
      */
-    public function updateToken(User $user, string $token)
+    public function updateToken(UserInterface $user, string $token)
     {
         $user->setToken($token);
         $this->entityManager->persist($user);
