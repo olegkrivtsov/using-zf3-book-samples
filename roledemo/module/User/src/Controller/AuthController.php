@@ -16,41 +16,34 @@ class AuthController extends AbstractActionController
 {
     /**
      * Entity manager.
-     * @var Doctrine\ORM\EntityManager 
+     * @var Doctrine\ORM\EntityManager
      */
     private $entityManager;
-    
+
     /**
      * Auth manager.
-     * @var User\Service\AuthManager 
+     * @var User\Service\AuthManager
      */
     private $authManager;
-    
-    /**
-     * Auth service.
-     * @var \Zend\Authentication\AuthenticationService
-     */
-    private $authService;
-    
+
     /**
      * User manager.
      * @var User\Service\UserManager
      */
     private $userManager;
-    
+
     /**
      * Constructor.
      */
-    public function __construct($entityManager, $authManager, $authService, $userManager)
+    public function __construct($entityManager, $authManager, $userManager)
     {
         $this->entityManager = $entityManager;
         $this->authManager = $authManager;
-        $this->authService = $authService;
         $this->userManager = $userManager;
     }
-    
+
     /**
-     * Authenticates user given email address and password credentials.     
+     * Authenticates user given email address and password credentials.
      */
     public function loginAction()
     {
@@ -60,44 +53,44 @@ class AuthController extends AbstractActionController
         if (strlen($redirectUrl)>2048) {
             throw new \Exception("Too long redirectUrl argument passed");
         }
-        
-        // Check if we do not have users in database at all. If so, create 
+
+        // Check if we do not have users in database at all. If so, create
         // the 'Admin' user.
         $this->userManager->createAdminUserIfNotExists();
-        
+
         // Create login form
-        $form = new LoginForm(); 
+        $form = new LoginForm();
         $form->get('redirect_url')->setValue($redirectUrl);
-        
+
         // Store login status.
         $isLoginError = false;
-        
+
         // Check if user has submitted the form
         if ($this->getRequest()->isPost()) {
-            
+
             // Fill in the form with POST data
-            $data = $this->params()->fromPost();            
-            
+            $data = $this->params()->fromPost();
+
             $form->setData($data);
-            
+
             // Validate form
             if($form->isValid()) {
-                
+
                 // Get filtered and validated data
                 $data = $form->getData();
-                
+
                 // Perform login attempt.
-                $result = $this->authManager->login($data['email'], 
+                $result = $this->authManager->login($data['email'],
                         $data['password'], $data['remember_me']);
-                
+
                 // Check result.
                 if ($result->getCode() == Result::SUCCESS) {
-                    
+
                     // Get redirect URL.
                     $redirectUrl = $this->params()->fromPost('redirect_url', '');
-                    
+
                     if (!empty($redirectUrl)) {
-                        // The below check is to prevent possible redirect attack 
+                        // The below check is to prevent possible redirect attack
                         // (if someone tries to redirect user to another domain).
                         $uri = new Uri($redirectUrl);
                         if (!$uri->isValid() || $uri->getHost()!=null)
@@ -113,36 +106,36 @@ class AuthController extends AbstractActionController
                     }
                 } else {
                     $isLoginError = true;
-                }                
+                }
             } else {
                 $isLoginError = true;
-            }           
-        } 
-        
+            }
+        }
+
         return new ViewModel([
             'form' => $form,
             'isLoginError' => $isLoginError,
             'redirectUrl' => $redirectUrl
         ]);
     }
-    
+
     /**
      * The "logout" action performs logout operation.
      */
-    public function logoutAction() 
-    {        
+    public function logoutAction()
+    {
         $this->authManager->logout();
-        
+
         return $this->redirect()->toRoute('login');
     }
-    
+
     /**
      * Displays the "Not Authorized" page.
      */
     public function notAuthorizedAction()
     {
         $this->getResponse()->setStatusCode(403);
-        
+
         return new ViewModel();
     }
 }
