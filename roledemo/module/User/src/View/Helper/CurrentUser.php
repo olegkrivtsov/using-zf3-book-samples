@@ -51,7 +51,7 @@ class CurrentUser extends AbstractHelper
         if ($this->authService->hasIdentity()) {
             
             // Fetch User entity from database.
-            $this->user = $this->entityManager->getRepository(User::class)->findby(array(
+            $this->user = $this->entityManager->getRepository(User::class)->findOneBy(array(
                 'email' => $this->authService->getIdentity()
             ));
             if ($this->user==null) {
