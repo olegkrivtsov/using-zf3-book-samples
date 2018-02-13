@@ -144,8 +144,6 @@ class RbacManager
                     if ($assertionManager->assert($this->rbac, $permission, $params))
                         return true;
                 }
-                
-                return false;
             }
         }
         
