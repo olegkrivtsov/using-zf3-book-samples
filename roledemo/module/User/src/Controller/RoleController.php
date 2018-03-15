@@ -63,7 +63,7 @@ class RoleController extends AbstractActionController
         foreach ($roles as $role) {
             $roleList[$role->getId()] = $role->getName();
         }
-        $form->get('inherit_roles[]')->setValueOptions($roleList);
+        $form->get('inherit_roles')->setValueOptions($roleList);
         
         // Check if user has submitted the form
         if ($this->getRequest()->isPost()) {
@@ -155,7 +155,7 @@ class RoleController extends AbstractActionController
         foreach ($roles as $role2) {
             $roleList[$role2->getId()] = $role2->getName();
         }
-        $form->get('inherit_roles[]')->setValueOptions($roleList);
+        $form->get('inherit_roles')->setValueOptions($roleList);
         
         // Check if user has submitted the form
         if ($this->getRequest()->isPost()) {
