@@ -132,6 +132,39 @@ class Role
     {
         return $this->permissions;
     }
+
+    public function addParent(Role $role)
+    {
+        if ($this->getId() == $role->getId()) {
+            return false;
+        }
+        if (!$this->hasParent($role)) {
+            $this->parentRoles[] = $role;
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Clear parent roles
+     */
+    public function clearParentRoles()
+    {
+        $this->parentRoles = new ArrayCollection();
+    }
+
+    /**
+     * Check if parent role exists
+     * @param Role $role
+     * @return bool
+     */
+    public function hasParent(Role $role)
+    {
+        if ($this->getParentRoles()->contains($role)) {
+            return true;
+        }
+        return false;
+    }
 }
 
 
