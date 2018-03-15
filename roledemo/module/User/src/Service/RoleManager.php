@@ -46,6 +46,23 @@ class RoleManager
         $role->setName($data['name']);
         $role->setDescription($data['description']);
         $role->setDateCreated(date('Y-m-d H:i:s'));
+
+        // add parent roles to inherit
+        $inheritedRoles = $data['inherit_roles'];
+        if (!empty($inheritedRoles)) {
+            foreach ($inheritedRoles as $roleId) {
+                $parentRole = $this->entityManager->getRepository(Role::class)
+                    ->findOneById($roleId);
+
+                if ($parentRole == null) {
+                    throw new \Exception('Role to inherit not found');
+                }
+
+                if (!$role->getParentRoles()->contains($parentRole)) {
+                    $role->addParent($parentRole);
+                }
+            }
+        }
         
         $this->entityManager->persist($role);
         
@@ -71,7 +88,28 @@ class RoleManager
         
         $role->setName($data['name']);
         $role->setDescription($data['description']);
-        
+
+        // clear parent roles so we don't populate database twice
+        $role->clearParentRoles();
+
+        // add the new parent roles to inherit
+        $inheritedRoles = $data['inherit_roles'];
+        if (!empty($inheritedRoles)) {
+            foreach ($inheritedRoles as $roleId) {
+                $parentRole = $this->entityManager->getRepository(Role::class)
+                    ->findOneById($roleId);
+
+                if ($parentRole == null) {
+                    throw new \Exception('Role to inherit not found');
+                }
+
+                if (!$role->getParentRoles()->contains($parentRole)) {
+                    $role->addParent($parentRole);
+                }
+            }
+        }
+
+        $this->entityManager->persist($role);
         $this->entityManager->flush();
         
         // Reload RBAC container.
@@ -163,11 +201,11 @@ class RoleManager
     public function getEffectivePermissions($role)
     {
         $effectivePermissions = [];
-        
-        foreach ($role->getChildRoles() as $childRole)
+
+        foreach ($role->getParentRoles() as $parentRole)
         {
-            $childPermissions = $this->getEffectivePermissions($childRole);
-            foreach ($childPermissions as $name=>$inherited) {
+            $parentPermissions = $this->getEffectivePermissions($parentRole);
+            foreach ($parentPermissions as $name=>$inherited) {
                 $effectivePermissions[$name] = 'inherited';
             }
         }
