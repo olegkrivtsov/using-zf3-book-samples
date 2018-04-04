@@ -3,10 +3,10 @@ Blog Sample
 
 This sample is based on the Hello World sample and it shows how to:
 
-  * Integrate your web site with Doctrine library
-  * Initialize database schema
-  * Use entity manager
-  * Create entities and define relations between entities
+  * Integrate your web site with the Doctrine library
+  * Initialize the database schema
+  * Use the entity manager
+  * Create entities and define relationships between entities
   * Create repositories
 
 ## Installation
