@@ -67,9 +67,9 @@ class RoleForm extends Form
         // Add "inherit_roles" field
         $this->add([            
             'type'  => 'select',
-            'name' => 'inherit_roles[]',
+            'name' => 'inherit_roles',
             'attributes' => [
-                'id' => 'inherit_roles[]',
+                'id' => 'inherit_roles',
                 'multiple' => 'multiple',
             ],
             'options' => [
@@ -153,7 +153,7 @@ class RoleForm extends Form
         
         // Add input for "inherit_roles" field
         $inputFilter->add([
-                'name'     => 'inherit_roles[]',
+                'name'     => 'inherit_roles',
                 'required' => false,
                 'filters'  => [
                                     

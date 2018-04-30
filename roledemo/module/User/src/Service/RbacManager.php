@@ -139,10 +139,19 @@ class RbacManager
                 
                 if ($params==null)
                     return true;
-                
+
                 foreach ($this->assertionManagers as $assertionManager) {
                     if ($assertionManager->assert($this->rbac, $permission, $params))
                         return true;
+                }
+            }
+
+            // Since we are pulling the user from the database again the init() function above is overridden?
+            // we don't seem to be taking into account the parent roles without the following code
+            $parentRoles = $role->getParentRoles();
+            foreach ($parentRoles as $parentRole) {
+                if ($this->rbac->isGranted($parentRole->getName(), $permission)) {
+                    return true;
                 }
             }
         }
