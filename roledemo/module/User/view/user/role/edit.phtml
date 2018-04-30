@@ -6,7 +6,7 @@ $this->mainMenu()->setActiveItemId('roles');
 $this->pageBreadcrumbs()->setItems([
             'Home'=>$this->url('home'),
             'Manage Roles'=>$this->url('roles'),
-            'Edit Role'=>$this->url('roles', ['action'=>'edit', 'id'=>$role->getId()])
+            'Edit Role ' . $role->getName() => $this->url('roles', ['action'=>'edit', 'id'=>$role->getId()])
             ]);
 
 $form->get('name')->setAttributes([
@@ -31,7 +31,7 @@ $form->get('submit')
 $form->prepare();
 ?>
 
-<h1>Edit Role</h1>
+<h1>Edit Role <?= $this->escapeHtml($role->getName()) ?></h1>
 
 <p>
 <a class="btn btn-default" href="<?= $this->url('roles', ['action'=>'editPermissions', 'id'=>$role->getId()]) ?>">
