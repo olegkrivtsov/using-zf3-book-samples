@@ -150,12 +150,22 @@ class RoleController extends AbstractActionController
         $form = new RoleForm('update', $this->entityManager, $role);
         
         $roleList = [];
+        $selectedRoles = [];
         $roles = $this->entityManager->getRepository(Role::class)
                 ->findBy([], ['name'=>'ASC']);
         foreach ($roles as $role2) {
+            
+            if ($role2->getId()==$role->getId())
+                continue; // Do not inherit from ourselves
+            
             $roleList[$role2->getId()] = $role2->getName();
+            
+            if ($role->hasParent($role2))
+                $selectedRoles[] = $role2->getId();
         }
         $form->get('inherit_roles')->setValueOptions($roleList);
+        
+        $form->get('inherit_roles')->setValue($selectedRoles);
         
         // Check if user has submitted the form
         if ($this->getRequest()->isPost()) {

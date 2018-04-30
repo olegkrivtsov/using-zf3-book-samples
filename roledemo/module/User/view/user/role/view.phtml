@@ -6,12 +6,12 @@ $this->mainMenu()->setActiveItemId('roles');
 $this->pageBreadcrumbs()->setItems([
             'Home'=>$this->url('home'),
             'Manage Roles'=>$this->url('roles'),
-            'View Role'=>$this->url('roles', ['action'=>'view', 'id'=>$role->getId()])
+            'View Role ' . $role->getName() => $this->url('roles', ['action'=>'view', 'id'=>$role->getId()])
             ]);
 ?>
 
 
-<h1>View Role</h1>
+<h1>View Role <?= $this->escapeHtml($role->getName()) ?></h1>
 
 <?= $this->flashMessenger()->render('error', ['alert', 'alert-warning']); ?>
 <?= $this->flashMessenger()->render('success', ['alert', 'alert-success']); ?>
