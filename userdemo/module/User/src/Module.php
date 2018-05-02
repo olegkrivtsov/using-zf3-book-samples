@@ -34,6 +34,25 @@ class Module
         // Register the event listener method. 
         $sharedEventManager->attach(AbstractActionController::class, 
                 MvcEvent::EVENT_DISPATCH, [$this, 'onDispatch'], 100);
+        
+        $sessionManager = $event->getApplication()->getServiceManager()->get('Zend\Session\SessionManager');
+        
+        $this->forgetInvalidSession($sessionManager);
+    }
+    
+    protected function forgetInvalidSession($sessionManager) 
+    {
+    	try {
+    		$sessionManager->start();
+    		return;
+    	} catch (\Exception $e) {
+    	}
+    	/**
+    	 * Session validation failed: toast it and carry on.
+    	 */
+    	// @codeCoverageIgnoreStart
+    	session_unset();
+    	// @codeCoverageIgnoreEnd
     }
     
     /**
