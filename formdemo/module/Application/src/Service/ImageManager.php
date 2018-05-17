@@ -139,7 +139,7 @@ class ImageManager
                 $desiredWidth, $desiredHeight, $originalWidth, $originalHeight);
 
         // Save the resized image to temporary location
-        $tmpFileName = tempnam("/tmp", "FOO");
+        $tmpFileName = @tempnam("/tmp", "FOO");
         imagejpeg($resultingImage, $tmpFileName, 80);
         
         // Return the path to resulting image.
