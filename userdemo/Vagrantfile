@@ -11,7 +11,20 @@ apt-get update
 apt-get install -y apache2 git curl php7.0 php7.0-bcmath php7.0-bz2 php7.0-cli php7.0-curl php7.0-intl php7.0-json php7.0-mbstring php7.0-opcache php7.0-soap php7.0-sqlite3 php7.0-xml php7.0-xsl php7.0-zip libapache2-mod-php7.0 php7.0-mcrypt php7.0-gd php7.0-mysql
 
 # APACHE
-sed -i 's!/var/www/html!/var/www/public!g' /etc/apache2/sites-available/000-default.conf
+echo "<VirtualHost *:80>
+	DocumentRoot \"/var/www/public\"
+	AllowEncodedSlashes On
+
+	ServerName "using-zf3-book-samples.userdemo.local.vm";
+	ServerAlias "www.using-zf3-book-samples.userdemo.local.vm";
+
+	<Directory \"/var/www/public\">
+		DirectoryIndex index.php
+        AllowOverride All
+        Require all granted
+	</Directory>
+
+</VirtualHost>" > /etc/apache2/sites-available/000-default.conf
 a2enmod rewrite
 service apache2 restart
 
