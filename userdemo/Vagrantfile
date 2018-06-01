@@ -23,10 +23,13 @@ mysql -u root -proot -e "CREATE DATABASE userdemo;"
 mysql -u root -proot -e "GRANT ALL PRIVILEGES ON userdemo.* TO userdemo@localhost identified by '<password>';"
 cd /var/www/ && ./vendor/bin/doctrine-module migrations:migrate
 
+# COMPOSER
 curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 cd /var/www/
 composer install
+composer development-enable
 
+# OTHER
 sudo chown -R www-data:www-data data
 sudo chmod -R 775 data
 mkdir public/img/captcha
