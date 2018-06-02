@@ -28,7 +28,6 @@ echo "<VirtualHost *:80>
 a2enmod rewrite
 service apache2 restart
 
-
 # COMPOSER
 curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 cd /var/www/
