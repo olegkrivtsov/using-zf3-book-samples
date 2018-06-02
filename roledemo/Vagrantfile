@@ -5,7 +5,6 @@ VAGRANTFILE_API_VERSION = '2'
 
 @script = <<SCRIPT
 
-
 # PHP
 add-apt-repository ppa:ondrej/php
 apt-get update
