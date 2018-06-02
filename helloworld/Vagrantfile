@@ -10,6 +10,22 @@ add-apt-repository ppa:ondrej/php
 apt-get update
 apt-get install -y apache2 git curl php7.0 php7.0-bcmath php7.0-bz2 php7.0-cli php7.0-curl php7.0-intl php7.0-json php7.0-mbstring php7.0-opcache php7.0-soap php7.0-sqlite3 php7.0-xml php7.0-xsl php7.0-zip libapache2-mod-php7.0
 
+# XDEBUG
+apt-get install php-xdebug
+echo "\n[xdebug]" >> /etc/php/7.0/mods-available/xdebug.ini
+echo "xdebug.default_enable=1" >> /etc/php/7.0/mods-available/xdebug.ini
+echo "xdebug.remote_autostart=1" >> /etc/php/7.0/mods-available/xdebug.ini
+echo "xdebug.remote_connect_back=1" >> /etc/php/7.0/mods-available/xdebug.ini
+echo "xdebug.remote_enable=1" >> /etc/php/7.0/mods-available/xdebug.ini
+echo "xdebug.remote_handler=dbgp" >> /etc/php/7.0/mods-available/xdebug.ini
+echo "xdebug.remote_port='9000'" >> /etc/php/7.0/mods-available/xdebug.ini
+echo "xdebug.remote_host='127.0.0.1'" >> /etc/php/7.0/mods-available/xdebug.ini
+echo "xdebug.idekey='PHPSTORM'" >> /etc/php/7.0/mods-available/xdebug.ini
+echo "xdebug.remote_mode='req'" >> /etc/php/7.0/mods-available/xdebug.ini
+echo "xdebug.var_display_max_depth='-1'" >> /etc/php/7.0/mods-available/xdebug.ini
+echo "xdebug.var_display_max_children='-1'" >> /etc/php/7.0/mods-available/xdebug.ini
+echo "xdebug.var_display_max_data='-1'" >> /etc/php/7.0/mods-available/xdebug.ini
+
 # APACHE
 echo "<VirtualHost *:80>
 	DocumentRoot \"/var/www/public\"
