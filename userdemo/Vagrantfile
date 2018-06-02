@@ -34,7 +34,8 @@ debconf-set-selections <<< 'mysql-server mysql-server/root_password_again passwo
 apt-get install -y mysql-server
 mysql -u root -proot -e "CREATE DATABASE userdemo;"
 mysql -u root -proot -e "GRANT ALL PRIVILEGES ON userdemo.* TO userdemo@localhost identified by '<password>';"
-cd /var/www/ && ./vendor/bin/doctrine-module migrations:migrate
+cd /var/www/
+./vendor/bin/doctrine-module migrations:migrate
 
 # COMPOSER
 curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
@@ -43,12 +44,13 @@ composer install
 composer development-enable
 
 # OTHER
-sudo chown -R www-data:www-data data
-sudo chmod -R 775 data
+cd /var/www/
+sudo chown -R www-data:www-data ./data
+sudo chmod -R 775 ./data
 mkdir public/img/captcha
-sudo chown -R www-data:www-data public/img/captcha
-sudo chmod -R 775 public/img/captcha
-cp config/autoload/local.php.dist config/autoload/local.php
+sudo chown -R www-data:www-data ./public/img/captcha
+sudo chmod -R 775 ./public/img/captcha
+cp config/autoload/local.php.dist ./config/autoload/local.php
 
 if ! grep "cd /var/www" /home/vagrant/.profile > /dev/null; then
     echo "cd /var/www" >> /home/vagrant/.profile
