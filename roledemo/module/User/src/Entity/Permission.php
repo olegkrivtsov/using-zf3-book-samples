@@ -34,7 +34,7 @@ class Permission
     protected $dateCreated;
     
     /**
-     * @ORM\ManyToMany(targetEntity="User\Entity\Role")
+     * @ORM\ManyToMany(targetEntity="User\Entity\Role", inversedBy="permissions")
      * @ORM\JoinTable(name="role_permission",
      *      joinColumns={@ORM\JoinColumn(name="permission_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="role_id", referencedColumnName="id")}
