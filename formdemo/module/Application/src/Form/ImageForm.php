@@ -62,8 +62,7 @@ class ImageForm extends Form
      */
     private function addInputFilter() 
     {
-        $inputFilter = new InputFilter();        
-        $this->setInputFilter($inputFilter);
+        $inputFilter = $this->getInputFilter();        
         
         // Add validation rules for the "file" field	 
         $inputFilter->add([

@@ -99,8 +99,7 @@ class PaymentForm extends Form
      */
     private function addInputFilter() 
     {
-        $inputFilter = new InputFilter();        
-        $this->setInputFilter($inputFilter);
+        $inputFilter = $this->getInputFilter();        
         
         $inputFilter->add([
                 'name'     => 'payment_method',

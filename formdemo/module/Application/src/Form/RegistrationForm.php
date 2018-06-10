@@ -245,8 +245,7 @@ class RegistrationForm extends Form
      */
     private function addInputFilter($step) 
     {
-        $inputFilter = new InputFilter();        
-        $this->setInputFilter($inputFilter);
+        $inputFilter = $this->getInputFilter();        
         
         if ($step==1) {
 
