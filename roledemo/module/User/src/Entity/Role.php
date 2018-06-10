@@ -34,7 +34,7 @@ class Role
     protected $dateCreated;
 
     /**
-     * @ORM\ManyToMany(targetEntity="User\Entity\Role")
+     * @ORM\ManyToMany(targetEntity="User\Entity\Role", mappedBy="childRoles")
      * @ORM\JoinTable(name="role_hierarchy",
      *      joinColumns={@ORM\JoinColumn(name="child_role_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="parent_role_id", referencedColumnName="id")}
@@ -43,7 +43,7 @@ class Role
     private $parentRoles;
     
     /**
-     * @ORM\ManyToMany(targetEntity="User\Entity\Role")
+     * @ORM\ManyToMany(targetEntity="User\Entity\Role", inversedBy="parentRoles")
      * @ORM\JoinTable(name="role_hierarchy",
      *      joinColumns={@ORM\JoinColumn(name="parent_role_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="child_role_id", referencedColumnName="id")}
@@ -52,7 +52,7 @@ class Role
     protected $childRoles;
     
     /**
-     * @ORM\ManyToMany(targetEntity="User\Entity\Permission")
+     * @ORM\ManyToMany(targetEntity="User\Entity\Permission", mappedBy="roles")
      * @ORM\JoinTable(name="role_permission",
      *      joinColumns={@ORM\JoinColumn(name="role_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="permission_id", referencedColumnName="id")}
