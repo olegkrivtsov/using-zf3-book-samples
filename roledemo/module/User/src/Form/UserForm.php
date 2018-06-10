@@ -148,8 +148,7 @@ class UserForm extends Form
     private function addInputFilter() 
     {
         // Create main input filter
-        $inputFilter = new InputFilter();        
-        $this->setInputFilter($inputFilter);
+        $inputFilter = $this->getInputFilter();        
                 
         // Add input for "email" field
         $inputFilter->add([

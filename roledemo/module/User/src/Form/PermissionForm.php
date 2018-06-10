@@ -92,8 +92,7 @@ class PermissionForm extends Form
     private function addInputFilter() 
     {
         // Create input filter
-        $inputFilter = new InputFilter();        
-        $this->setInputFilter($inputFilter);
+        $inputFilter = $this->getInputFilter();
         
         // Add input for "name" field
         $inputFilter->add([

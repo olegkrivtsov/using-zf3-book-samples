@@ -94,9 +94,7 @@ class PasswordChangeForm extends Form
      */
     private function addInputFilter() 
     {
-        // Create main input filter
-        $inputFilter = new InputFilter();        
-        $this->setInputFilter($inputFilter);
+        $inputFilter = $this->getInputFilter();
         
         if ($this->scenario == 'change') {
             
