@@ -193,7 +193,7 @@ class User
      * Returns password reset token.
      * @return string
      */
-    public function getResetPasswordToken()
+    public function getPasswordResetToken()
     {
         return $this->passwordResetToken;
     }

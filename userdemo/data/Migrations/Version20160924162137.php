@@ -34,7 +34,7 @@ class Version20160924162137 extends AbstractMigration
         $table->addColumn('password', 'string', ['notnull'=>true, 'length'=>256]);
         $table->addColumn('status', 'integer', ['notnull'=>true]);
         $table->addColumn('date_created', 'datetime', ['notnull'=>true]);
-        $table->addColumn('pwd_reset_token', 'string', ['notnull'=>false, 'length'=>32]);
+        $table->addColumn('pwd_reset_token', 'string', ['notnull'=>false, 'length'=>256]);
         $table->addColumn('pwd_reset_token_creation_date', 'datetime', ['notnull'=>false]);
         $table->setPrimaryKey(['id']);
         $table->addUniqueIndex(['email'], 'email_idx');

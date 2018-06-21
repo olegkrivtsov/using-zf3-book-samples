@@ -4,6 +4,11 @@ namespace User\Service;
 use User\Entity\User;
 use Zend\Crypt\Password\Bcrypt;
 use Zend\Math\Rand;
+use Zend\Mail;
+use Zend\Mail\Transport\Smtp as SmtpTransport;
+use Zend\Mail\Transport\SmtpOptions;
+use Zend\Mime\Message as MimeMessage;
+use Zend\Mime\Part as MimePart;
 
 /**
  * This service is responsible for adding/editing users
@@ -18,11 +23,25 @@ class UserManager
     private $entityManager;  
     
     /**
+     * PHP template renderer.
+     * @var type 
+     */
+    private $viewRenderer;
+    
+    /**
+     * Application config.
+     * @var type 
+     */
+    private $config;
+    
+    /**
      * Constructs the service.
      */
-    public function __construct($entityManager) 
+    public function __construct($entityManager, $viewRenderer, $config) 
     {
         $this->entityManager = $entityManager;
+        $this->viewRenderer = $viewRenderer;
+        $this->config = $config;
     }
     
     /**
@@ -134,40 +153,83 @@ class UserManager
      */
     public function generatePasswordResetToken($user)
     {
+        if ($user->getStatus() != User::STATUS_ACTIVE) {
+            throw new \Exception('Cannot generate password reset token for inactive user ' . $user->getEmail());
+        }
+        
         // Generate a token.
         $token = Rand::getString(32, '0123456789abcdefghijklmnopqrstuvwxyz', true);
-        $user->setPasswordResetToken($token);
         
+        // Encrypt the token before storing it in DB.
+        $bcrypt = new Bcrypt();
+        $tokenHash = $bcrypt->create($token);  
+        
+        // Save token to DB
+        $user->setPasswordResetToken($tokenHash);
+        
+        // Save token creation date to DB.
         $currentDate = date('Y-m-d H:i:s');
         $user->setPasswordResetTokenCreationDate($currentDate);  
         
+        // Apply changes to DB.
         $this->entityManager->flush();
         
+        // Send an email to user.
         $subject = 'Password Reset';
             
         $httpHost = isset($_SERVER['HTTP_HOST'])?$_SERVER['HTTP_HOST']:'localhost';
-        $passwordResetUrl = 'http://' . $httpHost . '/set-password?token=' . $token;
+        $passwordResetUrl = 'http://' . $httpHost . '/set-password?token=' . $token . "&email=" . $user->getEmail();
         
-        $body = 'Please follow the link below to reset your password:\n';
-        $body .= "$passwordResetUrl\n";
-        $body .= "If you haven't asked to reset your password, please ignore this message.\n";
+        // Produce HTML of password reset email
+        $bodyHtml = $this->viewRenderer->render(
+                'user/email/reset-password-email',
+                [
+                    'passwordResetUrl' => $passwordResetUrl,
+                ]);
         
-        // Send email to user.
-        mail($user->getEmail(), $subject, $body);
+        $html = new MimePart($bodyHtml);
+        $html->type = "text/html";
+        
+        $body = new MimeMessage();
+        $body->addPart($html);
+        
+        $mail = new Mail\Message();
+        $mail->setEncoding('UTF-8');
+        $mail->setBody($body);
+        $mail->setFrom('no-reply@example.com', 'User Demo');
+        $mail->addTo($user->getEmail(), $user->getFullName());
+        $mail->setSubject($subject);
+        
+        // Setup SMTP transport
+        $transport = new SmtpTransport();
+        $options   = new SmtpOptions($this->config['smtp']);
+        $transport->setOptions($options);
+
+        $transport->send($mail);
     }
     
     /**
      * Checks whether the given password reset token is a valid one.
      */
-    public function validatePasswordResetToken($passwordResetToken)
+    public function validatePasswordResetToken($email, $passwordResetToken)
     {
+        // Find user by email.
         $user = $this->entityManager->getRepository(User::class)
-                ->findOneByPasswordResetToken($passwordResetToken);
+                ->findOneByEmail($email);
         
-        if($user==null) {
+        if($user==null || $user->getStatus() != User::STATUS_ACTIVE) {
             return false;
         }
         
+        // Check that token hash matches the token hash in our DB.
+        $bcrypt = new Bcrypt();
+        $tokenHash = $user->getPasswordResetToken();
+        
+        if (!$bcrypt->verify($passwordResetToken, $tokenHash)) {
+            return false; // mismatch
+        }
+        
+        // Check that token was created not too long ago.
         $tokenCreationDate = $user->getPasswordResetTokenCreationDate();
         $tokenCreationDate = strtotime($tokenCreationDate);
         
@@ -183,16 +245,17 @@ class UserManager
     /**
      * This method sets new password by password reset token.
      */
-    public function setNewPasswordByToken($passwordResetToken, $newPassword)
+    public function setNewPasswordByToken($email, $passwordResetToken, $newPassword)
     {
-        if (!$this->validatePasswordResetToken($passwordResetToken)) {
+        if (!$this->validatePasswordResetToken($email, $passwordResetToken)) {
            return false; 
         }
         
+        // Find user with the given email.
         $user = $this->entityManager->getRepository(User::class)
-                ->findOneByPasswordResetToken($passwordResetToken);
+                ->findOneByEmail($email);
         
-        if ($user==null) {
+        if ($user==null || $user->getStatus() != User::STATUS_ACTIVE) {
             return false;
         }
                 
