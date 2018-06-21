@@ -22,7 +22,9 @@
         "zendframework/zend-mvc-plugins": "^1.0.1",
         "zendframework/zend-session": "^2.7.1",
         "zendframework/zend-captcha": "^2.6",
-        "zendframework/zend-mail": "^2.7"
+        "zendframework/zend-mail": "^2.7",
+        "zendframework/zend-mvc-i18n": "^1.0",
+        "zendframework/zend-i18n-resources": "^2.5"
     },
     "autoload": {
         "psr-4": {
