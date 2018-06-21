@@ -1,0 +1,51 @@
+<?php
+$this->headTitle('User Registration - Step 3');
+
+$this->mainMenu()->setActiveItemId('home');
+
+$this->pageBreadcrumbs()->setItems([
+            'Home'=>$this->url('home'),
+            'User Registration' => $this->url('registration')
+            ]);
+
+$form->get('billing_plan')->setAttributes([
+    'class'=>'form-control', 
+    ]);
+
+$form->get('payment_method')->setAttributes([
+    'class'=>'form-control', 
+    ]);
+
+$form->get('submit')->setAttributes(array('class'=>'btn btn-primary'));
+
+$form->prepare();
+?>
+
+<h1>User Registration - Step 3 - Billing Information</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <?= $this->form()->openTag($form); ?>
+        
+        <div class="form-group">
+            <?= $this->formLabel($form->get('billing_plan')); ?>
+            <?= $this->formElement($form->get('billing_plan')); ?>
+            <?= $this->formElementErrors($form->get('billing_plan')); ?>                              
+        </div>
+        
+        <div class="form-group">
+            <?= $this->formLabel($form->get('payment_method')); ?>
+            <?= $this->formElement($form->get('payment_method')); ?>
+            <?= $this->formElementErrors($form->get('payment_method')); ?>                              
+        </div>
+        
+        <div class="form-group">
+        <?= $this->formElement($form->get('submit')); ?>
+        </div>
+        
+        <?= $this->formElement($form->get('csrf')); ?>
+        
+        <?= $this->form()->closeTag(); ?>
+    </div>    
+</div>   
+

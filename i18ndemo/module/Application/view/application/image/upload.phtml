@@ -1,0 +1,37 @@
+<?php
+$this->headTitle('Upload a New Image');
+
+$this->mainMenu()->setActiveItemId('home');
+
+$this->pageBreadcrumbs()->setItems([
+            'Home'=>$this->url('home'),
+            'Image Gallery' => $this->url('images')
+            ]);
+
+$form = $this->form;
+$form->get('submit')->setAttributes(['class'=>'btn btn-primary']);
+$form->prepare();
+?>
+
+<h1>Upload a New Image</h1>
+
+<p>
+    Please fill out the following form and press the <i>Upload</i> button.
+</p>
+
+<div class="row">
+    <div class="col-md-6">
+        <?= $this->form()->openTag($form); ?>
+        
+        <div class="form-group">
+            <?= $this->formLabel($form->get('file')); ?>
+            <?= $this->formElement($form->get('file')); ?>
+            <?= $this->formElementErrors($form->get('file')); ?>
+            <div class="hint">(PNG and JPG formats are allowed)</div>
+        </div>
+                
+        <?= $this->formElement($form->get('submit')); ?>
+        
+        <?= $this->form()->closeTag(); ?>
+    </div>    
+</div>    

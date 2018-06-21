@@ -1,0 +1,21 @@
+<?php
+
+$this->headTitle('Contact Us');
+
+$this->mainMenu()->setActiveItemId('contactUs');
+
+$this->pageBreadcrumbs()->setItems(array(
+            'Home'=>$this->url('home'),
+            'Contact Us'=>$this->url('contactus')
+            ));
+
+?>
+
+<h1>Error Sending Email!</h1>
+
+<p>
+    <div class="alert alert-warning">
+        Sorry, but we had an unexpected problem when trying to deliver your message. 
+        Please try again later.
+    </div>
+</p>

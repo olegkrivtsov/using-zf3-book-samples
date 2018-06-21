@@ -1,0 +1,59 @@
+<?php
+$this->headTitle('Image Gallery');
+
+$this->mainMenu()->setActiveItemId('home');
+
+$this->pageBreadcrumbs()->setItems([
+            'Home'=>$this->url('home'),
+            'Image Gallery' => $this->url('images')
+            ]);
+?>
+
+<h1>Image Gallery</h1>
+
+<p>
+    This page displays the list of uploaded images.
+</p>
+
+<p>
+    <a href="<?= $this->url('images', ['action'=>'upload']); ?>" 
+       class="btn btn-primary" role="button">Upload More</a>
+</p>
+
+<hr/>
+
+<?php if(count($files)==0): ?>
+
+<p>
+    <i>There are no files to display.</i>
+</p>
+
+<?php else: ?>
+
+<div class="row">
+    <div class="col-sm-6 col-md-12">
+
+        <?php foreach($files as $file): ?>  
+
+        <div class="img-thumbnail">
+            
+            <img src="<?= $this->url('images', ['action'=>'file'], 
+                    ['query'=>['name'=>$file, 'thumbnail'=>true]]); ?>">
+            
+            <div class="caption">
+                <h3><?php echo $file; ?></h3>                    
+                <p>
+                    <a target="_blank" href="<?= $this->url('images',  
+                            ['action'=>'file'], ['query'=>['name'=>$file]]); ?>" 
+                            class="btn btn-default" role="button">Show in Natural Size</a>
+                </p>
+            </div>
+        </div>
+
+        <?php endforeach; ?>
+    </div>
+</div>
+
+<hr/>
+
+<?php endif; ?>

@@ -1,0 +1,23 @@
+<?php
+$this->headTitle('Welcome');
+
+$this->mainMenu()->setActiveItemId('home');
+
+$this->pageBreadcrumbs()->setItems([
+            'Home'=>$this->url('home')
+            ]);
+?>
+
+<h1>Welcome</h1>
+
+<p>
+    This is the Internationalization Demo application.
+</p>
+
+<ul>
+    <li>
+        <a href="<?php echo $this->url('contactus'); ?>">Feedback Form</a> 
+        This page shows the localized feedback form.
+    </li>
+</ul>
+
