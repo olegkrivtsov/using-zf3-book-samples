@@ -58,3 +58,9 @@ $this->pageBreadcrumbs()->setItems([
     
 </table>
 
+<?= $this->paginationControl($users,
+                    'Sliding',
+                    'user/partial/paginator', 
+                    array('route' => 'users')); ?>
+
+
