@@ -52,7 +52,7 @@ class UserController extends AbstractActionController
         
         $adapter = new DoctrineAdapter(new ORMPaginator($query, false));
         $paginator = new Paginator($adapter);
-        $paginator->setDefaultItemCountPerPage(3);        
+        $paginator->setDefaultItemCountPerPage(10);        
         $paginator->setCurrentPageNumber($page);
         
         return new ViewModel([
@@ -256,8 +256,9 @@ class UserController extends AbstractActionController
                 
                 // Look for the user with such email.
                 $user = $this->entityManager->getRepository(User::class)
-                        ->findOneByEmail($data['email']);                
-                if ($user!=null) {
+                        ->findOneByEmail($data['email']);
+                
+                if ($user!=null && $user->getStatus() == User::STATUS_ACTIVE) {
                     // Generate a new password for user and send an E-mail 
                     // notification about that.
                     $this->userManager->generatePasswordResetToken($user);
@@ -301,6 +302,7 @@ class UserController extends AbstractActionController
      */
     public function setPasswordAction()
     {
+        $email = $this->params()->fromQuery('email', null);
         $token = $this->params()->fromQuery('token', null);
         
         // Validate token length
@@ -309,7 +311,7 @@ class UserController extends AbstractActionController
         }
         
         if($token===null || 
-           !$this->userManager->validatePasswordResetToken($token)) {
+           !$this->userManager->validatePasswordResetToken($email, $token)) {
             return $this->redirect()->toRoute('users', 
                     ['action'=>'message', 'id'=>'failed']);
         }
@@ -331,7 +333,7 @@ class UserController extends AbstractActionController
                 $data = $form->getData();
                                                
                 // Set new password for the user.
-                if ($this->userManager->setNewPasswordByToken($token, $data['new_password'])) {
+                if ($this->userManager->setNewPasswordByToken($email, $token, $data['new_password'])) {
                     
                     // Redirect to "message" page
                     return $this->redirect()->toRoute('users', 

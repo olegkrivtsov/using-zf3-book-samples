@@ -8,11 +8,11 @@ $this->headTitle('Thank You');
 
 <?php if ($id=='sent'): ?>
 <p>
-    A password reset link has been sent to your email address.
+    Password reset instructions have been sent to your email address.
 </p>
 <?php elseif ($id=='invalid-email'): ?>
 <p>
-    There is no user with such an email.
+    There is no user with such an email or the user is inactive.
 </p>
 <?php elseif ($id=='set'): ?>
 <p>
