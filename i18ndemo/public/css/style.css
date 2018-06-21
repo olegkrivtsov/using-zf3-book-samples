@@ -1,0 +1,52 @@
+body {
+    padding-bottom: 40px;
+}
+
+.zf-green {
+    color: #68b604;
+}
+
+.btn-success {
+  background-color: #57a900;
+  background-image: -moz-linear-gradient(top, #70d900, #57a900);
+  background-image: -ms-linear-gradient(top, #70d900, #57a900);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#70d900), to(#57a900));
+  background-image: -webkit-linear-gradient(top, #70d900, #57a900);
+  background-image: -o-linear-gradient(top, #70d900, #57a900);
+  background-image: linear-gradient(top, #70d900, #57a900);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#70d900', endColorstr='#57a900', GradientType=0);
+}
+
+.btn-success:hover,
+.btn-success:active,
+.btn-success.active,
+.btn-success.disabled,
+.btn-success[disabled] {
+  background-color: #57a900;
+}
+
+.btn-success:active, .btn-success.active {
+  background-color: #57a900;
+}
+
+div.container a.navbar-brand > img {
+    display: inline;
+    margin-right: 4px;
+}
+
+div.app-caption {
+    padding: 25px 0px;    
+    font-size:3.0em;
+    font-weight: bold;
+    color:#6aacaf
+}
+
+form ul {
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px 5px;
+}
+
+form ul li {    
+  color: red;        
+}

@@ -1,0 +1,18 @@
+<?php
+$this->headTitle('User Registration - Review');
+
+$this->mainMenu()->setActiveItemId('home');
+
+$this->pageBreadcrumbs()->setItems([
+            'Home'=>$this->url('home'),
+            'User Registration' => $this->url('registration')
+            ]);
+?>
+
+<h1>User Registration - Review</h1>
+
+<p>Thank you! Now please review the data you entered in previous three steps.</p>
+
+<pre>
+<?php print_r($userChoices); ?>
+</pre>
