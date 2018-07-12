@@ -70,6 +70,15 @@ return [
             Controller\UserController::class => Controller\Factory\UserControllerFactory::class,            
         ],
     ],
+    // We register module-provided controller plugins under this key.
+    'controller_plugins' => [
+        'factories' => [
+            Controller\Plugin\CurrentUserPlugin::class => Controller\Plugin\Factory\CurrentUserPluginFactory::class,
+        ],
+        'aliases' => [
+            'currentUser' => Controller\Plugin\CurrentUserPlugin::class,
+        ],
+    ],
     // The 'access_filter' key is used by the User module to restrict or permit
     // access to certain controller actions for unauthorized visitors.
     'access_filter' => [
@@ -94,6 +103,15 @@ return [
     'view_manager' => [
         'template_path_stack' => [
             __DIR__ . '/../view',
+        ],
+    ],
+    // We register module-provided view helpers under this key.
+    'view_helpers' => [
+        'factories' => [
+            View\Helper\CurrentUser::class => View\Helper\Factory\CurrentUserFactory::class,
+        ],
+        'aliases' => [
+            'currentUser' => View\Helper\CurrentUser::class,
         ],
     ],
     'doctrine' => [

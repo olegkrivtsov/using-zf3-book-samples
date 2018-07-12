@@ -1008,16 +1008,16 @@
         },
         {
             "name": "paragonie/random_compat",
-            "version": "v2.0.15",
+            "version": "v2.0.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paragonie/random_compat.git",
-                "reference": "10bcb46e8f3d365170f6de9d05245aa066b81f09"
+                "reference": "29af24f25bab834fcbb38ad2a69fa93b867e070d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/10bcb46e8f3d365170f6de9d05245aa066b81f09",
-                "reference": "10bcb46e8f3d365170f6de9d05245aa066b81f09",
+                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/29af24f25bab834fcbb38ad2a69fa93b867e070d",
+                "reference": "29af24f25bab834fcbb38ad2a69fa93b867e070d",
                 "shasum": ""
             },
             "require": {
@@ -1053,7 +1053,7 @@
                 "pseudorandom",
                 "random"
             ],
-            "time": "2018-06-08 15:26:40"
+            "time": "2018-07-04 16:31:37"
         },
         {
             "name": "psr/cache",
@@ -1247,16 +1247,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v3.4.11",
+            "version": "v3.4.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "36f83f642443c46f3cf751d4d2ee5d047d757a27"
+                "reference": "1b97071a26d028c9bd4588264e101e14f6e7cd00"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/36f83f642443c46f3cf751d4d2ee5d047d757a27",
-                "reference": "36f83f642443c46f3cf751d4d2ee5d047d757a27",
+                "url": "https://api.github.com/repos/symfony/console/zipball/1b97071a26d028c9bd4588264e101e14f6e7cd00",
+                "reference": "1b97071a26d028c9bd4588264e101e14f6e7cd00",
                 "shasum": ""
             },
             "require": {
@@ -1312,20 +1312,20 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2018-05-16 08:49:21"
+            "time": "2018-05-23 05:02:55"
         },
         {
             "name": "symfony/debug",
-            "version": "v3.4.11",
+            "version": "v3.4.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
-                "reference": "b28fd73fefbac341f673f5efd707d539d6a19f68"
+                "reference": "47e6788c5b151cf0cfdf3329116bf33800632d75"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/debug/zipball/b28fd73fefbac341f673f5efd707d539d6a19f68",
-                "reference": "b28fd73fefbac341f673f5efd707d539d6a19f68",
+                "url": "https://api.github.com/repos/symfony/debug/zipball/47e6788c5b151cf0cfdf3329116bf33800632d75",
+                "reference": "47e6788c5b151cf0cfdf3329116bf33800632d75",
                 "shasum": ""
             },
             "require": {
@@ -1368,7 +1368,7 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "time": "2018-05-16 14:03:39"
+            "time": "2018-06-25 11:10:40"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -1486,7 +1486,7 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v3.4.11",
+            "version": "v3.4.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
@@ -2597,16 +2597,16 @@
         },
         {
             "name": "zendframework/zend-math",
-            "version": "3.1.0",
+            "version": "3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-math.git",
-                "reference": "558806e338ee68575fbe69489c9dcb6d57a1dae0"
+                "reference": "0aa5ec1b3132dd7d749d4673d7bdc7ab6b2d202a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-math/zipball/558806e338ee68575fbe69489c9dcb6d57a1dae0",
-                "reference": "558806e338ee68575fbe69489c9dcb6d57a1dae0",
+                "url": "https://api.github.com/repos/zendframework/zend-math/zipball/0aa5ec1b3132dd7d749d4673d7bdc7ab6b2d202a",
+                "reference": "0aa5ec1b3132dd7d749d4673d7bdc7ab6b2d202a",
                 "shasum": ""
             },
             "require": {
@@ -2644,7 +2644,7 @@
                 "math",
                 "zf"
             ],
-            "time": "2018-04-26 21:37:02"
+            "time": "2018-07-10 19:00:33"
         },
         {
             "name": "zendframework/zend-mime",
