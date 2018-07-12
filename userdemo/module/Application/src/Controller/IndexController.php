@@ -55,11 +55,11 @@ class IndexController extends AbstractActionController
      */
     public function settingsAction()
     {
-        $user = $this->entityManager->getRepository(User::class)
-                ->findOneByEmail($this->identity());
+        // Use the CurrentUser controller plugin to get the current user.
+        $user = $this->currentUser();
         
         if ($user==null) {
-            throw new \Exception('Not found user with such email');
+            throw new \Exception('Not logged in');
         }
         
         return new ViewModel([
