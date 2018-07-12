@@ -20,7 +20,9 @@ class UserManagerFactory
         $entityManager = $container->get('doctrine.entitymanager.orm_default');
         $roleManager = $container->get(RoleManager::class);
         $permissionManager = $container->get(PermissionManager::class);
+        $viewRenderer = $container->get('ViewRenderer');
+        $config = $container->get('Config');
         
-        return new UserManager($entityManager, $roleManager, $permissionManager);
+        return new UserManager($entityManager, $roleManager, $permissionManager, $viewRenderer, $config);
     }
 }
