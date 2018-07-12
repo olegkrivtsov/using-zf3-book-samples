@@ -52,7 +52,7 @@ class Role
     protected $childRoles;
     
     /**
-     * @ORM\ManyToMany(targetEntity="User\Entity\Permission", mappedBy="roles")
+     * @ORM\ManyToMany(targetEntity="User\Entity\Permission", inversedBy="roles")
      * @ORM\JoinTable(name="role_permission",
      *      joinColumns={@ORM\JoinColumn(name="role_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="permission_id", referencedColumnName="id")}
