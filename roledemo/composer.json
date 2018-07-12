@@ -26,7 +26,11 @@
         "zendframework/zend-math": "^3.0",
         "zendframework/zend-crypt": "^3.1",
         "zendframework/zend-captcha": "^2.6",
-        "doctrine/doctrine-orm-module": "^2.1",
+        "zendframework/zend-captcha": "^2.6",
+        "zendframework/zend-mail": "^2.10",
+        "zendframework/zend-mime": "^2.7",
+        "doctrine/doctrine-orm-module": "^1.1.5",
+        "doctrine/migrations": "^1.5",
         "zendframework/zend-cache": "^2.7",
         "zendframework/zend-serializer": "^2.8",
         "zendframework/zend-permissions-rbac": "^2.5"
