@@ -128,5 +128,9 @@ return [
         'template_path_stack' => [
             __DIR__ . '/../view',
         ],
+        // The following is needed to be able to return JSON response from controller actions.
+        'strategies' => [
+            'ViewJsonStrategy',
+        ],
     ],
 ];

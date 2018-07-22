@@ -3,6 +3,7 @@ namespace Application\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
+use Zend\View\Model\JsonModel;
 use Zend\Barcode\Barcode;
 use Zend\Mvc\MvcEvent;
 
@@ -193,6 +194,21 @@ class IndexController extends AbstractActionController
         return new ViewModel([
                 'products' => $products
             ]);
+    }
+    
+    /**
+     * This action demonstrates how to return JSON response.
+     */ 
+    public function getJsonAction()
+    {
+        return new JsonModel([
+            'status' => 'SUCCESS',
+            'message'=>'Here is your data',
+            'data' => [
+                'full_name' => 'John Doe',
+                'address' => '51 Middle st.'
+            ]
+        ]);
     }
     
     /** 
