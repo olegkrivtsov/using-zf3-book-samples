@@ -29,7 +29,7 @@ return [
             'application' => [
                 'type'    => Segment::class,
                 'options' => [
-                    'route'    => '/application[/:action]',
+                    'route'    => '/application[/:action[/:id]]',
                     'defaults' => [
                         'controller'    => Controller\IndexController::class,
                         'action'        => 'index',
@@ -107,8 +107,9 @@ return [
             Service\ImageManager::class => InvokableFactory::class,
         ],
     ],
+    // The following registers the session container for storing language settings.
     'session_containers' => [
-        'UserRegistration'
+        'I18nSessionContainer'
     ],
     // The following registers our custom view 
     // helper classes in view plugin manager.

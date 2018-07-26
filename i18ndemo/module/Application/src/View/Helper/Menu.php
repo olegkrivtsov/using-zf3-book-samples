@@ -22,9 +22,8 @@ class Menu extends AbstractHelper
     
     /**
      * Constructor.
-     * @param array $items Menu items.
      */
-    public function __construct($items=[]) 
+    public function __construct($items = []) 
     {
         $this->items = $items;
     }
@@ -90,13 +89,15 @@ class Menu extends AbstractHelper
      */
     protected function renderItem($item) 
     {
+        $escapeHtml = $this->getView()->plugin('escapeHtml');
+        $translate = $this->getView()->plugin('translate');
+        
         $id = isset($item['id']) ? $item['id'] : '';
         $isActive = ($id==$this->activeItemId);
-        $label = isset($item['label']) ? $item['label'] : '';
-             
+        $label = isset($item['label']) ? $translate($item['label']) : '';
+        $icon = isset($item['icon']) ? $item['icon'] : '';
+       
         $result = ''; 
-     
-        $escapeHtml = $this->getView()->plugin('escapeHtml');
         
         if (isset($item['dropdown'])) {
             
@@ -104,16 +105,24 @@ class Menu extends AbstractHelper
             
             $result .= '<li class="dropdown ' . ($isActive?'active':'') . '">';
             $result .= '<a href="#" class="dropdown-toggle" data-toggle="dropdown">';
+            if ($icon) {
+                $result .= '<span class="glyphicon ' . $icon . '" aria-hidden="true"></span> ';
+            }
             $result .= $escapeHtml($label) . ' <b class="caret"></b>';
             $result .= '</a>';
            
             $result .= '<ul class="dropdown-menu">';
             foreach ($dropdownItems as $item) {
                 $link = isset($item['link']) ? $item['link'] : '#';
-                $label = isset($item['label']) ? $item['label'] : '';
+                $label = isset($item['label']) ? $translate($item['label']) : '';
+                $icon = isset($item['icon']) ? $item['icon'] : '';
                 
-                $result .= '<li>';
-                $result .= '<a href="'.$escapeHtml($link).'">'.$escapeHtml($label).'</a>';
+                $result .= '<li>';                
+                $result .= '<a href="'.$escapeHtml($link).'">';
+                if ($icon) {
+                    $result .= '<span class="glyphicon ' . $icon . '" aria-hidden="true"></span> ';
+                }
+                $result .= $escapeHtml($label) . '</a>';
                 $result .= '</li>';
             }
             $result .= '</ul>';
@@ -123,7 +132,12 @@ class Menu extends AbstractHelper
             $link = isset($item['link']) ? $item['link'] : '#';
             
             $result .= $isActive?'<li class="active">':'<li>';
-            $result .= '<a href="'.$escapeHtml($link).'">'.$escapeHtml($label).'</a>';
+            
+            $result .= '<a href="'.$escapeHtml($link).'">';
+            if ($icon) {
+                $result .= '<span class="glyphicon ' . $icon . '" aria-hidden="true"></span> ';
+            }
+            $result .= $escapeHtml($label).'</a>';
             $result .= '</li>';
         }
     

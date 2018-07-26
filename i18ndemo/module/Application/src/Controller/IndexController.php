@@ -4,11 +4,10 @@ namespace Application\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Application\Form\ContactForm;
-use Application\Form\PaymentForm;
 use Application\Service\MailSender;
 
 /**
- * This is the main controller class of the Form Demo application. The 
+ * This is the main controller class of the i18n Demo application. The 
  * controller class is used to receive user input, 
  * pass the data to the models and pass the results returned by models to the 
  * view for rendering.
@@ -22,11 +21,18 @@ class IndexController extends AbstractActionController
     private $mailSender;
     
     /**
+     * Session container.
+     * @var type 
+     */
+    private $i18nSessionContainer;
+    
+    /**
      * Constructor.
      */
-    public function __construct($mailSender) 
+    public function __construct($mailSender, $i18nSessionContainer) 
     {
         $this->mailSender = $mailSender;
+        $this->i18nSessionContainer = $i18nSessionContainer;
     }
     
     /**
@@ -35,7 +41,9 @@ class IndexController extends AbstractActionController
      */
     public function indexAction() 
     {
-        return new ViewModel();
+        return new ViewModel([
+            'languageId' => $this->i18nSessionContainer->languageId
+        ]);
     }
     
     /**
@@ -43,13 +51,25 @@ class IndexController extends AbstractActionController
      */
     public function aboutAction() 
     {   
-        $appName = 'FormDemo';
-        $appDescription = 'Form demo for the Using Zend Framework 3 book';
+        $appName = 'i18n Demo';
+        $appDescription = 'Internationalization & Localization demo for the Using Zend Framework 3 book';
         
         return new ViewModel([
             'appName' => $appName,
             'appDescription' => $appDescription
         ]);
+    }
+    
+    /**
+     * This action allows to change the current language.
+     */
+    public function setLanguageAction()
+    {
+        $languageId = $this->params()->fromRoute('id', 'en_US');
+        
+        $this->i18nSessionContainer->languageId = $languageId;
+        
+        return $this->redirect()->toRoute('home');
     }
     
     /**
@@ -113,51 +133,5 @@ class IndexController extends AbstractActionController
     public function sendErrorAction() 
     {
         return new ViewModel();
-    }
-    
-    public function paymentAction()
-    {
-        // Create Payment form
-        $form = new PaymentForm();
-        
-        // Check if user has submitted the form
-        if($this->getRequest()->isPost()) {
-            
-            // Fill in the form with POST data
-            $data = $this->params()->fromPost();            
-            
-            $form->setData($data);
-            
-            // First, we will validate the "payment_method" field.
-            $form->setValidationGroup(['payment_method']);
-            if ($form->isValid())
-            {
-                $data = $form->getData();
-
-                $paymentMethod = $data['payment_method'];
-
-                // Next, validate the dependent fields
-                if ($paymentMethod=='credit_card') {
-                    $form->setValidationGroup(['payment_method', 'card_number']);
-                } else if ($paymentMethod=='bank_account') {
-                    $form->setValidationGroup(['payment_method', 'bank_account']);
-                }
-
-                if ($form->isValid()) {
-                    $data = $form->getData();
-
-                    // Do something with the data
-                    print_r($data);
-                    
-                    // Suppress default view rendering
-                    return $this->getResponse();
-                }
-            }           
-        } 
-        
-        // Pass form variable to view
-        return new ViewModel([
-            'form' => $form
-        ]);
     }
 }

@@ -3,7 +3,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <?= $this->headTitle('Internationalization Demo')->setSeparator(' - ')->setAutoEscape(false) ?>
+        <?= $this->headTitle('Internationalization & Localization Demo')->setSeparator(' - ')->setAutoEscape(false) ?>
 
         <?= $this->headMeta()
             ->appendName('viewport', 'width=device-width, initial-scale=1.0')
@@ -28,7 +28,7 @@
             <div class="row">
                 <!-- Page header -->
                 <div class="col-md-4">
-                    <div class="app-caption">Form Demo</div>
+                    <div class="app-caption"><?= $this->translate('i18n Demo') ?></div>
                 </div>                
             </div>
             <div class="row">
@@ -39,13 +39,37 @@
                     $this->mainMenu()->setItems([
                         [
                             'id' => 'home',
-                            'label' => 'Home',
-                            'link' => $this->url('home')
+                            'label' => $this->translate('Home'),
+                            'link' => $this->url('home'),
+                            'icon' => 'glyphicon-home',
                         ],
                         [
                             'id' => 'about',
-                            'label' => 'About',
-                            'link' => $this->url('about')
+                            'label' => $this->translate('About'),
+                            'link' => $this->url('about'),
+                            'icon' => 'glyphicon-info-sign',
+                        ],
+                        [
+                            'id' => 'language',
+                            'label' => $this->translate('Language'),
+                            'icon' => 'glyphicon-globe',
+                            'dropdown' => [
+                              [
+                                'id' => 'en',
+                                'label' => 'English (EN)',
+                                'link' => $this->url('application', ['action'=>'set-language', 'id'=>'en_US'])
+                              ],
+                              [
+                                'id' => 'ru',
+                                'label' => 'Russian (RU)',
+                                'link' => $this->url('application', ['action'=>'set-language', 'id'=>'ru_RU'])
+                              ],
+                              [
+                                'id' => 'es',
+                                'label' => 'Spanish (ES)',
+                                'link' => $this->url('application', ['action'=>'set-language', 'id'=>'es_ES'])
+                              ]
+                            ]     
                         ],
                     ]);
 
@@ -74,7 +98,7 @@
             </div>
             <hr>
             <footer>
-                <p>&copy; 2005 - <?= date('Y') ?> by Your Company. All rights reserved.</p>
+                <p><?= $this->translate('&copy; 2005 - 2018 by Your Company. All rights reserved.') ?></p>
             </footer>
         </div>
         <?= $this->inlineScript() ?>
