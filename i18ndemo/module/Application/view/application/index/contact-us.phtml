@@ -33,10 +33,10 @@ $form->prepare();
 
 ?>
 
-<h1>Contact Us</h1>
+<h1><?= $this->translate('Contact Us') ?></h1>
 <p>
-    Please fill out the following form to contact us. 
-    We appreciate your feedback. 
+    <?= $this->translate('Please fill out the following form to contact us.') ?> 
+    <?= $this->translate('We appreciate your feedback.') ?> 
 </p>
 
 <div class="row">
@@ -71,7 +71,7 @@ $form->prepare();
             <?php echo $this->formLabel($form->get('captcha')); ?>
             <?php echo $this->formElement($form->get('captcha')); ?>
             <?php echo $this->formElementErrors($form->get('captcha')); ?>                  
-            <p class="help-block">Enter the letters above as you see them.</p>
+            <p class="help-block"><?= $this->translate('Enter the letters above as you see them.') ?></p>
         </div>
         
         <?php echo $this->formElement($form->get('csrf')); ?>

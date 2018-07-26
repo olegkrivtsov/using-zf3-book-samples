@@ -15,9 +15,10 @@ class IndexControllerFactory implements FactoryInterface
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
         $mailSender = $container->get(MailSender::class);
+        $i18nSessionContainer = $container->get('I18nSessionContainer');
         
         // Instantiate the controller and inject dependencies
-        return new IndexController($mailSender);
+        return new IndexController($mailSender, $i18nSessionContainer);
     }
 }
 

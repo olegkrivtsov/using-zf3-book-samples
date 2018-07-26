@@ -8,16 +8,21 @@ $this->pageBreadcrumbs()->setItems([
             ]);
 ?>
 
-<h1>Welcome</h1>
+<h1><?= $this->translate('Welcome') ?></h1>
 
 <p>
-    This is the Internationalization Demo application.
+    <?= $this->translate('This is the Internationalization &amp; Localization Demo application.') ?>
+</p>
+
+<p>
+    <?= $this->translate('Current language is') ?> <?= $this->escapeHtml($this->languageId) ?>. 
+    <?= $this->translate('Select a language using the <em>Language</em> item in the top navigation menu.') ?>
 </p>
 
 <ul>
     <li>
-        <a href="<?php echo $this->url('contactus'); ?>">Feedback Form</a> 
-        This page shows the localized feedback form.
+        <a href="<?php echo $this->url('contactus'); ?>"><?= $this->translate('Feedback Form') ?></a> 
+        <?= $this->translate('This page shows the localized feedback form.') ?>
     </li>
 </ul>
 

@@ -9,12 +9,12 @@ $this->pageBreadcrumbs()->setItems([
             ]);
 ?>
 
-<h1>About</h1>
+<h1><?= $this->translate('About') ?></h1>
 
 <p>
-    Application name: <?= $this->escapeHtml($appName) ?>
+    <?= $this->translate('Application name:')?> <?= $this->escapeHtml($this->translate($appName)) ?>
 </p>
 
 <p>
-    Application description: <?= $this->escapeHtml($appDescription) ?>
+    <?= $this->translate('Application description:') ?> <?= $this->escapeHtml($this->translate($appDescription)) ?>
 </p>

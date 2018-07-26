@@ -8,6 +8,7 @@
 namespace Application;
 
 use Zend\Mvc\MvcEvent;
+use Zend\Session\SessionManager;
 
 class Module
 {
@@ -26,14 +27,31 @@ class Module
         $application = $event->getApplication();
         $serviceManager = $application->getServiceManager();
         
-        \Locale::setDefault('ru_RU');
+        // The following line instantiates the SessionManager and automatically
+        // makes the SessionManager the 'default' one.
+        $sessionManager = $serviceManager->get(SessionManager::class);
+        
+        // Get language settings from session.
+        $container = $serviceManager->get('I18nSessionContainer');
+        
+        $languageId = 'en_US';
+        if (isset($container->languageId))
+            $languageId = $container->languageId;
+        
+        \Locale::setDefault($languageId);
         
         $translator = $event->getApplication()->getServiceManager()->get('MvcTranslator');
         $translator->addTranslationFile(
             'phpArray',
-            './vendor/zendframework/zend-i18n-resources/languages/ru/Zend_Validate.php',
+            './vendor/zendframework/zend-i18n-resources/languages/'.substr($languageId, 0, 2).'/Zend_Validate.php',
             'default',
-            'ru_RU'
+            $languageId
+        );
+        $translator->addTranslationFilePattern(
+            'phpArray',
+            './data/language',
+            '%s.php',
+            'default'
         );
         
         \Zend\Validator\AbstractValidator::setDefaultTranslator(new \Zend\Mvc\I18n\Translator($translator));

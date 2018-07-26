@@ -78,6 +78,9 @@ class Breadcrumbs extends AbstractHelper
     protected function renderItem($label, $link, $isActive) 
     {
         $escapeHtml = $this->getView()->plugin('escapeHtml');
+        $translate = $this->getView()->plugin('translate');
+        
+        $label = $translate($label);
         
         $result = $isActive?'<li class="active">':'<li>';
         
