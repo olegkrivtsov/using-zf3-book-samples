@@ -1,13 +1,13 @@
-Form Demo Sample
+i18n Demo Sample
 ==================================================
 
-This sample is based on the *Hello World* sample. It shows how to:
+This sample is based on the *Form Demo* sample. It shows how to:
 
- * Create a form model
- * Use the form model in a controller
- * Render the form with special form view helpers
- * Use form security elements (CAPTCHA, CSRF)
- * Upload files with forms
+ * Localize your view templates
+ * Localize view helpers
+ * Localize forms
+ * Localize validator messages
+ * Select a language in the user interface 
 
 ## Installation
 
@@ -32,9 +32,9 @@ Then create an Apache virtual host. It should look like below:
 
 ```
 <VirtualHost *:80>
-    DocumentRoot /path/to/formdemo/public
+    DocumentRoot /path/to/i18ndemo/public
     
-	<Directory /path/to/formdemo/public/>
+	<Directory /path/to/i18ndemo/public/>
         DirectoryIndex index.php
         AllowOverride All
         Require all granted
@@ -43,7 +43,7 @@ Then create an Apache virtual host. It should look like below:
 </VirtualHost>
 ```
 
-Now you should be able to see the Form Demo website by visiting the link "http://localhost/". 
+Now you should be able to see the i18n Demo website by visiting the link "http://localhost/". 
  
 ## License
 
