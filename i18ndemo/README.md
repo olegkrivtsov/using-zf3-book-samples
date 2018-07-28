@@ -11,7 +11,7 @@ This sample is based on the *Form Demo* sample. It shows how to:
 
 ## Installation
 
-You need to have Apache 2.4 HTTP server, PHP v.5.6 or later plus `gd` and `mbstring` PHP extensions.
+You need to have Apache 2.4 HTTP server, PHP v.5.6 or later plus `intl`, `gd` and `mbstring` PHP extensions.
 
 Download the sample to some directory (it can be your home dir or `/var/www/html`) and run Composer as follows:
 
@@ -21,11 +21,17 @@ php composer.phar install
 
 The command above will install the dependencies (Zend Framework).
 
-Adjust permissions for `public/img/captcha` directory:
+Adjust permissions for `public/img/captcha` directory (use `www-data` user/group on Ubuntu, `httpd` on CentOS):
 
 ```
 sudo chown -R www-data:www-data public/img/captcha
 sudo chown -R 775 public/img/captcha 
+```
+
+Switch to development mode by typing:
+
+```
+php composer.phar development-enable
 ```
 
 Then create an Apache virtual host. It should look like below:
