@@ -28,7 +28,7 @@ Then create an Apache virtual host. It should look like below:
 <VirtualHost *:80>
     DocumentRoot /path/to/helloworld/public
     
-	<Directory /path/to/helloworld/public/>
+    <Directory /path/to/helloworld/public/>
         DirectoryIndex index.php
         AllowOverride All
         Require all granted
