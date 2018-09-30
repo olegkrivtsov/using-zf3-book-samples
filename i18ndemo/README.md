@@ -40,7 +40,7 @@ Then create an Apache virtual host. It should look like below:
 <VirtualHost *:80>
     DocumentRoot /path/to/i18ndemo/public
     
-	<Directory /path/to/i18ndemo/public/>
+    <Directory /path/to/i18ndemo/public/>
         DirectoryIndex index.php
         AllowOverride All
         Require all granted
