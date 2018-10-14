@@ -160,18 +160,9 @@ class PostForm extends Form
                 ],
             ]);
             
-        $inputFilter->add([
-                'name' => 'status',
-                'required' => true,
-                'validators' => [
-                    [
-                        'name' => 'InArray',
-                        'options'=> [
-                            'haystack' => [Post::STATUS_PUBLISHED, Post::STATUS_DRAFT],
-                        ]
-                    ],
-                ],
-            ]);
+        // We do not validate the 'status' field, because it is enough to use
+        // the default validator.
+        // https://github.com/olegkrivtsov/using-zf3-book-samples/issues/37
     }
 }
 
