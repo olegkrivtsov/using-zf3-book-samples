@@ -40,7 +40,7 @@ class Version20160901114333 extends AbstractMigration
         $table->addColumn('id', 'integer', ['autoincrement'=>true]); 
         $table->addColumn('post_id', 'integer', ['notnull'=>true]);
         $table->addColumn('content', 'text', ['notnull'=>true]);
-        $table->addColumn('author', 'string', ['notnull'=>true, 'lenght'=>128]);
+        $table->addColumn('author', 'string', ['notnull'=>true, 'length'=>128]);
         $table->addColumn('date_created', 'datetime', ['notnull'=>true]);
         $table->setPrimaryKey(['id']);
         $table->addOption('engine' , 'InnoDB');
@@ -48,7 +48,7 @@ class Version20160901114333 extends AbstractMigration
         // Create 'tag' table
         $table = $schema->createTable('tag');
         $table->addColumn('id', 'integer', ['autoincrement'=>true]); 
-        $table->addColumn('name', 'string', ['notnull'=>true, 'lenght'=>128]);
+        $table->addColumn('name', 'string', ['notnull'=>true, 'length'=>128]);
         $table->setPrimaryKey(['id']);
         $table->addOption('engine' , 'InnoDB');
         
