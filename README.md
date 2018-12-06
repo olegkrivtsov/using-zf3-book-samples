@@ -1,38 +1,32 @@
-Code Samples for The "Using Zend Framework 3" Book 
-==================================================
+PHP Website Examples for The "Using Zend Framework 3" Book 
+==========================================================
 
-This project contains a set of code samples for the [Using Zend Framework 3](https://github.com/olegkrivtsov/using-zend-framework-3-book)
-book by Oleg Krivtsov. Zend Framework 3 is a modern PHP web development framework intended for
-building professionally looking, scalable and secure web-sites, which are 
-easy to test and maintain.
+This project contains several websites that go with my book, [Using Zend Framework 3](https://github.com/olegkrivtsov/using-zend-framework-3-book). 
 
-The book's text is illustrated with code examples that you may want to
-reproduce yourself. It may be difficult for a novice to write code without 
-mistakes. If you are stuck or can not understand why your code does not work, 
-you can download and install the complete sample web application from this page. 
+It may be difficult for a novice to write code without mistakes. If you are reading the book and can not understand why your code does not work, you can download and install a complete website from this project. You even can use the samples as a base for your own sites.
 
-Each sample is a complete web-site you can install and 
-run yourself to see Zend Framework 3 in action. You even can use the samples as 
-a base for your own web sites.
+To download all samples as a ZIP archive, click the *Clone or Download* button. When download is complete, unpack the archive to some directory.
 
-To download all samples as a ZIP archive, click the *Clone or Download* button. 
-When download is complete, unpack the archive to some directory.
+For description of each sample website and for detailed installation instructions, please visit these links:
 
-For description of each sample and installation instructions, visit these links:
-
- * [Pure PHP](purephp/README.md)
- * [Hello World Sample](helloworld/README.md)
- * [Form Demo Sample](formdemo/README.md)
- * [Blog Sample](blog/README.md)
- * [User Demo Sample](userdemo/README.md)
- * [Role Demo Sample](roledemo/README.md)
- * [i18n Demo Sample](i18ndemo/README.md)
+ * [Pure PHP](purephp/README.md) - demonstrates how to create a 3-page website without any framework and what you shouldn't do that
+ * [Hello World Sample](helloworld/README.md) - shows how to write a simple, but functional website with Zend Framework 3
+ * [Form Demo Sample](formdemo/README.md) - here you can see how to use web forms for getting data from your site's users
+ * [Blog Sample](blog/README.md) - shows how to implement a simple blog website
+ * [User Demo Sample](userdemo/README.md) - shows how to use authentication (log in)
+ * [Role Demo Sample](roledemo/README.md) - shows how to use RBAC (roles and permissions) for authorization
+ * [i18n Demo Sample](i18ndemo/README.md) - shows how to translate and adapt your website to several languages (e.g. English, Spanish and Russian)
  
 ## License
 
-Code samples are provided under the [BSD-like license](https://en.wikipedia.org/wiki/BSD_licenses). You are free to use, modify and distribute them
-as you wish.
+Code samples are provided under the [BSD-like license](https://en.wikipedia.org/wiki/BSD_licenses). You are free to use, modify and distribute them as you wish without almost any restrictions.
 
 ## Contributing
 
-If you found a mistake or a bug, please report it using the [Issues](https://github.com/olegkrivtsov/using-zf3-book-samples/issues) page. Your feedback is highly appreciated.
+I think that currently this project is mature enough, but if you found a mistake or a bug, please report it on the [Issues](https://github.com/olegkrivtsov/using-zf3-book-samples/issues) page. 
+
+If you find that sample websites are inconvenient and want to suggest an improvement, please explain the problem on [Issues](https://github.com/olegkrivtsov/using-zf3-book-samples/issues). I will review your proposal, but can not guarantee that I will implement it.
+
+## Your Feedback
+
+If you want to share your emotions on this project, please email me privately at olegkrivtsov at gmail dot com.
