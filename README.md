@@ -1,7 +1,7 @@
 PHP Website Examples for The "Using Zend Framework 3" Book 
 ==========================================================
 
-This project contains several websites that go with my book, [Using Zend Framework 3](https://github.com/olegkrivtsov/using-zend-framework-3-book). 
+This project contains several websites that go with my free and open-source book, [Using Zend Framework 3](https://github.com/olegkrivtsov/using-zend-framework-3-book). 
 
 It may be difficult for a novice to write code without mistakes. If you are reading the book and can not understand why your code does not work, you can download and install a complete website from this project. You even can use the samples as a base for your own sites.
 
