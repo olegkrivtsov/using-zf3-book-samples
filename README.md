@@ -10,7 +10,7 @@ To download all samples as a ZIP archive, click the *Clone or Download* button a
 For description of each sample website and for detailed installation instructions, please visit these links:
 
  * [Pure PHP](purephp/README.md) - demonstrates how to create a 3-page website without any framework
- * [Hello World Sample](helloworld/README.md) - shows how to write a simple, but functional website with Zend Framework 3
+ * [Hello World Sample](helloworld/README.md) - shows how to write a simple, but functional website with Zend Framework 3, including the documentation and file download pages
  * [Form Demo Sample](formdemo/README.md) - here you can see how to use web forms for getting data from your site's users
  * [Blog Sample](blog/README.md) - shows how to implement a simple blog website
  * [User Demo Sample](userdemo/README.md) - shows how to use authentication (log in)
