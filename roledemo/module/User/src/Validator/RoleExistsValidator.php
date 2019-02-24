@@ -55,7 +55,7 @@ class RoleExistsValidator extends AbstractValidator
     {
         if(!is_scalar($value)) {
             $this->error(self::NOT_SCALAR);
-            return $false; 
+            return false; 
         }
         
         // Get Doctrine entity manager.
