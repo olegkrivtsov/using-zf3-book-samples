@@ -31,7 +31,7 @@
         "zendframework/zend-mime": "^2.7",
         "doctrine/doctrine-orm-module": "^1.1.5",
         "doctrine/migrations": "^1.5",
-        "zendframework/zend-cache": "^2.7",
+        "zendframework/zend-cache": "2.9.0",
         "zendframework/zend-serializer": "^2.8",
         "zendframework/zend-permissions-rbac": "^2.5"
     },
