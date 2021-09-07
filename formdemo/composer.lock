@@ -1,11 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "hash": "bfa9984f815a1db1645f13468161bcd9",
-    "content-hash": "0128198f430faaf6a8c41ea56d933760",
+    "content-hash": "ba876293275ae89468c2d05b842304ce",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -32,37 +31,34 @@
                 "MIT"
             ],
             "description": "Promoting the interoperability of container objects (DIC, SL, etc.)",
-            "time": "2014-12-30 15:22:37"
+            "abandoned": "psr/container",
+            "time": "2014-12-30T15:22:37+00:00"
         },
         {
             "name": "paragonie/random_compat",
-            "version": "v2.0.2",
+            "version": "v9.99.99",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paragonie/random_compat.git",
-                "reference": "088c04e2f261c33bed6ca5245491cfca69195ccf"
+                "reference": "84b4dfb120c6f9b4ff7b3685f9b8f1aa365a0c95"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/088c04e2f261c33bed6ca5245491cfca69195ccf",
-                "reference": "088c04e2f261c33bed6ca5245491cfca69195ccf",
+                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/84b4dfb120c6f9b4ff7b3685f9b8f1aa365a0c95",
+                "reference": "84b4dfb120c6f9b4ff7b3685f9b8f1aa365a0c95",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.2.0"
+                "php": "^7"
             },
             "require-dev": {
-                "phpunit/phpunit": "4.*|5.*"
+                "phpunit/phpunit": "4.*|5.*",
+                "vimeo/psalm": "^1"
             },
             "suggest": {
                 "ext-libsodium": "Provides a modern crypto API that can be used to generate random bytes."
             },
             "type": "library",
-            "autoload": {
-                "files": [
-                    "lib/random.php"
-                ]
-            },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
@@ -77,10 +73,11 @@
             "description": "PHP 5.x polyfill for random_bytes() and random_int() from PHP 7",
             "keywords": [
                 "csprng",
+                "polyfill",
                 "pseudorandom",
                 "random"
             ],
-            "time": "2016-04-03 06:00:07"
+            "time": "2018-07-02T15:55:56+00:00"
         },
         {
             "name": "zendframework/zend-authentication",
@@ -142,7 +139,8 @@
                 "Authentication",
                 "zf2"
             ],
-            "time": "2016-02-28 15:02:34"
+            "abandoned": "laminas/laminas-authentication",
+            "time": "2016-02-28T15:02:34+00:00"
         },
         {
             "name": "zendframework/zend-barcode",
@@ -195,34 +193,35 @@
                 "barcode",
                 "zf2"
             ],
-            "time": "2016-02-17 21:15:38"
+            "abandoned": "laminas/laminas-barcode",
+            "time": "2016-02-17T21:15:38+00:00"
         },
         {
             "name": "zendframework/zend-captcha",
-            "version": "2.6.0",
+            "version": "2.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-captcha.git",
-                "reference": "9a1197bc5b8aa4fad104c22f6d9b2a3d4bdda0c6"
+                "reference": "4272f3d0cde0a1fa9135d0cbc4a629fb655391d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-captcha/zipball/9a1197bc5b8aa4fad104c22f6d9b2a3d4bdda0c6",
-                "reference": "9a1197bc5b8aa4fad104c22f6d9b2a3d4bdda0c6",
+                "url": "https://api.github.com/repos/zendframework/zend-captcha/zipball/4272f3d0cde0a1fa9135d0cbc4a629fb655391d3",
+                "reference": "4272f3d0cde0a1fa9135d0cbc4a629fb655391d3",
                 "shasum": ""
             },
             "require": {
                 "php": "^5.6 || ^7.0",
-                "zendframework/zend-math": "^2.6 || ^3.0",
-                "zendframework/zend-stdlib": "^2.7 || ^3.0"
+                "zendframework/zend-math": "^2.7 || ^3.0",
+                "zendframework/zend-stdlib": "^3.2.1"
             },
             "require-dev": {
-                "phpunit/phpunit": "~4.8",
-                "squizlabs/php_codesniffer": "^2.3.1",
-                "zendframework/zend-session": "^2.6",
+                "phpunit/phpunit": "^5.7.27 || ^6.5.8 || ^7.1.2",
+                "zendframework/zend-coding-standard": "~1.0.0",
+                "zendframework/zend-session": "^2.8",
                 "zendframework/zend-text": "^2.6",
-                "zendframework/zend-validator": "^2.6",
-                "zendframework/zendservice-recaptcha": "*"
+                "zendframework/zend-validator": "^2.10.1",
+                "zendframework/zendservice-recaptcha": "^3.0"
             },
             "suggest": {
                 "zendframework/zend-i18n-resources": "Translations of captcha messages",
@@ -234,8 +233,8 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.6-dev",
-                    "dev-develop": "2.7-dev"
+                    "dev-master": "2.9.x-dev",
+                    "dev-develop": "2.10.x-dev"
                 }
             },
             "autoload": {
@@ -247,12 +246,14 @@
             "license": [
                 "BSD-3-Clause"
             ],
-            "homepage": "https://github.com/zendframework/zend-captcha",
+            "description": "Generate and validate CAPTCHAs using Figlets, images, ReCaptcha, and more",
             "keywords": [
+                "ZendFramework",
                 "captcha",
-                "zf2"
+                "zf"
             ],
-            "time": "2016-06-21 17:32:09"
+            "abandoned": "laminas/laminas-captcha",
+            "time": "2019-06-18T09:32:52+00:00"
         },
         {
             "name": "zendframework/zend-code",
@@ -305,7 +306,8 @@
                 "code",
                 "zf2"
             ],
-            "time": "2016-06-30 22:35:27"
+            "abandoned": "laminas/laminas-code",
+            "time": "2016-06-30T22:35:27+00:00"
         },
         {
             "name": "zendframework/zend-component-installer",
@@ -349,7 +351,8 @@
                 "BSD-3-Clause"
             ],
             "description": "Composer plugin for automating component registration in zend-mvc and Expressive applications",
-            "time": "2016-06-27 21:18:08"
+            "abandoned": "laminas/laminas-component-installer",
+            "time": "2016-06-27T21:18:08+00:00"
         },
         {
             "name": "zendframework/zend-config",
@@ -405,7 +408,8 @@
                 "config",
                 "zf2"
             ],
-            "time": "2016-02-04 23:01:10"
+            "abandoned": "laminas/laminas-config",
+            "time": "2016-02-04T23:01:10+00:00"
         },
         {
             "name": "zendframework/zend-escaper",
@@ -449,7 +453,8 @@
                 "escaper",
                 "zf2"
             ],
-            "time": "2015-06-03 14:05:37"
+            "abandoned": "laminas/laminas-escaper",
+            "time": "2015-06-03T14:05:37+00:00"
         },
         {
             "name": "zendframework/zend-eventmanager",
@@ -503,7 +508,8 @@
                 "events",
                 "zf2"
             ],
-            "time": "2016-02-18 20:53:00"
+            "abandoned": "laminas/laminas-eventmanager",
+            "time": "2016-02-18T20:53:00+00:00"
         },
         {
             "name": "zendframework/zend-filter",
@@ -563,7 +569,8 @@
                 "filter",
                 "zf2"
             ],
-            "time": "2016-04-18 18:32:43"
+            "abandoned": "laminas/laminas-filter",
+            "time": "2016-04-18T18:32:43+00:00"
         },
         {
             "name": "zendframework/zend-form",
@@ -640,7 +647,8 @@
                 "form",
                 "zf2"
             ],
-            "time": "2016-06-07 18:22:51"
+            "abandoned": "laminas/laminas-form",
+            "time": "2016-06-07T18:22:51+00:00"
         },
         {
             "name": "zendframework/zend-http",
@@ -690,7 +698,8 @@
                 "http",
                 "zf2"
             ],
-            "time": "2016-02-04 20:36:48"
+            "abandoned": "laminas/laminas-http",
+            "time": "2016-02-04T20:36:48+00:00"
         },
         {
             "name": "zendframework/zend-hydrator",
@@ -752,7 +761,8 @@
                 "hydrator",
                 "zf2"
             ],
-            "time": "2016-04-18 17:59:29"
+            "abandoned": "laminas/laminas-hydrator",
+            "time": "2016-04-18T17:59:29+00:00"
         },
         {
             "name": "zendframework/zend-i18n",
@@ -819,7 +829,8 @@
                 "i18n",
                 "zf2"
             ],
-            "time": "2016-06-07 21:08:30"
+            "abandoned": "laminas/laminas-i18n",
+            "time": "2016-06-07T21:08:30+00:00"
         },
         {
             "name": "zendframework/zend-inputfilter",
@@ -874,7 +885,8 @@
                 "inputfilter",
                 "zf2"
             ],
-            "time": "2016-06-11 19:35:33"
+            "abandoned": "laminas/laminas-inputfilter",
+            "time": "2016-06-11T19:35:33+00:00"
         },
         {
             "name": "zendframework/zend-loader",
@@ -918,7 +930,8 @@
                 "loader",
                 "zf2"
             ],
-            "time": "2015-06-03 14:05:47"
+            "abandoned": "laminas/laminas-loader",
+            "time": "2015-06-03T14:05:47+00:00"
         },
         {
             "name": "zendframework/zend-mail",
@@ -978,30 +991,31 @@
                 "mail",
                 "zf2"
             ],
-            "time": "2016-05-09 21:52:30"
+            "abandoned": "laminas/laminas-mail",
+            "time": "2016-05-09T21:52:30+00:00"
         },
         {
             "name": "zendframework/zend-math",
-            "version": "3.0.0",
+            "version": "3.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-math.git",
-                "reference": "fda3b4e6c3bb15c35adc6db38b2eacabaa243e65"
+                "reference": "07e43d87fd5c7edc4f54121b9a4625eb10e4b726"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-math/zipball/fda3b4e6c3bb15c35adc6db38b2eacabaa243e65",
-                "reference": "fda3b4e6c3bb15c35adc6db38b2eacabaa243e65",
+                "url": "https://api.github.com/repos/zendframework/zend-math/zipball/07e43d87fd5c7edc4f54121b9a4625eb10e4b726",
+                "reference": "07e43d87fd5c7edc4f54121b9a4625eb10e4b726",
                 "shasum": ""
             },
             "require": {
                 "ext-mbstring": "*",
-                "paragonie/random_compat": "^2.0.2",
-                "php": "^5.5 || ^7.0"
+                "paragonie/random_compat": "^2.0.11 || 9.99.99",
+                "php": "^5.6 || ^7.0"
             },
             "require-dev": {
-                "fabpot/php-cs-fixer": "1.7.*",
-                "phpunit/phpunit": "~4.0"
+                "phpunit/phpunit": "^5.7.27 || ^6.5.8 || ^7.1.2",
+                "zendframework/zend-coding-standard": "~1.0.0"
             },
             "suggest": {
                 "ext-bcmath": "If using the bcmath functionality",
@@ -1010,8 +1024,8 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.0-dev",
-                    "dev-develop": "3.1-dev"
+                    "dev-master": "3.2.x-dev",
+                    "dev-develop": "3.3.x-dev"
                 }
             },
             "autoload": {
@@ -1023,12 +1037,14 @@
             "license": [
                 "BSD-3-Clause"
             ],
-            "homepage": "https://github.com/zendframework/zend-math",
+            "description": "Create cryptographically secure pseudo-random numbers, and manage big integers",
             "keywords": [
+                "ZendFramework",
                 "math",
-                "zf2"
+                "zf"
             ],
-            "time": "2016-04-28 17:37:42"
+            "abandoned": "laminas/laminas-math",
+            "time": "2018-12-04T15:45:09+00:00"
         },
         {
             "name": "zendframework/zend-mime",
@@ -1077,7 +1093,8 @@
                 "mime",
                 "zf2"
             ],
-            "time": "2016-04-20 21:02:01"
+            "abandoned": "laminas/laminas-mime",
+            "time": "2016-04-20T21:02:01+00:00"
         },
         {
             "name": "zendframework/zend-modulemanager",
@@ -1136,7 +1153,8 @@
                 "modulemanager",
                 "zf2"
             ],
-            "time": "2016-05-16 21:21:11"
+            "abandoned": "laminas/laminas-modulemanager",
+            "time": "2016-05-16T21:21:11+00:00"
         },
         {
             "name": "zendframework/zend-mvc",
@@ -1201,7 +1219,8 @@
                 "mvc",
                 "zf2"
             ],
-            "time": "2016-06-23 20:39:38"
+            "abandoned": "laminas/laminas-mvc",
+            "time": "2016-06-23T20:39:38+00:00"
         },
         {
             "name": "zendframework/zend-mvc-form",
@@ -1243,7 +1262,8 @@
                 "mvc",
                 "zf2"
             ],
-            "time": "2016-06-07 18:34:07"
+            "abandoned": "laminas/laminas-mvc-form",
+            "time": "2016-06-07T18:34:07+00:00"
         },
         {
             "name": "zendframework/zend-mvc-plugin-fileprg",
@@ -1299,7 +1319,8 @@
                 "mvc",
                 "zf2"
             ],
-            "time": "2016-05-31 20:44:35"
+            "abandoned": "laminas/laminas-mvc-plugin-fileprg",
+            "time": "2016-05-31T20:44:35+00:00"
         },
         {
             "name": "zendframework/zend-mvc-plugin-flashmessenger",
@@ -1351,7 +1372,8 @@
                 "mvc",
                 "zf2"
             ],
-            "time": "2016-05-31 21:13:07"
+            "abandoned": "laminas/laminas-mvc-plugin-flashmessenger",
+            "time": "2016-05-31T21:13:07+00:00"
         },
         {
             "name": "zendframework/zend-mvc-plugin-identity",
@@ -1404,7 +1426,8 @@
                 "mvc",
                 "zf2"
             ],
-            "time": "2016-05-31 21:19:45"
+            "abandoned": "laminas/laminas-mvc-plugin-identity",
+            "time": "2016-05-31T21:19:45+00:00"
         },
         {
             "name": "zendframework/zend-mvc-plugin-prg",
@@ -1456,7 +1479,8 @@
                 "mvc",
                 "zf2"
             ],
-            "time": "2016-05-31 21:23:05"
+            "abandoned": "laminas/laminas-mvc-plugin-prg",
+            "time": "2016-05-31T21:23:05+00:00"
         },
         {
             "name": "zendframework/zend-mvc-plugins",
@@ -1504,7 +1528,8 @@
                 "plugins",
                 "zf2"
             ],
-            "time": "2016-06-02 18:41:26"
+            "abandoned": "laminas/laminas-mvc-plugins",
+            "time": "2016-06-02T18:41:26+00:00"
         },
         {
             "name": "zendframework/zend-router",
@@ -1565,7 +1590,8 @@
                 "routing",
                 "zf2"
             ],
-            "time": "2016-05-31 20:47:48"
+            "abandoned": "laminas/laminas-router",
+            "time": "2016-05-31T20:47:48+00:00"
         },
         {
             "name": "zendframework/zend-servicemanager",
@@ -1620,7 +1646,8 @@
                 "servicemanager",
                 "zf"
             ],
-            "time": "2016-06-01 16:50:58"
+            "abandoned": "laminas/laminas-servicemanager",
+            "time": "2016-06-01T16:50:58+00:00"
         },
         {
             "name": "zendframework/zend-session",
@@ -1686,35 +1713,36 @@
                 "session",
                 "zf2"
             ],
-            "time": "2016-07-05 18:32:50"
+            "abandoned": "laminas/laminas-session",
+            "time": "2016-07-05T18:32:50+00:00"
         },
         {
             "name": "zendframework/zend-stdlib",
-            "version": "3.0.1",
+            "version": "3.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-stdlib.git",
-                "reference": "8bafa58574204bdff03c275d1d618aaa601588ae"
+                "reference": "66536006722aff9e62d1b331025089b7ec71c065"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-stdlib/zipball/8bafa58574204bdff03c275d1d618aaa601588ae",
-                "reference": "8bafa58574204bdff03c275d1d618aaa601588ae",
+                "url": "https://api.github.com/repos/zendframework/zend-stdlib/zipball/66536006722aff9e62d1b331025089b7ec71c065",
+                "reference": "66536006722aff9e62d1b331025089b7ec71c065",
                 "shasum": ""
             },
             "require": {
-                "php": "^5.5 || ^7.0"
+                "php": "^5.6 || ^7.0"
             },
             "require-dev": {
-                "athletic/athletic": "~0.1",
-                "fabpot/php-cs-fixer": "1.7.*",
-                "phpunit/phpunit": "~4.0"
+                "phpbench/phpbench": "^0.13",
+                "phpunit/phpunit": "^5.7.27 || ^6.5.8 || ^7.1.2",
+                "zendframework/zend-coding-standard": "~1.0.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.0-dev",
-                    "dev-develop": "3.1-dev"
+                    "dev-master": "3.2.x-dev",
+                    "dev-develop": "3.3.x-dev"
                 }
             },
             "autoload": {
@@ -1726,12 +1754,14 @@
             "license": [
                 "BSD-3-Clause"
             ],
-            "homepage": "https://github.com/zendframework/zend-stdlib",
+            "description": "SPL extensions, array utilities, error handlers, and more",
             "keywords": [
+                "ZendFramework",
                 "stdlib",
-                "zf2"
+                "zf"
             ],
-            "time": "2016-04-12 21:19:36"
+            "abandoned": "laminas/laminas-stdlib",
+            "time": "2018-08-28T21:34:05+00:00"
         },
         {
             "name": "zendframework/zend-uri",
@@ -1778,7 +1808,8 @@
                 "uri",
                 "zf2"
             ],
-            "time": "2016-02-17 22:38:51"
+            "abandoned": "laminas/laminas-uri",
+            "time": "2016-02-17T22:38:51+00:00"
         },
         {
             "name": "zendframework/zend-validator",
@@ -1849,7 +1880,8 @@
                 "validator",
                 "zf2"
             ],
-            "time": "2016-06-23 13:44:31"
+            "abandoned": "laminas/laminas-validator",
+            "time": "2016-06-23T13:44:31+00:00"
         },
         {
             "name": "zendframework/zend-view",
@@ -1936,7 +1968,8 @@
                 "view",
                 "zf2"
             ],
-            "time": "2016-06-21 20:58:34"
+            "abandoned": "laminas/laminas-view",
+            "time": "2016-06-21T20:58:34+00:00"
         },
         {
             "name": "zfcampus/zf-development-mode",
@@ -1985,7 +2018,8 @@
                 "framework",
                 "zf2"
             ],
-            "time": "2016-06-22 20:39:20"
+            "abandoned": "laminas/laminas-development-mode",
+            "time": "2016-06-22T20:39:20+00:00"
         }
     ],
     "packages-dev": [],
@@ -1997,7 +2031,10 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^5.6 || ^7.0"
+        "php": "^5.6 || ^7.0",
+        "ext-gd": "*",
+        "ext-mbstring": "*"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
 }
