@@ -20,7 +20,7 @@
         "zfcampus/zf-development-mode": "^3.0",
         "zendframework/zend-mvc-form": "^1.0",
         "zendframework/zend-mvc-plugins": "^1.0.1",
-        "zendframework/zend-session": "^2.7.1",
+        "zendframework/zend-session": "2.9.1",
         "zendframework/zend-barcode": "^2.6"
     },
     "autoload": {

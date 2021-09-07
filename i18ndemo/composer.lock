@@ -1,11 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "hash": "3286ca908d88e7ce04126b1720c3ff7d",
-    "content-hash": "fcd41690232d03e17548f0d753f51011",
+    "content-hash": "93db473ead65db89bc2971b0ee605f4e",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -36,7 +35,8 @@
             ],
             "description": "Promoting the interoperability of container objects (DIC, SL, etc.)",
             "homepage": "https://github.com/container-interop/container-interop",
-            "time": "2017-02-14 19:40:03"
+            "abandoned": "psr/container",
+            "time": "2017-02-14T19:40:03+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -85,7 +85,7 @@
                 "pseudorandom",
                 "random"
             ],
-            "time": "2018-07-04 16:31:37"
+            "time": "2018-07-04T16:31:37+00:00"
         },
         {
             "name": "psr/container",
@@ -134,7 +134,7 @@
                 "container-interop",
                 "psr"
             ],
-            "time": "2017-02-14 16:28:37"
+            "time": "2017-02-14T16:28:37+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -193,7 +193,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2018-04-26 10:06:28"
+            "time": "2018-04-26T10:06:28+00:00"
         },
         {
             "name": "true/punycode",
@@ -239,7 +239,7 @@
                 "idna",
                 "punycode"
             ],
-            "time": "2016-11-16 10:37:54"
+            "time": "2016-11-16T10:37:54+00:00"
         },
         {
             "name": "zendframework/zend-authentication",
@@ -301,7 +301,8 @@
                 "ZendFramework",
                 "zf"
             ],
-            "time": "2018-04-12 21:09:22"
+            "abandoned": "laminas/laminas-authentication",
+            "time": "2018-04-12T21:09:22+00:00"
         },
         {
             "name": "zendframework/zend-captcha",
@@ -359,7 +360,8 @@
                 "captcha",
                 "zf"
             ],
-            "time": "2018-04-24 17:24:10"
+            "abandoned": "laminas/laminas-captcha",
+            "time": "2018-04-24T17:24:10+00:00"
         },
         {
             "name": "zendframework/zend-code",
@@ -412,7 +414,8 @@
                 "code",
                 "zf2"
             ],
-            "time": "2016-10-24 13:23:32"
+            "abandoned": "laminas/laminas-code",
+            "time": "2016-10-24T13:23:32+00:00"
         },
         {
             "name": "zendframework/zend-component-installer",
@@ -464,7 +467,8 @@
                 "plugin",
                 "zf"
             ],
-            "time": "2018-01-11 15:03:06"
+            "abandoned": "laminas/laminas-component-installer",
+            "time": "2018-01-11T15:03:06+00:00"
         },
         {
             "name": "zendframework/zend-config",
@@ -524,7 +528,8 @@
                 "config",
                 "zf"
             ],
-            "time": "2018-04-24 19:26:44"
+            "abandoned": "laminas/laminas-config",
+            "time": "2018-04-24T19:26:44+00:00"
         },
         {
             "name": "zendframework/zend-escaper",
@@ -569,7 +574,8 @@
                 "escaper",
                 "zf"
             ],
-            "time": "2018-04-25 15:48:53"
+            "abandoned": "laminas/laminas-escaper",
+            "time": "2018-04-25T15:48:53+00:00"
         },
         {
             "name": "zendframework/zend-eventmanager",
@@ -623,7 +629,8 @@
                 "events",
                 "zf2"
             ],
-            "time": "2018-04-25 15:33:34"
+            "abandoned": "laminas/laminas-eventmanager",
+            "time": "2018-04-25T15:33:34+00:00"
         },
         {
             "name": "zendframework/zend-filter",
@@ -686,7 +693,8 @@
                 "filter",
                 "zf"
             ],
-            "time": "2018-04-11 16:20:04"
+            "abandoned": "laminas/laminas-filter",
+            "time": "2018-04-11T16:20:04+00:00"
         },
         {
             "name": "zendframework/zend-form",
@@ -764,7 +772,8 @@
                 "form",
                 "zf"
             ],
-            "time": "2018-05-16 18:49:44"
+            "abandoned": "laminas/laminas-form",
+            "time": "2018-05-16T18:49:44+00:00"
         },
         {
             "name": "zendframework/zend-http",
@@ -819,7 +828,8 @@
                 "zend",
                 "zf"
             ],
-            "time": "2018-04-26 21:04:50"
+            "abandoned": "laminas/laminas-http",
+            "time": "2018-04-26T21:04:50+00:00"
         },
         {
             "name": "zendframework/zend-hydrator",
@@ -882,7 +892,8 @@
                 "hydrator",
                 "zf"
             ],
-            "time": "2018-04-30 21:22:14"
+            "abandoned": "laminas/laminas-hydrator",
+            "time": "2018-04-30T21:22:14+00:00"
         },
         {
             "name": "zendframework/zend-i18n",
@@ -950,7 +961,8 @@
                 "i18n",
                 "zf"
             ],
-            "time": "2018-05-16 16:39:13"
+            "abandoned": "laminas/laminas-i18n",
+            "time": "2018-05-16T16:39:13+00:00"
         },
         {
             "name": "zendframework/zend-i18n-resources",
@@ -996,7 +1008,8 @@
                 "translations",
                 "zf"
             ],
-            "time": "2018-04-30 14:47:38"
+            "abandoned": "laminas/laminas-i18n-resources",
+            "time": "2018-04-30T14:47:38+00:00"
         },
         {
             "name": "zendframework/zend-inputfilter",
@@ -1049,7 +1062,8 @@
                 "inputfilter",
                 "zf"
             ],
-            "time": "2018-05-14 17:38:03"
+            "abandoned": "laminas/laminas-inputfilter",
+            "time": "2018-05-14T17:38:03+00:00"
         },
         {
             "name": "zendframework/zend-loader",
@@ -1094,7 +1108,8 @@
                 "loader",
                 "zf"
             ],
-            "time": "2018-04-30 15:20:54"
+            "abandoned": "laminas/laminas-loader",
+            "time": "2018-04-30T15:20:54+00:00"
         },
         {
             "name": "zendframework/zend-mail",
@@ -1156,7 +1171,8 @@
                 "mail",
                 "zf"
             ],
-            "time": "2018-06-07 13:37:07"
+            "abandoned": "laminas/laminas-mail",
+            "time": "2018-06-07T13:37:07+00:00"
         },
         {
             "name": "zendframework/zend-math",
@@ -1207,7 +1223,8 @@
                 "math",
                 "zf"
             ],
-            "time": "2018-07-10 19:00:33"
+            "abandoned": "laminas/laminas-math",
+            "time": "2018-07-10T19:00:33+00:00"
         },
         {
             "name": "zendframework/zend-mime",
@@ -1258,7 +1275,8 @@
                 "mime",
                 "zf"
             ],
-            "time": "2018-05-14 19:02:50"
+            "abandoned": "laminas/laminas-mime",
+            "time": "2018-05-14T19:02:50+00:00"
         },
         {
             "name": "zendframework/zend-modulemanager",
@@ -1318,7 +1336,8 @@
                 "modulemanager",
                 "zf"
             ],
-            "time": "2017-12-02 06:11:18"
+            "abandoned": "laminas/laminas-modulemanager",
+            "time": "2017-12-02T06:11:18+00:00"
         },
         {
             "name": "zendframework/zend-mvc",
@@ -1390,7 +1409,8 @@
                 "mvc",
                 "zf"
             ],
-            "time": "2017-11-24 06:32:07"
+            "abandoned": "laminas/laminas-mvc",
+            "time": "2017-11-24T06:32:07+00:00"
         },
         {
             "name": "zendframework/zend-mvc-form",
@@ -1432,7 +1452,8 @@
                 "mvc",
                 "zf2"
             ],
-            "time": "2016-06-07 18:34:07"
+            "abandoned": "laminas/laminas-mvc-form",
+            "time": "2016-06-07T18:34:07+00:00"
         },
         {
             "name": "zendframework/zend-mvc-i18n",
@@ -1495,7 +1516,8 @@
                 "mvc",
                 "zf"
             ],
-            "time": "2018-05-01 15:48:40"
+            "abandoned": "laminas/laminas-mvc-i18n",
+            "time": "2018-05-01T15:48:40+00:00"
         },
         {
             "name": "zendframework/zend-mvc-plugin-fileprg",
@@ -1553,7 +1575,8 @@
                 "mvc",
                 "zf"
             ],
-            "time": "2018-04-30 20:02:13"
+            "abandoned": "laminas/laminas-mvc-plugin-fileprg",
+            "time": "2018-04-30T20:02:13+00:00"
         },
         {
             "name": "zendframework/zend-mvc-plugin-flashmessenger",
@@ -1609,7 +1632,8 @@
                 "mvc",
                 "zf"
             ],
-            "time": "2018-04-30 18:47:56"
+            "abandoned": "laminas/laminas-mvc-plugin-flashmessenger",
+            "time": "2018-04-30T18:47:56+00:00"
         },
         {
             "name": "zendframework/zend-mvc-plugin-identity",
@@ -1664,7 +1688,8 @@
                 "mvc",
                 "zf"
             ],
-            "time": "2018-04-30 19:50:13"
+            "abandoned": "laminas/laminas-mvc-plugin-identity",
+            "time": "2018-04-30T19:50:13+00:00"
         },
         {
             "name": "zendframework/zend-mvc-plugin-prg",
@@ -1718,7 +1743,8 @@
                 "mvc",
                 "zf"
             ],
-            "time": "2018-04-30 19:54:38"
+            "abandoned": "laminas/laminas-mvc-plugin-prg",
+            "time": "2018-04-30T19:54:38+00:00"
         },
         {
             "name": "zendframework/zend-mvc-plugins",
@@ -1766,7 +1792,8 @@
                 "plugins",
                 "zf2"
             ],
-            "time": "2016-06-02 18:41:26"
+            "abandoned": "laminas/laminas-mvc-plugins",
+            "time": "2016-06-02T18:41:26+00:00"
         },
         {
             "name": "zendframework/zend-router",
@@ -1828,7 +1855,8 @@
                 "zend",
                 "zf"
             ],
-            "time": "2018-06-18 21:10:59"
+            "abandoned": "laminas/laminas-router",
+            "time": "2018-06-18T21:10:59+00:00"
         },
         {
             "name": "zendframework/zend-servicemanager",
@@ -1896,32 +1924,33 @@
                 "servicemanager",
                 "zf"
             ],
-            "time": "2018-01-29 16:48:37"
+            "abandoned": "laminas/laminas-servicemanager",
+            "time": "2018-01-29T16:48:37+00:00"
         },
         {
             "name": "zendframework/zend-session",
-            "version": "2.8.5",
+            "version": "2.9.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-session.git",
-                "reference": "2cfd90e1a2f6b066b9f908599251d8f64f07021b"
+                "reference": "c289c4d733ec23a389e25c7c451f4d062088511f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-session/zipball/2cfd90e1a2f6b066b9f908599251d8f64f07021b",
-                "reference": "2cfd90e1a2f6b066b9f908599251d8f64f07021b",
+                "url": "https://api.github.com/repos/zendframework/zend-session/zipball/c289c4d733ec23a389e25c7c451f4d062088511f",
+                "reference": "c289c4d733ec23a389e25c7c451f4d062088511f",
                 "shasum": ""
             },
             "require": {
                 "php": "^5.6 || ^7.0",
                 "zendframework/zend-eventmanager": "^2.6.2 || ^3.0",
-                "zendframework/zend-stdlib": "^2.7 || ^3.0"
+                "zendframework/zend-stdlib": "^3.2.1"
             },
             "require-dev": {
                 "container-interop/container-interop": "^1.1",
                 "mongodb/mongodb": "^1.0.1",
                 "php-mock/php-mock-phpunit": "^1.1.2 || ^2.0",
-                "phpunit/phpunit": "^5.7.5 || >=6.0.13 <6.5.0",
+                "phpunit/phpunit": "^5.7.27 || ^6.5.14 || ^7.5.16",
                 "zendframework/zend-cache": "^2.6.1",
                 "zendframework/zend-coding-standard": "~1.0.0",
                 "zendframework/zend-db": "^2.7",
@@ -1940,8 +1969,8 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.8-dev",
-                    "dev-develop": "2.9-dev"
+                    "dev-master": "2.9.x-dev",
+                    "dev-develop": "2.10.x-dev"
                 },
                 "zf": {
                     "component": "Zend\\Session",
@@ -1957,26 +1986,27 @@
             "license": [
                 "BSD-3-Clause"
             ],
-            "description": "manage and preserve session data, a logical complement of cookie data, across multiple page requests by the same client",
+            "description": "Object-oriented interface to PHP sessions and storage",
             "keywords": [
                 "ZendFramework",
                 "session",
                 "zf"
             ],
-            "time": "2018-02-22 16:33:54"
+            "abandoned": "laminas/laminas-session",
+            "time": "2019-10-28T19:40:43+00:00"
         },
         {
             "name": "zendframework/zend-stdlib",
-            "version": "3.2.0",
+            "version": "3.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-stdlib.git",
-                "reference": "cd164b4a18b5d1aeb69be2c26db035b5ed6925ae"
+                "reference": "66536006722aff9e62d1b331025089b7ec71c065"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-stdlib/zipball/cd164b4a18b5d1aeb69be2c26db035b5ed6925ae",
-                "reference": "cd164b4a18b5d1aeb69be2c26db035b5ed6925ae",
+                "url": "https://api.github.com/repos/zendframework/zend-stdlib/zipball/66536006722aff9e62d1b331025089b7ec71c065",
+                "reference": "66536006722aff9e62d1b331025089b7ec71c065",
                 "shasum": ""
             },
             "require": {
@@ -2009,7 +2039,8 @@
                 "stdlib",
                 "zf"
             ],
-            "time": "2018-04-30 13:50:40"
+            "abandoned": "laminas/laminas-stdlib",
+            "time": "2018-08-28T21:34:05+00:00"
         },
         {
             "name": "zendframework/zend-uri",
@@ -2056,7 +2087,8 @@
                 "uri",
                 "zf"
             ],
-            "time": "2018-04-30 13:40:08"
+            "abandoned": "laminas/laminas-uri",
+            "time": "2018-04-30T13:40:08+00:00"
         },
         {
             "name": "zendframework/zend-validator",
@@ -2127,7 +2159,8 @@
                 "validator",
                 "zf2"
             ],
-            "time": "2018-02-01 17:05:33"
+            "abandoned": "laminas/laminas-validator",
+            "time": "2018-02-01T17:05:33+00:00"
         },
         {
             "name": "zendframework/zend-view",
@@ -2214,7 +2247,8 @@
                 "view",
                 "zf2"
             ],
-            "time": "2018-01-17 22:21:50"
+            "abandoned": "laminas/laminas-view",
+            "time": "2018-01-17T22:21:50+00:00"
         },
         {
             "name": "zfcampus/zf-development-mode",
@@ -2263,7 +2297,8 @@
                 "framework",
                 "zf"
             ],
-            "time": "2018-05-07 15:44:42"
+            "abandoned": "laminas/laminas-development-mode",
+            "time": "2018-05-07T15:44:42+00:00"
         }
     ],
     "packages-dev": [],
@@ -2278,5 +2313,6 @@
         "ext-mbstring": "*",
         "ext-intl": "*"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
 }
