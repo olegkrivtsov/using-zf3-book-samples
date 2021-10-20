@@ -19,7 +19,7 @@
         "zendframework/zend-mvc-form": "^1.0",
         "zendframework/zend-mvc-plugins": "^1.0.1",
         "zendframework/zend-session": "^2.7.1",
-        "doctrine/doctrine-orm-module": "^2.0",
+        "doctrine/doctrine-orm-module": "4.0.2",
         "doctrine/migrations": "^1.8"
     },
     "autoload": {

@@ -29,7 +29,7 @@
         "zendframework/zend-captcha": "^2.6",
         "zendframework/zend-mail": "^2.10",
         "zendframework/zend-mime": "^2.7",
-        "doctrine/doctrine-orm-module": "^1.1.5",
+        "doctrine/doctrine-orm-module": "4.0.2",
         "doctrine/migrations": "^1.5",
         "zendframework/zend-cache": "^2.7",
         "zendframework/zend-serializer": "^2.8",
